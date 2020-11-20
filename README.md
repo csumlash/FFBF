@@ -14,7 +14,7 @@ B. Megosztani a te módosításaidat (és esetenként egyből leszedi másokét 
     1. Bal felül az Android fájlok felett lenyitni a fülecskét és Android-ról Project-re állítani,
     2. A megjelenő Project lista legtetején a projekt NEVÉRE (ForFoodiesByFoodies) jobb klikk,
     3. A megjelenő menüben: a GiT menüpontban "Add",
-    4. Ismét 2. pont és ismét a megjelenő menün belül a GiT-en belül most "Commit",
+    4. Ismét a megjelenő menün belül a GiT-en belül most "Commit",
     5. Ha van változásod/megosztani valód, akkor bal oldalon a megjelenő ablak alsó felébe
         beírni valami szöveget "üzenetként" és alul "Commit" gomb.
     6. VCS menü felül / GiT almenü csoport / PUSH almenü pont
