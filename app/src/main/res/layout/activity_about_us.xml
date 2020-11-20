@@ -26,27 +26,27 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="262dp" />
+        android:layout_width="357dp"
+        android:layout_height="96dp"
+        android:text="This project was inspired by the XY Company to created a Eatery app for Foodies"
+        tools:layout_editor_absoluteX="27dp"
+        tools:layout_editor_absoluteY="251dp" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="320dp" />
+        tools:layout_editor_absoluteX="27dp"
+        tools:layout_editor_absoluteY="369dp" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="375dp" />
+        tools:layout_editor_absoluteX="27dp"
+        tools:layout_editor_absoluteY="410dp" />
 
     <ImageView
         android:id="@+id/imageView2"
