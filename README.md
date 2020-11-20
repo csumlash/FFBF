@@ -8,6 +8,7 @@ A. Beszerezni a módosításokat (Bármikor, az aktuális állapotokat beszerezn
     1. Fent VCS menü,
     2. Azon belül GiT menü,
     3. Azon belül PULL opció
+    (4. Ki kell választani az origin/master-t, ha nincs ott, akkor frissíteni és utána kiválasztani)
 
 B. Megosztani a te módosításaidat (és esetenként egyből leszedi másokét is)
     1. Bal felül az Android fájlok felett lenyitni a fülecskét és Android-ról Project-re állítani,
