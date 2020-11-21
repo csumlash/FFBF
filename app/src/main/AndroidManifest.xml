@@ -9,7 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ForFoodiesByFoodies">
-        <activity android:name=".ProfileActivity"></activity>
+        <activity android:name=".Registration" />
+        <activity android:name=".WriteReviewAsFoodCritic" />
+        <activity android:name=".ListOfReviews" />
+        <activity android:name=".ViewOfRestaurant" />
+        <activity android:name=".AddRestaurant" />
+        <activity android:name=".ListOfRestaurants" />
+        <activity android:name=".ProfileActivity" />
         <activity android:name=".AddNewStreetFood" />
         <activity android:name=".ViewRestaurant" />
         <activity android:name=".Dashboard" />
