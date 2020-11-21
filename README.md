@@ -16,5 +16,6 @@ B. Megosztani a te módosításaidat (és esetenként egyből leszedi másokét 
     3. A megjelenő menüben: a GiT menüpontban "Add",
     4. Ismét a megjelenő menün belül a GiT-en belül most "Commit",
     5. Ha van változásod/megosztani valód, akkor bal oldalon a megjelenő ablak alsó felébe
-        beírni valami szöveget "üzenetként" és alul "Commit" gomb.
+        beírni valami szöveget "üzenetként" és alul "Commit" gomb. Ha ír hibát, azt lehetőleg
+        javítani, de ha csak warning van, akkor pusztán COMMIT
     6. VCS menü felül / GiT almenü csoport / PUSH almenü pont
