@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class ViewRestaurant extends AppCompatActivity {
+public class AboutStreetFood extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
