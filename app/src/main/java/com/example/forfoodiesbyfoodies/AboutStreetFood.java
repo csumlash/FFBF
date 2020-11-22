@@ -9,6 +9,6 @@ public class AboutStreetFood extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_restaurant);
+        setContentView(R.layout.activity_about_street_food);
     }
 }

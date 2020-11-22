@@ -24,11 +24,11 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="344dp"
-        android:layout_height="151dp"
+        android:layout_width="340dp"
+        android:layout_height="150dp"
         android:layout_marginStart="35dp"
         android:layout_marginLeft="35dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="35dp"
         android:layout_marginRight="35dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,15 +40,12 @@
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="98dp"
-        android:layout_marginLeft="98dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="98dp"
-        android:layout_marginRight="98dp"
         android:text="Name of Street Food Place"
         android:textColor="#040404"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
@@ -56,35 +53,59 @@
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Postcode, Address"
-        tools:layout_editor_absoluteX="146dp"
-        tools:layout_editor_absoluteY="265dp" />
+        android:layout_marginTop="10dp"
+        android:text="Postcode, Address line"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <TextView
         android:id="@+id/textView14"
-        android:layout_width="358dp"
-        android:layout_height="81dp"
+        android:layout_width="385dp"
+        android:layout_height="101dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         android:text="Description about the location, the type of foods available, parking, seating and sightseeing opportunities near, etc..."
-        tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="300dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:text="Visited this place? Review it!"
         android:textColor="#FBFDFD"
         app:backgroundTint="#009688"
-        tools:layout_editor_absoluteX="67dp"
-        tools:layout_editor_absoluteY="393dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView28" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="411dp"
-        android:layout_height="276dp"
-        android:layout_marginTop="15dp"
+        android:layout_height="262dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button" />
+
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:fontFamily="casual"
+        android:text="Vegitarian"
+        android:textColor="#009688"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
