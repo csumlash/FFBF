@@ -6,163 +6,35 @@
     android:layout_height="match_parent"
     tools:context=".ListOfRestaurants">
 
-    <EditText
-        android:id="@+id/editTextTextPersonName3"
-        android:layout_width="111dp"
-        android:layout_height="70dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Restaurants"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="11dp" />
-
     <ImageView
         android:id="@+id/imageView7"
-        android:layout_width="54dp"
-        android:layout_height="52dp"
-        tools:layout_editor_absoluteX="290dp"
+        android:layout_width="46dp"
+        android:layout_height="44dp"
+        tools:layout_editor_absoluteX="349dp"
         tools:layout_editor_absoluteY="16dp"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="154dp"
-        android:layout_height="88dp"
-        android:layout_marginBottom="64dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView9"
-        tools:layout_editor_absoluteX="11dp"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <TextView
-        android:id="@+id/textView18"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Area Name"
-        tools:layout_editor_absoluteX="186dp"
-        tools:layout_editor_absoluteY="258dp" />
-
-    <TextView
-        android:id="@+id/textView21"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="£££"
-        tools:layout_editor_absoluteX="185dp"
-        tools:layout_editor_absoluteY="239dp" />
-
-    <RatingBar
-        android:id="@+id/ratingBar"
-        android:layout_width="139dp"
-        android:layout_height="49dp"
-        tools:layout_editor_absoluteX="185dp"
-        tools:layout_editor_absoluteY="189dp" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName4"
-        android:layout_width="194dp"
-        android:layout_height="41dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Restaurant Name"
-        tools:layout_editor_absoluteX="11dp"
-        tools:layout_editor_absoluteY="148dp" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName6"
-        android:layout_width="194dp"
-        android:layout_height="41dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Restaurant Name"
-        tools:layout_editor_absoluteX="11dp"
-        tools:layout_editor_absoluteY="453dp" />
-
-    <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="154dp"
-        android:layout_height="86dp"
-        android:layout_marginBottom="68dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView10"
-        tools:layout_editor_absoluteX="11dp"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <TextView
-        android:id="@+id/textView22"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="££"
-        tools:layout_editor_absoluteX="186dp"
-        tools:layout_editor_absoluteY="389dp" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName5"
-        android:layout_width="194dp"
-        android:layout_height="41dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Restaurant Name"
-        tools:layout_editor_absoluteX="11dp"
-        tools:layout_editor_absoluteY="299dp" />
-
-    <RatingBar
-        android:id="@+id/ratingBar2"
-        android:layout_width="139dp"
-        android:layout_height="49dp"
-        tools:layout_editor_absoluteX="186dp"
-        tools:layout_editor_absoluteY="340dp" />
-
-    <TextView
-        android:id="@+id/textView19"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Area Name"
-        tools:layout_editor_absoluteX="186dp"
-        tools:layout_editor_absoluteY="408dp" />
-
-    <ImageView
-        android:id="@+id/imageView10"
-        android:layout_width="156dp"
-        android:layout_height="86dp"
-        tools:layout_editor_absoluteX="11dp"
-        tools:layout_editor_absoluteY="495dp"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <Button
-        android:id="@+id/button8"
-        android:layout_width="98dp"
-        android:layout_height="39dp"
-        android:text="Sort by"
-        tools:layout_editor_absoluteX="11dp"
-        tools:layout_editor_absoluteY="80dp" />
-
     <Button
         android:id="@+id/button9"
-        android:layout_width="81dp"
-        android:layout_height="40dp"
-        android:text="+Add"
-        tools:layout_editor_absoluteX="263dp"
-        tools:layout_editor_absoluteY="81dp" />
+        android:layout_width="184dp"
+        android:layout_height="39dp"
+        android:text="Add restaurant"
+        tools:layout_editor_absoluteX="113dp"
+        tools:layout_editor_absoluteY="84dp" />
 
     <TextView
-        android:id="@+id/textView23"
+        android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="££££"
-        tools:layout_editor_absoluteX="189dp"
-        tools:layout_editor_absoluteY="543dp" />
+        android:text="Restaurants"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp" />
 
-    <TextView
-        android:id="@+id/textView20"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Area Name"
-        tools:layout_editor_absoluteX="189dp"
-        tools:layout_editor_absoluteY="562dp" />
-
-    <RatingBar
-        android:id="@+id/ratingBar3"
-        android:layout_width="139dp"
-        android:layout_height="49dp"
-        tools:layout_editor_absoluteX="189dp"
-        tools:layout_editor_absoluteY="494dp" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="413dp"
+        android:layout_height="598dp"
+        tools:layout_editor_absoluteX="-2dp"
+        tools:layout_editor_absoluteY="133dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
