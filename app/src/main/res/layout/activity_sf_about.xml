@@ -64,7 +64,7 @@
         android:layout_height="101dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:text="Description about the location, the type of foods available, parking, seating and sightseeing opportunities near, etc..."
@@ -76,7 +76,7 @@
         android:id="@+id/btn_asf_add_review"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:text="Visited this place? Review it!"
         android:textColor="#FBFDFD"
         app:backgroundTint="#009688"
@@ -86,15 +86,15 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_asf_reviews"
-        android:layout_width="411dp"
-        android:layout_height="248dp"
+        android:layout_width="410dp"
+        android:layout_height="269dp"
+        android:layout_marginTop="5dp"
         android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_asf_description"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_asf_add_review" />
 
     <TextView
         android:id="@+id/tv_asf_vegan"

@@ -6,35 +6,40 @@
     android:layout_height="match_parent"
     tools:context=".RestaurantListOfRestaurants">
 
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="46dp"
-        android:layout_height="44dp"
-        tools:layout_editor_absoluteX="349dp"
-        tools:layout_editor_absoluteY="16dp"
-        tools:srcCompat="@tools:sample/avatars" />
-
     <Button
         android:id="@+id/button9"
         android:layout_width="184dp"
         android:layout_height="39dp"
+        android:layout_marginTop="35dp"
         android:text="Add restaurant"
-        tools:layout_editor_absoluteX="113dp"
-        tools:layout_editor_absoluteY="84dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_restlor_title" />
 
     <TextView
-        android:id="@+id/tv_title"
+        android:id="@+id/tv_restlor_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="272dp"
+        android:layout_marginRight="272dp"
         android:text="Restaurants"
+        android:textColor="#009688"
         android:textSize="24sp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="413dp"
         android:layout_height="598dp"
-        tools:layout_editor_absoluteX="-2dp"
-        tools:layout_editor_absoluteY="133dp" />
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
