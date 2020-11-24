@@ -4,40 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AboutStreetFood">
+    tools:context=".SfAbout">
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/tv_asf_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="135dp"
-        android:layout_marginRight="135dp"
-        android:text="About your chosen Place"
+        android:layout_marginTop="16dp"
+        android:text="About the chosen Street Food"
         android:textColor="#009688"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.168"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/iv_asf_image"
         android:layout_width="340dp"
         android:layout_height="150dp"
         android:layout_marginStart="35dp"
         android:layout_marginLeft="35dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="35dp"
         android:layout_marginRight="35dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:layout_constraintTop_toBottomOf="@+id/tv_asf_title"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/tv_asf_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -47,10 +45,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_asf_image" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/tv_asf_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -58,54 +56,59 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_asf_name" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/tv_asf_description"
         android:layout_width="385dp"
         android:layout_height="101dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:text="Description about the location, the type of foods available, parking, seating and sightseeing opportunities near, etc..."
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_asf_address" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_asf_add_review"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="16dp"
         android:text="Visited this place? Review it!"
         android:textColor="#FBFDFD"
         app:backgroundTint="#009688"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView28" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_asf_description" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_asf_reviews"
         android:layout_width="411dp"
-        android:layout_height="262dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="248dp"
+        android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_asf_description"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/textView28"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
+        android:id="@+id/tv_asf_vegan"
+        android:layout_width="143dp"
+        android:layout_height="25dp"
+        android:background="#755BFF5E"
         android:fontFamily="casual"
-        android:text="Vegitarian"
-        android:textColor="#009688"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+        android:text="Vegan food available"
+        android:textColor="#063900"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_asf_image"
+        app:layout_constraintEnd_toEndOf="@+id/iv_asf_image"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/iv_asf_image"
+        app:layout_constraintTop_toTopOf="@+id/iv_asf_image"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

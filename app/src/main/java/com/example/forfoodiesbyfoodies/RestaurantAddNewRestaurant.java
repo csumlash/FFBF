@@ -4,11 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class ListofStreetFood extends AppCompatActivity {
+public class RestaurantAddNewRestaurant extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_of_street_food);
+        setContentView(R.layout.activity_restaurant_add_new_restaurant);
     }
 }

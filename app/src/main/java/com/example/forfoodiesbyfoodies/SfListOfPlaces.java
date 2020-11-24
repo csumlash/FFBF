@@ -4,11 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class WriteReviewAsFoodCritic extends AppCompatActivity {
+public class SfListOfPlaces extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_write_review_as_food_critic);
+        setContentView(R.layout.activity_sf_list_of_places);
     }
 }

@@ -9,11 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ForFoodiesByFoodies">
-        <activity android:name=".ProfileActivity"></activity>
-        <activity android:name=".AddNewStreetFood" />
+        <activity android:name=".Profile"></activity>
+        <activity android:name=".SfAddNewPlace" />
         <activity android:name=".ViewRestaurant" />
         <activity android:name=".Dashboard" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
