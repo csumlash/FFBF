@@ -23,13 +23,13 @@ public class SfAbout extends AppCompatActivity {
         /* first part: type of view (tv, iv, btn)
         ** seconds part: asf = abbreviation of class name
         ** third part: name of field (title, image, vegan...) */
-        title       = findViewById(R.id.tv_asf_title);
-        image       = findViewById(R.id.iv_asf_image);
-        vegan       = findViewById(R.id.tv_asf_vegan);
-        name        = findViewById(R.id.tv_asf_name);
-        fullAddress = findViewById(R.id.tv_asf_address);
-        description = findViewById(R.id.tv_asf_description);
-        addReview   = findViewById(R.id.btn_asf_add_review);
-        reviews     = findViewById(R.id.rv_asf_reviews);
+        title       = findViewById(R.id.tv_sf_list_title);
+        image       = findViewById(R.id.iv_sf_list_image);
+        vegan       = findViewById(R.id.tv_sf_list_vegan);
+        name        = findViewById(R.id.tv_sf_list_name);
+        fullAddress = findViewById(R.id.tv_sf_list_address);
+        description = findViewById(R.id.tv_sf_list_description);
+        addReview   = findViewById(R.id.btn_sf_list_review);
+        reviews     = findViewById(R.id.rv_sf_list_reviews);
     }
 }

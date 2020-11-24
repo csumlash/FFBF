@@ -5,12 +5,12 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="For Foodies by Foodies"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ForFoodiesByFoodies">
         <activity android:name=".Dashboard" />
-        <activity android:name=".Login">
+        <activity android:name=".RestaurantAddNewRestaurant">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,7 +20,7 @@
         <activity android:name=".Profile"></activity>
         <activity android:name=".Registration" />
         <activity android:name=".RestaurantAbout" />
-        <activity android:name=".RestaurantAddNewRestaurant" />
+        <activity android:name=".Login" />
         <activity android:name=".RestaurantListOfRestaurants" />
         <activity android:name=".RestaurantListOfReviews" />
         <activity android:name=".RestaurantWriteReview" />

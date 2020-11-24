@@ -7,7 +7,7 @@
     tools:context=".SfAbout">
 
     <TextView
-        android:id="@+id/tv_asf_title"
+        android:id="@+id/tv_sf_list_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/iv_asf_image"
+        android:id="@+id/iv_sf_list_image"
         android:layout_width="340dp"
         android:layout_height="150dp"
         android:layout_marginStart="35dp"
@@ -31,11 +31,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_asf_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_sf_list_title"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/tv_asf_name"
+        android:id="@+id/tv_sf_list_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -45,10 +45,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_asf_image" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_sf_list_image" />
 
     <TextView
-        android:id="@+id/tv_asf_address"
+        android:id="@+id/tv_sf_list_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -56,10 +56,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_asf_name" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_sf_list_name" />
 
     <TextView
-        android:id="@+id/tv_asf_description"
+        android:id="@+id/tv_sf_list_description"
         android:layout_width="385dp"
         android:layout_height="101dp"
         android:layout_marginStart="10dp"
@@ -70,10 +70,10 @@
         android:text="Description about the location, the type of foods available, parking, seating and sightseeing opportunities near, etc..."
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_asf_address" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_sf_list_address" />
 
     <Button
-        android:id="@+id/btn_asf_add_review"
+        android:id="@+id/btn_sf_list_review"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -82,10 +82,10 @@
         app:backgroundTint="#009688"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_asf_description" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_sf_list_description" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_asf_reviews"
+        android:id="@+id/rv_sf_list_reviews"
         android:layout_width="410dp"
         android:layout_height="269dp"
         android:layout_marginTop="5dp"
@@ -94,21 +94,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_asf_add_review" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_sf_list_review" />
 
     <TextView
-        android:id="@+id/tv_asf_vegan"
+        android:id="@+id/tv_sf_list_vegan"
         android:layout_width="143dp"
         android:layout_height="25dp"
-        android:background="#755BFF5E"
+        android:background="#455BFF5E"
         android:fontFamily="casual"
         android:text="Vegan food available"
         android:textColor="#063900"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_asf_image"
-        app:layout_constraintEnd_toEndOf="@+id/iv_asf_image"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_sf_list_image"
+        app:layout_constraintEnd_toEndOf="@+id/iv_sf_list_image"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/iv_asf_image"
-        app:layout_constraintTop_toTopOf="@+id/iv_asf_image"
+        app:layout_constraintStart_toStartOf="@+id/iv_sf_list_image"
+        app:layout_constraintTop_toTopOf="@+id/iv_sf_list_image"
         app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

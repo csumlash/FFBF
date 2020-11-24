@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:ems="10"
-        android:hint="E-mail Address"
+        android:hint="E-mail address"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -50,13 +50,12 @@
 
     <TextView
         android:id="@+id/tv_log_warning"
-        android:layout_width="253dp"
-        android:layout_height="73dp"
-        android:layout_marginTop="50dp"
-        android:text="Wrong details please check your e-mail address or password."
+        android:layout_width="207dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="48dp"
+        android:text="Check your e-mail or password"
         android:textColor="#CCF44336"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_log_login" />
 
