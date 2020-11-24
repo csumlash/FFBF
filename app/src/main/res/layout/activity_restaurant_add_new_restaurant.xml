@@ -21,7 +21,7 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="305dp"
+        android:layout_width="300dp"
         android:layout_height="154dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
@@ -34,10 +34,15 @@
         android:id="@+id/button11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="87dp"
+        android:layout_marginLeft="87dp"
         android:layout_marginTop="4dp"
+        android:layout_marginEnd="83dp"
+        android:layout_marginRight="83dp"
         android:text="Upload Image"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        tools:layout_editor_absoluteX="92dp" />
+        app:layout_constraintEnd_toStartOf="@+id/radioGroup"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <EditText
         android:id="@+id/editTextTextPersonName5"
@@ -121,80 +126,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView36" />
 
-    <CheckBox
-        android:id="@+id/checkBox2"
-        android:layout_width="80dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="11dp"
-        android:layout_marginLeft="11dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginRight="5dp"
-        android:text="£££"
-        android:textColor="#0C0C0C"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
-
     <TextView
         android:id="@+id/textView37"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="11dp"
-        android:layout_marginLeft="11dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="18dp"
-        android:layout_marginRight="18dp"
         android:text="Price Rate:"
         android:textColor="#009688"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toBottomOf="@+id/tv_restanr_title" />
-
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="80dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="11dp"
-        android:layout_marginLeft="11dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginRight="5dp"
-        android:text="££££"
-        android:textColor="#0C0C0C"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView37" />
-
-    <CheckBox
-        android:id="@+id/checkBox3"
-        android:layout_width="80dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="11dp"
-        android:layout_marginLeft="11dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginRight="5dp"
-        android:text="££"
-        android:textColor="#0C0C0C"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
-
-    <CheckBox
-        android:id="@+id/checkBox4"
-        android:layout_width="80dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="11dp"
-        android:layout_marginLeft="11dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginRight="5dp"
-        android:text="£"
-        android:textColor="#0C0C0C"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox3" />
 
     <TextView
         android:id="@+id/textView36"
@@ -238,5 +180,50 @@
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine4" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="85dp"
+        android:layout_height="160dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView37">
+
+        <RadioButton
+            android:id="@+id/radioButton4"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="££££"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="£££"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="££"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/radioButton1"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="£"
+            android:textSize="12sp" />
+
+
+    </RadioGroup>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

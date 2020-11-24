@@ -24,9 +24,11 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="141dp"
+        android:layout_width="340dp"
+        android:layout_height="150dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="63dp"
         tools:srcCompat="@tools:sample/avatars" />
 
@@ -34,38 +36,42 @@
         android:id="@+id/textView35"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="166dp"
-        tools:layout_editor_absoluteY="191dp" />
+        android:text="Name of Restaurant"
+        android:textColor="#0E0E0E"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="222dp" />
 
     <RatingBar
         android:id="@+id/ratingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="72dp"
-        tools:layout_editor_absoluteY="222dp" />
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="278dp" />
 
     <TextView
         android:id="@+id/textView38"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="300dp" />
+        tools:layout_editor_absoluteX="10dp"
+        tools:layout_editor_absoluteY="346dp" />
 
     <TextView
         android:id="@+id/textView39"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        tools:layout_editor_absoluteX="326dp"
-        tools:layout_editor_absoluteY="305dp" />
+        tools:layout_editor_absoluteX="337dp"
+        tools:layout_editor_absoluteY="327dp" />
 
     <TextView
         android:id="@+id/textView40"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        tools:layout_editor_absoluteX="19dp"
-        tools:layout_editor_absoluteY="346dp" />
+        tools:layout_editor_absoluteX="10dp"
+        tools:layout_editor_absoluteY="395dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

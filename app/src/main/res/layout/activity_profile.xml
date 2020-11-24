@@ -7,7 +7,7 @@
     tools:context=".Profile">
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/ib_profile_editemail"
         android:layout_width="25dp"
         android:layout_height="33dp"
         android:layout_marginTop="5dp"
@@ -15,11 +15,11 @@
         android:layout_marginRight="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView23"
-        app:layout_constraintTop_toBottomOf="@+id/button6"
+        app:layout_constraintTop_toBottomOf="@+id/btn_profile_upload"
         app:srcCompat="@android:drawable/ic_menu_edit" />
 
     <TextView
-        android:id="@+id/tv_pa_title"
+        android:id="@+id/tv_profile_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -32,14 +32,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/iv_profile_paimage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_pa_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_profile_title"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
@@ -53,7 +53,7 @@
         android:text="First Name"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button6" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_profile_upload" />
 
     <TextView
         android:id="@+id/textView23"
@@ -66,10 +66,10 @@
         android:text="Last Name"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/textView13"
-        app:layout_constraintTop_toBottomOf="@+id/button6" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_profile_upload" />
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/tv_profile_email"
         android:layout_width="280dp"
         android:layout_height="33dp"
         android:layout_marginTop="2dp"
@@ -81,17 +81,20 @@
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <TextView
-        android:id="@+id/textView16"
+        android:id="@+id/tv_profile_password"
         android:layout_width="280dp"
         android:layout_height="32dp"
+        android:layout_marginStart="66dp"
+        android:layout_marginLeft="66dp"
         android:layout_marginTop="2dp"
         android:text="Password"
         android:textSize="14sp"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton"
-        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+        app:layout_constraintEnd_toStartOf="@+id/ib_profile_editpassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_profile_email" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/btn_profile_promote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -99,10 +102,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_profile_password" />
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/tv_profile_foodcritic"
         android:layout_width="144dp"
         android:layout_height="30dp"
         android:layout_marginTop="5dp"
@@ -113,10 +116,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button5" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_profile_promote" />
 
     <TextView
-        android:id="@+id/textView18"
+        android:id="@+id/tv_profile_reviews"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -129,10 +132,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_profile_foodcritic" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView2"
+        android:id="@+id/rv_profile_reviews"
         android:layout_width="408dp"
         android:layout_height="233dp"
         android:layout_marginTop="2dp"
@@ -140,11 +143,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView18"
+        app:layout_constraintTop_toBottomOf="@+id/tv_profile_reviews"
         app:layout_constraintVertical_bias="0.772" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/btn_profile_upload"
         android:layout_width="219dp"
         android:layout_height="48dp"
         android:layout_marginTop="10dp"
@@ -153,69 +156,31 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_profile_paimage" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/ib_profile_editpassword"
         android:layout_width="25dp"
         android:layout_height="33dp"
         android:layout_marginTop="2dp"
         android:layout_marginEnd="40dp"
         android:layout_marginRight="40dp"
         android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/button5"
+        app:layout_constraintBottom_toTopOf="@+id/btn_profile_promote"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15"
+        app:layout_constraintTop_toBottomOf="@+id/tv_profile_email"
         app:srcCompat="@android:drawable/ic_menu_edit" />
 
-    <ImageView
-        android:id="@+id/imageView16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView17"
-        app:layout_constraintTop_toBottomOf="@+id/textView17"
-        app:srcCompat="@android:drawable/star_big_on" />
-
-    <ImageView
-        android:id="@+id/imageView17"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView18"
-        app:layout_constraintTop_toBottomOf="@+id/textView17"
-        app:srcCompat="@android:drawable/star_big_on" />
-
-    <ImageView
-        android:id="@+id/imageView18"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="125dp"
-        android:layout_marginRight="125dp"
+    <RatingBar
+        android:id="@+id/rb_profile_stars"
+        android:layout_width="240dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginEnd="84dp"
+        android:layout_marginRight="84dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView17"
-        app:srcCompat="@android:drawable/star_big_on" />
-
-    <ImageView
-        android:id="@+id/imageView19"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="124dp"
-        android:layout_marginLeft="124dp"
-        android:layout_marginTop="6dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView21"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView17"
-        app:srcCompat="@android:drawable/star_big_on" />
-
-    <ImageView
-        android:id="@+id/imageView21"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView16"
-        app:layout_constraintTop_toBottomOf="@+id/textView17"
-        app:srcCompat="@android:drawable/star_big_on" />
+        app:layout_constraintStart_toEndOf="@+id/tv_profile_reviews"
+        app:layout_constraintTop_toBottomOf="@+id/tv_profile_foodcritic" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
