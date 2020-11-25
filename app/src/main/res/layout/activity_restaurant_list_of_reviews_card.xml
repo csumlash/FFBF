@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="120dp">
+    android:layout_height="130dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp">
+        android:layout_height="130dp">
 
         <TextView
             android:id="@+id/tv_rest_loreview_card_experience"
@@ -77,6 +77,42 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/iv_rest_card_loreview_image"
             app:layout_constraintTop_toBottomOf="@+id/tv_rest_loreview_card_experience" />
+
+        <RadioGroup
+            android:layout_width="164dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="6dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_rest_loreviews_option"
+            app:layout_constraintTop_toBottomOf="@+id/tv_rest_loreview_card_experience">
+
+
+            <RadioButton
+                android:id="@+id/rb_rest_loreviews_option1"
+                android:layout_width="wrap_content"
+                android:layout_height="22dp"
+                android:layout_weight="1"
+                android:text="yes"
+                android:textColor="#009688" />
+
+            <RadioButton
+                android:id="@+id/rb_rest_loreviews_option2"
+                android:layout_width="wrap_content"
+                android:layout_height="22dp"
+                android:layout_weight="1"
+                android:text="no"
+                android:textColor="#009688" />
+
+
+        </RadioGroup>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
