@@ -82,7 +82,7 @@
         app:layout_constraintTop_toBottomOf="@+id/rb_rest_ar_stars" />
 
     <TextView
-        android:id="@+id/textView40"
+        android:id="@+id/tv_rest_ar_type"
         android:layout_width="243dp"
         android:layout_height="24dp"
         android:layout_marginStart="15dp"
@@ -119,7 +119,7 @@
         android:text="Reservation"
         app:backgroundTint="#009688"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView40" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_rest_ar_type" />
 
     <Button
         android:id="@+id/btn_rest_ar_viewreviews"
@@ -134,7 +134,7 @@
         app:backgroundTint="#009688"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btn_rest_ar_book"
-        app:layout_constraintTop_toBottomOf="@+id/textView40" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_rest_ar_type" />
 
     <TextView
         android:id="@+id/tv_rest_ar_info"
