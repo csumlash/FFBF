@@ -9,8 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ForFoodiesByFoodies">
+        <activity android:name=".SfReviewList"></activity>
         <activity android:name=".Dashboard" />
-        <activity android:name=".Profile"></activity>
+        <activity android:name=".Profile" />
         <activity android:name=".RestaurantWriteReview" />
         <activity android:name=".RestaurantAbout" />
         <activity android:name=".Login" />
@@ -19,7 +20,7 @@
         <activity android:name=".RestaurantAddNewRestaurant" />
         <activity android:name=".SfAbout" />
         <activity android:name=".SfAddNewPlace" />
-        <activity android:name=".SfListOfPlaces" />
+        <activity android:name=".SfListOfStreetFoods" />
         <activity android:name=".SfWriteReview" />
         <activity android:name=".Registration">
             <intent-filter>
@@ -28,7 +29,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

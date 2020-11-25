@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.widget.Button;
 
-public class SfListOfPlaces extends AppCompatActivity {
+public class SfListOfStreetFoods extends AppCompatActivity {
 
     Button addnewplace;
     RecyclerView sflist;
@@ -14,7 +14,7 @@ public class SfListOfPlaces extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sf_list_of_places);
+        setContentView(R.layout.activity_sf_list_of_street_foods);
 
 
         addnewplace = findViewById(R.id.btn_rest_lorest_addrestaurant);
