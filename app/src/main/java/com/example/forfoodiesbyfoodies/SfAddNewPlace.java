@@ -20,8 +20,7 @@ public class SfAddNewPlace extends AppCompatActivity {
     Switch vegie;
     RadioGroup pricerate;
 
-
-
+    /* ELŐSZÖR AZ EATRYTEMPLATE ALAPJÁN KÉSZÍTS EBBŐL OBJEKTUMOT (MERT A STREET FOOD CLASS NINCS KÉSZ) */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
