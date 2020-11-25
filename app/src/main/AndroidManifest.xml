@@ -10,25 +10,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ForFoodiesByFoodies">
         <activity android:name=".Dashboard" />
-        <activity android:name=".RestaurantAddNewRestaurant">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity android:name=".Profile"></activity>
         <activity android:name=".Registration" />
         <activity android:name=".RestaurantAbout" />
         <activity android:name=".Login" />
         <activity android:name=".RestaurantListOfRestaurants" />
         <activity android:name=".RestaurantListOfReviews" />
-        <activity android:name=".RestaurantWriteReview" />
+        <activity android:name=".RestaurantAddNewRestaurant" />
         <activity android:name=".SfAbout" />
         <activity android:name=".SfAddNewPlace" />
         <activity android:name=".SfListOfPlaces" />
         <activity android:name=".SfWriteReview" />
+        <activity android:name=".RestaurantWriteReview">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
     </application>
 
