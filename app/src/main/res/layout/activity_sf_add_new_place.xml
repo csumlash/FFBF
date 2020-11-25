@@ -71,15 +71,15 @@
 
     <EditText
         android:id="@+id/et_sf_anp_nameofsf"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_width="181dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="Name of the Restaurant"
+        android:hint="Name of Street Food Place"
         android:inputType="textPersonName"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_sf_anp_upload" />
 
