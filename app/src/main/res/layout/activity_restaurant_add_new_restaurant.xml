@@ -7,7 +7,7 @@
     tools:context=".RestaurantAddNewRestaurant">
 
     <TextView
-        android:id="@+id/tv_restanr_title"
+        android:id="@+id/tv_rest_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -20,18 +20,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/iv_rest_anr_image"
         android:layout_width="300dp"
-        android:layout_height="154dp"
+        android:layout_height="160dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_restanr_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_rest_title"
         tools:srcCompat="@tools:sample/avatars" />
 
     <Button
-        android:id="@+id/button11"
+        android:id="@+id/btn_rest_anr_upload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="87dp"
@@ -40,15 +40,15 @@
         android:layout_marginEnd="83dp"
         android:layout_marginRight="83dp"
         android:text="Upload Image"
-        app:layout_constraintEnd_toStartOf="@+id/radioGroup"
+        app:layout_constraintEnd_toStartOf="@+id/rg_sf_anp_prices"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_rest_anr_image" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName5"
+        android:id="@+id/et_rest_anr_nameofrestaurant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:ems="10"
         android:hint="Name of the Restaurant"
         android:inputType="textPersonName"
@@ -56,12 +56,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button11" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_rest_anr_upload" />
 
     <EditText
-        android:id="@+id/editTextTextPostalAddress2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/et_rest_anr_addressline"
+        android:layout_width="213dp"
+        android:layout_height="44dp"
         android:layout_marginStart="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
@@ -70,40 +70,45 @@
         android:inputType="textPostalAddress"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5" />
+        app:layout_constraintTop_toBottomOf="@+id/et_rest_anr_nameofrestaurant" />
 
     <EditText
-        android:id="@+id/editTextTextPostalAddress3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:hint="Postcode"
-        android:inputType="textPostalAddress"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPostalAddress2" />
-
-    <EditText
-        android:id="@+id/editTextTextPostalAddress4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/et_rest_anr_postcode"
+        android:layout_width="152dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginLeft="17dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"
         android:ems="10"
-        android:hint="Area Name"
+        android:hint="Postcode"
         android:inputType="textPostalAddress"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5" />
+        app:layout_constraintStart_toEndOf="@+id/et_rest_anr_addressline"
+        app:layout_constraintTop_toBottomOf="@+id/et_rest_anr_nameofrestaurant" />
 
     <EditText
-        android:id="@+id/editTextTextMultiLine3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/et_rest_anr_areaname"
+        android:layout_width="213dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="Area Name"
+        android:inputType="textPostalAddress"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_rest_anr_addressline" />
+
+    <EditText
+        android:id="@+id/et_rest_anr_city"
+        android:layout_width="150dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginLeft="17dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"
@@ -113,33 +118,24 @@
         android:inputType="textMultiLine"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPostalAddress4" />
+        app:layout_constraintStart_toEndOf="@+id/et_rest_anr_areaname"
+        app:layout_constraintTop_toBottomOf="@+id/et_rest_anr_postcode" />
 
     <Button
-        android:id="@+id/button12"
+        android:id="@+id/btn_rest_anr_send"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="59dp"
         android:text="Send"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView36" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_rest_anr_warning" />
 
     <TextView
-        android:id="@+id/textView37"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="10dp"
-        android:text="Price Rate:"
-        android:textColor="#009688"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/tv_restanr_title" />
-
-    <TextView
-        android:id="@+id/textView36"
+        android:id="@+id/tv_rest_anr_warning"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -149,40 +145,40 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine5" />
+        app:layout_constraintTop_toBottomOf="@+id/et_rest_anr_about" />
 
     <EditText
         android:id="@+id/editTextTextMultiLine4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="15dp"
+        android:layout_width="381dp"
+        android:layout_height="37dp"
         android:layout_marginTop="10dp"
         android:ems="10"
         android:gravity="start|top"
         android:hint="Type of Restaurant"
         android:inputType="textMultiLine"
         android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPostalAddress3" />
+        app:layout_constraintTop_toBottomOf="@+id/et_rest_anr_city" />
 
     <EditText
-        android:id="@+id/editTextTextMultiLine5"
+        android:id="@+id/et_rest_anr_about"
         android:layout_width="381dp"
         android:layout_height="106dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:ems="10"
         android:gravity="start|top"
         android:hint="About the restaurant"
         android:inputType="textMultiLine"
         android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine4" />
 
     <RadioGroup
-        android:id="@+id/radioGroup"
+        android:id="@+id/rg_rest_anr_prices"
         android:layout_width="85dp"
         android:layout_height="160dp"
         android:layout_marginStart="5dp"
@@ -191,37 +187,37 @@
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView37">
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/iv_rest_anr_image"
+        app:layout_constraintTop_toBottomOf="@+id/tv_rest_title">
 
         <RadioButton
-            android:id="@+id/radioButton4"
+            android:id="@+id/rb_rest_anr_4"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:text="££££"
             android:textSize="12sp" />
 
         <RadioButton
-            android:id="@+id/radioButton3"
+            android:id="@+id/rb_rest_anr_3"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:text="£££"
             android:textSize="12sp" />
 
         <RadioButton
-            android:id="@+id/radioButton2"
+            android:id="@+id/rb_rest_anr_2"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:text="££"
             android:textSize="12sp" />
 
         <RadioButton
-            android:id="@+id/radioButton1"
+            android:id="@+id/rb_rest_anr_1"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:text="£"
             android:textSize="12sp" />
-
 
     </RadioGroup>
 

@@ -8,19 +8,8 @@
         android:layout_width="match_parent"
         android:layout_height="100dp">
 
-        <ImageButton
-            android:id="@+id/imageButton4"
-            android:layout_width="52dp"
-            android:layout_height="51dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginLeft="15dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
-
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/tv_sf_review_card_username"
             android:layout_width="151dp"
             android:layout_height="20dp"
             android:layout_marginStart="15dp"
@@ -30,12 +19,12 @@
             android:layout_marginRight="10dp"
             android:fontFamily="sans-serif-black"
             android:text="Name of User"
-            app:layout_constraintEnd_toStartOf="@+id/textView29"
+            app:layout_constraintEnd_toStartOf="@+id/tv_sf_review_card_date"
             app:layout_constraintStart_toEndOf="@+id/imageButton4"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/tv_sf_review_card_experience"
             android:layout_width="323dp"
             android:layout_height="65dp"
             android:layout_marginStart="15dp"
@@ -50,10 +39,10 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageButton4"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_sf_review_card_username" />
 
         <TextView
-            android:id="@+id/textView29"
+            android:id="@+id/tv_sf_review_card_date"
             android:layout_width="129dp"
             android:layout_height="22dp"
             android:layout_marginTop="5dp"
@@ -62,21 +51,35 @@
             android:layout_marginBottom="5dp"
             android:text="Date:"
             android:textSize="12sp"
-            app:layout_constraintBottom_toTopOf="@+id/textView6"
-            app:layout_constraintEnd_toStartOf="@+id/imageButton5"
+            app:layout_constraintBottom_toTopOf="@+id/tv_sf_review_card_experience"
+            app:layout_constraintEnd_toStartOf="@+id/ib_sf_review_card_delete"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            android:id="@+id/imageButton5"
+            android:id="@+id/ib_sf_review_card_delete"
             android:layout_width="27dp"
             android:layout_height="25dp"
             android:layout_marginTop="1dp"
             android:layout_marginEnd="1dp"
             android:layout_marginRight="1dp"
             android:layout_marginBottom="5dp"
-            app:layout_constraintBottom_toTopOf="@+id/textView6"
+            app:layout_constraintBottom_toTopOf="@+id/tv_sf_review_card_experience"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@android:drawable/ic_delete" />
+
+        <ImageView
+            android:id="@+id/iv_sf_card_review_image"
+            android:layout_width="56dp"
+            android:layout_height="53dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_sf_review_card_experience"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

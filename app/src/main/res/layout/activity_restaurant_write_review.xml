@@ -7,7 +7,7 @@
     tools:context=".RestaurantWriteReview">
 
     <TextView
-        android:id="@+id/tv_restwr_title"
+        android:id="@+id/tv_rest_wr_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextDate2"
+        android:id="@+id/et_rest_wr_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
@@ -37,10 +37,10 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView42" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_rest_wr_date" />
 
     <EditText
-        android:id="@+id/editTextTextMultiLine6"
+        android:id="@+id/et_rest_wr_experience"
         android:layout_width="380dp"
         android:layout_height="194dp"
         android:layout_marginTop="20dp"
@@ -52,10 +52,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDate2" />
+        app:layout_constraintTop_toBottomOf="@+id/et_rest_wr_date" />
 
     <Button
-        android:id="@+id/button13"
+        android:id="@+id/btn_rest_wr_send"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
@@ -66,10 +66,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine6" />
+        app:layout_constraintTop_toBottomOf="@+id/et_rest_wr_experience" />
 
     <TextView
-        android:id="@+id/textView42"
+        android:id="@+id/tv_rest_wr_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
@@ -84,17 +84,17 @@
         tools:layout_editor_absoluteY="227dp" />
 
     <RatingBar
-        android:id="@+id/ratingBar2"
+        android:id="@+id/rb_rest_wr_rate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_rest_wr_rate" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/tv_rest_wr_rate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
@@ -106,5 +106,5 @@
         android:textColor="#009688"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_restwr_title" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_rest_wr_title" />
 </androidx.constraintlayout.widget.ConstraintLayout>
