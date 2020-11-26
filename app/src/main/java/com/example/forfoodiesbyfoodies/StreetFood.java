@@ -1,30 +1,31 @@
 package com.example.forfoodiesbyfoodies;
 
 import android.os.Parcel;
+import android.os.Parcelable;
 
-public class StreetFood extends EateryTemplate {
+/*
+ * This class inherits all the attributes and methods from the parent EateryTemplate class and
+ * defines all the other details are its own ones but independent from the parent one. */
+public class StreetFood extends EateryTemplate implements Parcelable {
 
-    private boolean isVegan;
+    private int isVegan;
 
-    public StreetFood(String picURL, String name, String type, String address, String area, String city, String postcode, String about, int priceCat, boolean isVegan) {
+    public StreetFood(String picURL, String name, String type, String address, String area, String city, String postcode, String about, int priceCat, int isVegan) {
         super(picURL, name, type, address, area, city, postcode, about, priceCat);
         this.isVegan = isVegan;
     }
 
     protected StreetFood(Parcel in) {
         super(in);
-        /* TALÁLJ ERRE KI VALAMI */
-        /*if (isVegan == true){
-            isVegan = in.readString();
-        }*/
+        isVegan = in.readInt();
 
     }
 
-    public boolean isVegan() {
+    public int isVegan() {
         return isVegan;
     }
 
-    public void setVegan(boolean vegan) {
-        isVegan = vegan;
+    public void setVegan(boolean isVegan) {
+        isVegan = isVegan;
     }
 }

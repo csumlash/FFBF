@@ -1,15 +1,14 @@
 package com.example.forfoodiesbyfoodies;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class SfAddNewPlace extends AppCompatActivity {
 
@@ -19,8 +18,6 @@ public class SfAddNewPlace extends AppCompatActivity {
     EditText sfname, addressline, postcode, area, city, about;
     Switch vegie;
     RadioGroup pricerate;
-
-    /* ELŐSZÖR AZ EATRYTEMPLATE ALAPJÁN KÉSZÍTS EBBŐL OBJEKTUMOT (MERT A STREET FOOD CLASS NINCS KÉSZ) */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +36,6 @@ public class SfAddNewPlace extends AppCompatActivity {
         about = findViewById(R.id.et_sf_anp_about);
         vegie = findViewById(R.id.switch_sf_anp_vegie);
         pricerate = findViewById(R.id.rg_sf_anp_prices);
-
-
+        
     }
 }
