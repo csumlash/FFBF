@@ -50,10 +50,11 @@
 
     <TextView
         android:id="@+id/tv_log_warning"
-        android:layout_width="207dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="48dp"
-        android:text="Check your e-mail or password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:minHeight="100dp"
+        android:minWidth="100dp"
         android:textColor="#CCF44336"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -101,4 +102,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_log_warning" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
