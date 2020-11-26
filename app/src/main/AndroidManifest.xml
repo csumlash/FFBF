@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ForFoodiesByFoodies"
-        android:windowSoftInputMode="stateVisible|adjustResize|adjustPan">
+        android:windowSoftInputMode="stateVisible|adjustPan">
         <activity android:name=".SfReviewList"></activity>
         <activity android:name=".Dashboard" />
         <activity android:name=".Profile" />
