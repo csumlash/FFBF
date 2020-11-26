@@ -1,13 +1,16 @@
 package com.example.forfoodiesbyfoodies;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity {
 
@@ -18,7 +21,7 @@ public class Login extends AppCompatActivity {
     // The next attributes will be responsible to interact with the user if anything needs more attention
     TextView loginWarningMsg, registerMsg;
     // The attributes below will be technical ones to let the code perform actions and accept data to/from databases
-
+    FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,17 @@ public class Login extends AppCompatActivity {
         registerMsg = findViewById(R.id.tv_log_regmessage);
         register = findViewById(R.id.btn_log_register);
 
+        auth = FirebaseAuth.getInstance();
+
+        /*
+        // check if the phone contains any login details and may login automatically
+        SharedPreferences isLoggedIn = getSharedPreferences("logged", MODE_PRIVATE);
+
+        if (isLoggedIn.getBoolean("login", false)) {
+            Intent i = new Intent(Login.this, Dashboard.class);
+            startActivity(i);
+        }*/
+
         // the login button object performs the declared actions in the login.setonClickListener(...){...};
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,12 +54,9 @@ public class Login extends AppCompatActivity {
                 // local variables to store and then check the values are entered by the user
                 String enteredName = username.getText().toString();
                 String enteredPsw = username.getText().toString();
-                // logical evaluation of username and password
-                if (enteredName.length() > 0 && enteredPsw.length() > 0){
-                    loginWarningMsg.setText("Looks fine!");
-                } else {
-                    loginWarningMsg.setText("E-mail & Password are mandatory to login!");
-                }
+
+                // getting link to the Firebase Authentication to login the user
+
             }
         });
 

@@ -2,11 +2,18 @@ package com.example.forfoodiesbyfoodies;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Dashboard extends AppCompatActivity {
 
@@ -15,6 +22,8 @@ public class Dashboard extends AppCompatActivity {
     TextView welcomeFullName;
     ImageView restaurantPic, streetFoodPic;
     EditText search;
+
+    FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +39,19 @@ public class Dashboard extends AppCompatActivity {
         streetFood = findViewById(R.id.btn_dashboard_sf);
         search = findViewById(R.id.et_dashboard_search);
         searchBtn = findViewById(R.id.btn_dashboard_search);
+
+
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                auth = FirebaseAuth.getInstance();
+                auth.signOut();
+                finish();
+                Intent i = new Intent(Dashboard.this, Login.class);
+                startActivity(i);
+            }
+        });
 
     }
 }
