@@ -28,7 +28,6 @@ public class SfWriteReview extends AppCompatActivity {
         send = findViewById(R.id.btn_sf_wr_send);
         sfimage = findViewById(R.id.iv_sf_wr_image);
         sfname = findViewById(R.id.tv_sf_wr_placename);
-        addressline = findViewById(R.id.tv_sf_wr_addressline);
         date = findViewById(R.id.et_sf_wr_date);
         experience = findViewById(R.id.et_sf_wr_experience);
         stars = findViewById(R.id.rb_sf_wr_stars);

@@ -59,7 +59,7 @@ public class Registration extends AppCompatActivity {
 
         register.setEnabled(false);
 
-        /* email and warning message fields manipulation to check if
+        /* email and warning message fields manipulation to feedback if
          * - the given e-mail is logically all right or not
          * - give proper error message back to user if the email is not correct logically */
         email.addTextChangedListener(new TextWatcher() {

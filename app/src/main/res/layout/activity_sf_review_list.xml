@@ -9,7 +9,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_sf_review_list"
         android:layout_width="match_parent"
-        android:layout_height="579"
+        android:layout_height="579dp"
         android:layout_marginTop="26dp"
         android:layout_marginBottom="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
