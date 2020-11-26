@@ -46,33 +46,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_sf_wr_image" />
 
-    <TextView
-        android:id="@+id/tv_sf_wr_addressline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Postcode, Address line"
-        tools:layout_editor_absoluteX="134dp"
-        tools:layout_editor_absoluteY="248dp" />
-
     <EditText
         android:id="@+id/et_sf_wr_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="191dp"
-        android:layout_marginRight="191dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="5dp"
         android:ems="10"
-        android:hint="Date of your visit"
+        android:hint="DD.MM.YYYY"
         android:inputType="date"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_sf_wr_addressline" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_sf_wr_date" />
 
     <EditText
         android:id="@+id/et_sf_wr_experience"
-        android:layout_width="391dp"
+        android:layout_width="380dp"
         android:layout_height="180dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
@@ -92,7 +82,7 @@
         android:id="@+id/tv_sf_wr_typeofrate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:text="Overall experience (1 - terrible, 5 - excellent)"
         android:textColor="#009688"
         app:layout_constraintEnd_toEndOf="parent"
@@ -105,7 +95,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:layout_marginBottom="69dp"
+        android:layout_marginBottom="56dp"
         android:text="Send"
         app:backgroundTint="#009688"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -123,5 +113,17 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_sf_wr_typeofrate" />
+
+    <TextView
+        android:id="@+id/tv_sf_wr_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="25dp"
+        android:text="Date of visit:"
+        android:textColor="#0E0E0E"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_sf_wr_placename" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -51,53 +51,44 @@
         app:layout_constraintTop_toBottomOf="@+id/iv_sf_list_image" />
 
     <TextView
-        android:id="@+id/tv_sf_list_address"
+        android:id="@+id/tv_sf_about_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="35dp"
         android:text="Postcode, Address line"
+        android:textColor="#0C0C0C"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_sf_list_name" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_sf_list_viewreviews" />
 
     <TextView
-        android:id="@+id/tv_sf_list_description"
-        android:layout_width="385dp"
-        android:layout_height="101dp"
+        android:id="@+id/tv_sf_about_description"
+        android:layout_width="384dp"
+        android:layout_height="126dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="35dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
+        android:layout_marginBottom="64dp"
         android:text="Description about the location, the type of foods available, parking, seating and sightseeing opportunities near, etc..."
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_sf_list_address" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_sf_about_address" />
 
     <Button
-        android:id="@+id/btn_sf_list_review"
+        android:id="@+id/btn_sf_list_viewreviews"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Visited this place? Review it!"
+        android:layout_marginTop="40dp"
+        android:text="View Reviews"
         android:textColor="#FBFDFD"
         app:backgroundTint="#009688"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_sf_list_description" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_sf_list_reviews"
-        android:layout_width="410dp"
-        android:layout_height="269dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_sf_list_review" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_sf_about_reviewnumbers" />
 
     <TextView
         android:id="@+id/tv_sf_list_vegan"
@@ -113,5 +104,43 @@
         app:layout_constraintStart_toStartOf="@+id/iv_sf_list_image"
         app:layout_constraintTop_toTopOf="@+id/iv_sf_list_image"
         app:layout_constraintVertical_bias="1.0" />
+
+    <RatingBar
+        android:id="@+id/rb_sf_about_stars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_sf_list_name" />
+
+    <TextView
+        android:id="@+id/tv_sf_about_reviewnumbers"
+        android:layout_width="168dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="25dp"
+        android:text="Number of Reviews:"
+        android:textColor="#B30E0E0E"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rb_sf_about_stars" />
+
+    <TextView
+        android:id="@+id/tv_sf_about_price"
+        android:layout_width="94dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="109dp"
+        android:layout_marginLeft="109dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:fontFamily="sans-serif"
+        android:text="Price:"
+        android:textColor="#B2100F0F"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_sf_about_reviewnumbers"
+        app:layout_constraintTop_toBottomOf="@+id/rb_sf_about_stars" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

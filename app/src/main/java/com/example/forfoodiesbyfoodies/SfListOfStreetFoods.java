@@ -17,7 +17,7 @@ public class SfListOfStreetFoods extends AppCompatActivity {
         setContentView(R.layout.activity_sf_list_of_street_foods);
 
 
-        addnewplace = findViewById(R.id.btn_rest_lorest_addrestaurant);
+        addnewplace = findViewById(R.id.btn_sf_lop_addplace);
         sflist = findViewById(R.id.rv_sf_lop_sflist);
     }
 }

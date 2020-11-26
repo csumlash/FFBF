@@ -9,27 +9,16 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_sf_lop_sflist"
         android:layout_width="410dp"
-        android:layout_height="612dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="579dp"
+        android:layout_marginTop="27dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_rest_lorest_addrestaurant" />
-
-    <Button
-        android:id="@+id/btn_rest_lorest_addrestaurant"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:text="Add New Place"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_sflop_title" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_sf_lop_addplace" />
 
     <TextView
-        android:id="@+id/tv_sflop_title"
+        android:id="@+id/tv_sf_lop_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -43,5 +32,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_sf_lop_addplace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="Add New Place"
+        app:backgroundTint="#009688"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_sf_lop_title" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
