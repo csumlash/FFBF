@@ -57,6 +57,7 @@ public class Registration extends AppCompatActivity {
         passwordWarning = findViewById(R.id.tv_registration_password_warning);
         register = findViewById(R.id.btn_registration_register);
 
+        // Initialisation of database and authentication objects (linking the code to the DBs)
         auth = FirebaseAuth.getInstance();
         dbRef = FirebaseDatabase.getInstance().getReference("users");
 
@@ -76,6 +77,7 @@ public class Registration extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
+                // every time the text has been changed, the warning text and color changed are changed depending on the statement satisfied
                 if (firstName.getText().toString().length() > 0) {
                     firstNameWarning.setTextColor(getResources().getColor(R.color.teal_700));
                 } else {
@@ -97,6 +99,7 @@ public class Registration extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
+                // every time the text has been changed, the warning text and color changed are changed depending on the statement satisfied
                 if (lastName.getText().toString().length() > 0) {
                     lastNameWarning.setTextColor(getResources().getColor(R.color.teal_700));
                 } else {
@@ -121,6 +124,7 @@ public class Registration extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
+                // every time the text has been changed, the warning text and color changed are changed depending on the statement satisfied
                 if (!isLogicalEmail(email.getText().toString())) {
                     emailWarning.setText("is not looking like a valid e-mail yet");
                 } else {
