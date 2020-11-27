@@ -195,20 +195,17 @@ public class Registration extends AppCompatActivity {
                                      *  */
                                     if (task.isSuccessful()) {
                                         Toast.makeText(Registration.this, "Registration is successful!", Toast.LENGTH_LONG).show();
-                                        String userID = auth.getUid();
-                                        user = new User(userID, givenEmail, firstName.getText().toString(), lastName.getText().toString(), "user");
+                                        user = new User(givenEmail, givenFN, givenLN, "user");
                                         dbRef.child(dbRef.push().getKey()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
-                                                SharedPreferences stayLoggedIn = getSharedPreferences("logged", MODE_PRIVATE);
-                                                stayLoggedIn.edit().putBoolean("login", true).apply();
+                                                SharedPreferences sharedPreferences = getSharedPreferences("logged", MODE_PRIVATE);
+                                                sharedPreferences.edit().putBoolean("logged", true).apply();
                                                 Intent i = new Intent(Registration.this, Dashboard.class);
                                                 i.putExtra("user", user);
                                                 startActivity(i);
                                             }
                                         });
-
-
                                     } else {
                                         Toast.makeText(Registration.this, "This email is already registered!", Toast.LENGTH_LONG).show();
                                     }

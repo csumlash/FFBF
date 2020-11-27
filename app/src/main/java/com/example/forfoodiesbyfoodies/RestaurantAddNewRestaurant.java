@@ -11,13 +11,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class RestaurantAddNewRestaurant extends AppCompatActivity {
 
-
+    
     ImageView image;
     RadioGroup priceRating;
     Button uploadImg, send;
     EditText name, address, postcode, areaname, city, type, about;
     TextView warningMsg;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

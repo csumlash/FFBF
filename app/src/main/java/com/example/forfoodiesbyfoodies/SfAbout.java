@@ -20,8 +20,8 @@ public class SfAbout extends AppCompatActivity {
         setContentView(R.layout.activity_sf_about);
 
         /* first part: type of view (tv, iv, btn)
-        ** seconds part: asf = abbreviation of class name
-        ** third part: name of field (title, image, vegan...) */
+         * seconds part: asf = abbreviation of class name
+         * third part: name of field (title, image, vegan...) */
         title       = findViewById(R.id.tv_sf_list_title);
         image       = findViewById(R.id.iv_sf_list_image);
         vegan       = findViewById(R.id.tv_sf_list_vegan);

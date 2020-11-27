@@ -17,19 +17,21 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class Dashboard extends AppCompatActivity {
 
-
+    // Defining the view elements
     Button logout, viewMyProfile, restaurant, streetFood, searchBtn;
     TextView welcomeFullName;
     ImageView restaurantPic, streetFoodPic;
     EditText search;
 
-    FirebaseAuth auth;
+    // A User type object to store the User object got from the previous (Login and Registration) activities
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
+        // Linking the view elements to the variables in this code
         logout = findViewById(R.id.btn_dashboard_logout);
         welcomeFullName = findViewById(R.id.tv_dashboard_welcome);
         viewMyProfile = findViewById(R.id.btn_dashboard_viewprofile);
@@ -40,16 +42,21 @@ public class Dashboard extends AppCompatActivity {
         search = findViewById(R.id.et_dashboard_search);
         searchBtn = findViewById(R.id.btn_dashboard_search);
 
+        // Getting the User object from intent passed from previous activities
+        Intent i = getIntent();
+        user = i.getParcelableExtra("user");
 
+        // Setting up the welcome message
+        //String firstName = user.getFirstName();
+        //String lastName = user.getLastName();
+        welcomeFullName.setText("Welcome ");
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                auth = FirebaseAuth.getInstance();
-                auth.signOut();
-                finish();
-                Intent i = new Intent(Dashboard.this, Login.class);
-                startActivity(i);
+                SharedPreferences sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
+                sharedPreferences.edit().clear().apply();
+                startActivity(new Intent(Dashboard.this, Login.class));
             }
         });
 
