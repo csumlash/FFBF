@@ -2,6 +2,7 @@ package com.example.forfoodiesbyfoodies;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -26,6 +27,7 @@ public class Dashboard extends AppCompatActivity {
     // A User type object to store the User object got from the previous (Login and Registration) activities
     User user;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,9 +49,7 @@ public class Dashboard extends AppCompatActivity {
         user = i.getParcelableExtra("user");
 
         // Setting up the welcome message
-        //String firstName = user.getFirstName();
-        //String lastName = user.getLastName();
-        welcomeFullName.setText("Welcome ");
+        welcomeFullName.setText("Welcome " + user + getSharedPreferences("login",MODE_PRIVATE).getString("username",""));
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override

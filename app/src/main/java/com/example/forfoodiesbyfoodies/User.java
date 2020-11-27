@@ -20,6 +20,10 @@ public class User implements Parcelable {
         userType = in.readString();
     }
 
+    public User(){
+
+    }
+
     public static final Creator<User> CREATOR = new Creator<User>() {
         @Override
         public User createFromParcel(Parcel in) {

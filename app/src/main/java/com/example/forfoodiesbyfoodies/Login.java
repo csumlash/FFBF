@@ -3,6 +3,8 @@ package com.example.forfoodiesbyfoodies;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,6 +25,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 /* This class is responsible to give the power to the user to Login to the system or choose
@@ -44,6 +47,7 @@ public class Login extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseDatabase rtdb;
     DatabaseReference dbRef;
+    Query dbRefQuery;
     SharedPreferences sharedPreferences;
     // This object will store all the query data from user-related queries
     User user;
@@ -70,6 +74,7 @@ public class Login extends AppCompatActivity {
         rtdb = FirebaseDatabase.getInstance();
         dbRef = rtdb.getReference("users");
 
+
         // The login button performs the declared actions in the login.setonClickListener(...){...};
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,7 +96,10 @@ public class Login extends AppCompatActivity {
                                      * forwarding the user to the Dashboard */
                                     sharedPreferences.edit().putBoolean("logged", true).apply();
                                     sharedPreferences.edit().putString("username", enteredName).apply();
-                                    startActivity(new Intent(Login.this, Dashboard.class));
+                                    user = new User(sharedPreferences.getString("username",""), "idiotacska", "dinkacska", "user");
+                                    Intent i = new Intent(Login.this, Dashboard.class);
+                                    i.putExtra("user", user);
+                                    startActivity(i);
                                 } else {
                                     // if there is no username-password combination in the DB then warn the user
                                     loginWarningMsg.setText("Cannot login with these credentials");
@@ -123,43 +131,25 @@ public class Login extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         if (sharedPreferences.getBoolean("logged", false)) {
-
-
+            getUserDetails(sharedPreferences.getString("username", ""));
             Intent i = new Intent(Login.this, Dashboard.class);
+            i.putExtra("user", user);
             startActivity(i);
         }
     }
 
-
-
     public void getUserDetails(String username) {
-        dbRef.orderByChild("username").equalTo(username).addChildEventListener(new ChildEventListener() {
+        dbRefQuery = dbRef.orderByChild("username").equalTo(username);
+        dbRefQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
-                System.out.println(dataSnapshot.getKey());
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                user = snapshot.getValue(User.class);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-
-            // ...
         });
     }
 
