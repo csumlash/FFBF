@@ -12,10 +12,9 @@ public class EateryTemplate implements Parcelable {
 
     // The following attributes are the basic details of a Street Food place and Restaurant
     private String picURL, name, address, area, city, postcode, about;
-    private int priceCat;
 
     // This constructor sets up all the attributes of the object by got parameters during first initialisation
-    public EateryTemplate(String picURL, String name, String type, String address, String area, String city, String postcode, String about, int priceCat) {
+    public EateryTemplate(String picURL, String name, String type, String address, String area, String city, String postcode, String about) {
         this.picURL = picURL;
         this.name = name;
         this.address = address;
@@ -23,7 +22,7 @@ public class EateryTemplate implements Parcelable {
         this.city = city;
         this.postcode = postcode;
         this.about = about;
-        this.priceCat = priceCat;
+
     }
 
     /*
@@ -37,7 +36,6 @@ public class EateryTemplate implements Parcelable {
         city = in.readString();
         postcode = in.readString();
         about = in.readString();
-        priceCat = in.readInt();
     }
 
     /*
@@ -52,7 +50,7 @@ public class EateryTemplate implements Parcelable {
         dest.writeString(city);
         dest.writeString(postcode);
         dest.writeString(about);
-        dest.writeInt(priceCat);
+
     }
 
     @Override
@@ -134,11 +132,4 @@ public class EateryTemplate implements Parcelable {
         this.about = about;
     }
 
-    public int getPriceCat() {
-        return priceCat;
-    }
-
-    public void setPriceCat(int priceCat) {
-        this.priceCat = priceCat;
-    }
 }
