@@ -13,7 +13,7 @@ public class SfWriteReview extends AppCompatActivity {
 
     Button send;
     ImageView sfimage;
-    TextView sfname, addressline;
+    TextView sfname;
     EditText date, experience;
     RatingBar stars;
 

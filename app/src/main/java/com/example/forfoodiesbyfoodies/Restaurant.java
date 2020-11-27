@@ -15,10 +15,11 @@ public class Restaurant extends EateryTemplate implements Parcelable {
     * This constructor executes upon the initialisation of te object and calls the parent (super)
     * constructor to still let it initialises those attributes too with initialisation of the
     * attributes in this child class too. */
-    public Restaurant(String picURL, String name, String address, String area, String city, String postcode, String about, int priceCat, String type) {
-        super(picURL, name, type, address, area, city, postcode, about, priceCat);
+    public Restaurant(String picURL, String name, String address, String area, String city, String postcode, String about, String type) {
+        super(picURL, name, type, address, area, city, postcode, about);
         this.type = type;
     }
+
 
     // Similarly, as explained in the parent (super) class, the following methods are for intent-based object transfer works.
     protected Restaurant(Parcel in) {

@@ -10,8 +10,8 @@ public class StreetFood extends EateryTemplate implements Parcelable {
 
     private int isVegan;
 
-    public StreetFood(String picURL, String name, String type, String address, String area, String city, String postcode, String about, int priceCat, int isVegan) {
-        super(picURL, name, type, address, area, city, postcode, about, priceCat);
+    public StreetFood(String picURL, String name, String type, String address, String area, String city, String postcode, String about, int isVegan) {
+        super(picURL, name, type, address, area, city, postcode, about);
         this.isVegan = isVegan;
     }
 

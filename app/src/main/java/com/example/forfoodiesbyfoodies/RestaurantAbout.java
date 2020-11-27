@@ -10,10 +10,10 @@ import android.widget.TextView;
 
 public class RestaurantAbout extends AppCompatActivity {
 
-    ImageView restArImage;
-    TextView restArRestaurantName, restArReviewNumbers, restArPrice, restArType, restArAddress, restArInfo;
-    RatingBar restArStars;
-    Button restArBook, restArViewReviews;
+    ImageView image;
+    TextView name, numbers, price, type, address,about;
+    RatingBar stars;
+    Button book, view;
 
 
     @Override
@@ -21,15 +21,20 @@ public class RestaurantAbout extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_about);
 
-        restArImage = findViewById(R.id.iv_rest_ar_image);
-        restArRestaurantName = findViewById(R.id.tv_rest_ar_restaurantname);
-        restArStars = findViewById(R.id.rb_rest_ar_stars);
-        restArReviewNumbers = findViewById(R.id.tv_rest_ar_reviewnumbers);
-        restArPrice = findViewById(R.id.tv_rest_ar_price);
-        restArType = findViewById(R.id.tv_rest_ar_type);
-        restArBook = findViewById(R.id.btn_rest_ar_book);
-        restArViewReviews = findViewById(R.id.btn_rest_ar_viewreviews);
-        restArAddress = findViewById(R.id.tv_rest_ar_address);
-        restArInfo = findViewById(R.id.tv_rest_ar_info);
+        image = findViewById(R.id.iv_rest_ar_image);
+        name = findViewById(R.id.tv_rest_ar_restaurantname);
+        stars = findViewById(R.id.rb_rest_ar_stars);
+        numbers = findViewById(R.id.tv_rest_ar_reviewnumbers);
+        price = findViewById(R.id.tv_rest_ar_price);
+        type = findViewById(R.id.tv_rest_ar_type);
+        book = findViewById(R.id.btn_rest_ar_book);
+        view = findViewById(R.id.btn_rest_ar_viewreviews);
+        address = findViewById(R.id.tv_rest_ar_address);
+        about = findViewById(R.id.tv_rest_ar_info);
+
+    Restaurant r = getIntent().getParcelableExtra("RESTAURANT");
+
+    name.setText(r.getName());
+
     }
 }
