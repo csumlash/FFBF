@@ -3,8 +3,6 @@ package com.example.forfoodiesbyfoodies;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,7 +10,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -20,7 +17,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -45,11 +41,9 @@ public class Login extends AppCompatActivity {
     TextView loginWarningMsg, registerMsg;
     // The attributes below will be technical ones to let the code perform actions and accept data to/from databases
     FirebaseAuth auth;
-    FirebaseDatabase rtdb;
     DatabaseReference dbRef;
-    Query dbRefQuery;
     SharedPreferences sharedPreferences;
-    // This object will store all the query data from user-related queries
+    // This object will store and be passed to other activities with all the data from user-related queries
     User user;
 
     @Override
@@ -65,15 +59,12 @@ public class Login extends AppCompatActivity {
         registerMsg = findViewById(R.id.tv_log_regmessage);
         register = findViewById(R.id.btn_log_register);
 
-
         // initialising the sharedPreferences to read or write data into it for application use, login handling
         sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
 
         // linking (initialising) the code to the Authentication, Realtime database and to Realtime node
         auth = FirebaseAuth.getInstance();
-        rtdb = FirebaseDatabase.getInstance();
-        dbRef = rtdb.getReference("users");
-
+        dbRef = FirebaseDatabase.getInstance().getReference("users");
 
         // The login button performs the declared actions in the login.setonClickListener(...){...};
         login.setOnClickListener(new View.OnClickListener() {
@@ -92,14 +83,13 @@ public class Login extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     /* if the username and password are matching to any of the registered user records
                                      * then creating sub data into the SharedPreferences to mark the current user's
-                                     * login state and username for further login handling and user queries then
-                                     * forwarding the user to the Dashboard */
+                                     * login state and username for further login handling and user queries then */
                                     sharedPreferences.edit().putBoolean("logged", true).apply();
                                     sharedPreferences.edit().putString("username", enteredName).apply();
-                                    user = new User(sharedPreferences.getString("username",""), "idiotacska", "dinkacska", "user");
-                                    Intent i = new Intent(Login.this, Dashboard.class);
-                                    i.putExtra("user", user);
-                                    startActivity(i);
+                                    /* calling the method that:
+                                     *  - queries the other registered user details from Realtime Database
+                                     *  - launching the Dashboard with put User object filled by details */
+                                    startQueryThenDashboard(sharedPreferences.getString("username", ""));
                                 } else {
                                     // if there is no username-password combination in the DB then warn the user
                                     loginWarningMsg.setText("Cannot login with these credentials");
@@ -126,31 +116,50 @@ public class Login extends AppCompatActivity {
         });
     }
 
+    // After the application launched, checking if there is or is not user already logged in.
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
+        // If the user is logged in then passing their stored username (email) to the method that makes user Query and start Dashboard
         if (sharedPreferences.getBoolean("logged", false)) {
-            getUserDetails(sharedPreferences.getString("username", ""));
-            Intent i = new Intent(Login.this, Dashboard.class);
-            i.putExtra("user", user);
-            startActivity(i);
+            startQueryThenDashboard(sharedPreferences.getString("username", ""));
         }
     }
 
-    public void getUserDetails(String username) {
-        dbRefQuery = dbRef.orderByChild("username").equalTo(username);
-        dbRefQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+    /* This method is responsible to:
+     *  - Query the user's firstName, lastName and userType (user, foodcrit, admin)
+     *  - Build a User type object from query to store all the user details and add it to the intent (Dashboard) starter */
+    public void startQueryThenDashboard(String username) {
+        /* A simple query that has
+         *  - orderByChild("username") => to sort/order the query by the username (email) values
+         *  - equalTo(username) => requests only equal values to username got as method call parameter
+         *  - limitToFirst(1) => the result will contain 1 record even there were more results in the query */
+        Query usersQuery = dbRef.orderByChild("username").equalTo(username).limitToFirst(1);
+        // Executing the query
+        usersQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                user = snapshot.getValue(User.class);
+                // Fetching data of query then inserting and so creating User object
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    // The data gathering from snapshot of query
+                    String username = ds.child("username").getValue().toString();
+                    String firstName = ds.child("firstName").getValue().toString();
+                    String lastName = ds.child("lastName").getValue().toString();
+                    String userType = ds.child("userType").getValue().toString();
+                    // Creating the object with the fetched data
+                    user = new User(username, firstName, lastName, userType);
+                    // Creating and filling intent with extra data to forward it to the started Dashboard activity
+                    Intent i = new Intent(Login.this, Dashboard.class);
+                    i.putExtra("user", user);
+                    startActivity(i);
+                }
             }
-
+            // If Query cannot be executed because of any network issue then warning the user
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(Login.this,
+                        "Cannot login due to connection issues, please try again later", Toast.LENGTH_LONG).show();
             }
         });
     }
-
 }

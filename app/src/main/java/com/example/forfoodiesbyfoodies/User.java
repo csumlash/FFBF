@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class User implements Parcelable {
-    String username, firstName, lastName, userType;
+    public String username, firstName, lastName, userType;
 
     public User(String username, String firstName, String lastName, String userType) {
         this.username = username;
@@ -13,7 +13,7 @@ public class User implements Parcelable {
         this.userType = userType;
     }
 
-    protected User(Parcel in) {
+    public User(Parcel in) {
         username = in.readString();
         firstName = in.readString();
         lastName = in.readString();
@@ -21,7 +21,6 @@ public class User implements Parcelable {
     }
 
     public User(){
-
     }
 
     public static final Creator<User> CREATOR = new Creator<User>() {

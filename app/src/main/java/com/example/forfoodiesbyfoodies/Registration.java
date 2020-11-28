@@ -201,6 +201,7 @@ public class Registration extends AppCompatActivity {
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 SharedPreferences sharedPreferences = getSharedPreferences("logged", MODE_PRIVATE);
                                                 sharedPreferences.edit().putBoolean("logged", true).apply();
+                                                sharedPreferences.edit().putString("user",givenEmail).apply();
                                                 Intent i = new Intent(Registration.this, Dashboard.class);
                                                 i.putExtra("user", user);
                                                 startActivity(i);

@@ -49,7 +49,7 @@ public class Dashboard extends AppCompatActivity {
         user = i.getParcelableExtra("user");
 
         // Setting up the welcome message
-        welcomeFullName.setText("Welcome " + user + getSharedPreferences("login",MODE_PRIVATE).getString("username",""));
+        welcomeFullName.setText("Welcome " + user.getUsername());
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
