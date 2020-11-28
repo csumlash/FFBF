@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,14 +32,18 @@ import java.util.regex.Pattern;
 public class Registration extends AppCompatActivity {
 
     // These attributes are essential user details
-    private EditText email, firstName, lastName, password;
+    EditText email, firstName, lastName, password;
     // These attributes for feedback to the user (errors, missing details)
-    private TextView emailWarning, firstNameWarning, lastNameWarning, passwordWarning;
+    TextView emailWarning, firstNameWarning, lastNameWarning, passwordWarning;
     // This attribute stands for the "register" button to start different database and evaluation tasks
-    private Button register;
+    Button register;
     // The following attributes assist for database and other technical workouts
-    private DatabaseReference dbRef;
-    private FirebaseAuth auth;
+    DatabaseReference dbRef;
+    FirebaseAuth auth;
+    SharedPreferences sharedPreferences;
+    /* This object will be initialised to store and deliver the registered details:
+     * - to the next activity
+     * - into the Firebase Realtime database*/
     User user;
 
     @Override
@@ -61,9 +66,14 @@ public class Registration extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         dbRef = FirebaseDatabase.getInstance().getReference("users");
 
+        // Linking the app to the local file-based information
+        sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
+
+        /* Switching the Register button to be inactive by default
+         * (will be enable after registration requirements are satisfied) */
         register.setEnabled(false);
 
-        /* firstName and lastName field checkers then feedback if they are not provided */
+        // firstName field checker then feedback if not provided
         firstName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -86,6 +96,8 @@ public class Registration extends AppCompatActivity {
 
             }
         });
+
+        // lastName field checker then feedback if not provided
         lastName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -97,9 +109,10 @@ public class Registration extends AppCompatActivity {
 
             }
 
+            /* every time the text has been changed, the warning text and
+             * color changed are changed depending on the statement satisfied  */
             @Override
             public void afterTextChanged(Editable s) {
-                // every time the text has been changed, the warning text and color changed are changed depending on the statement satisfied
                 if (lastName.getText().toString().length() > 0) {
                     lastNameWarning.setTextColor(getResources().getColor(R.color.teal_700));
                 } else {
@@ -108,9 +121,9 @@ public class Registration extends AppCompatActivity {
             }
         });
 
-        /* email and warning message fields manipulation to feedback if
+        /* Email and warning message fields manipulation to feedback if
          * - the given e-mail is logically all right or not
-         * - give proper error message back to user if the email is not correct logically */
+         * - give proper error message back to user if the email look incorrect logically */
         email.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -122,9 +135,10 @@ public class Registration extends AppCompatActivity {
 
             }
 
+            /* every time the text has been changed, the warning text and
+             * color are changed depending on the statement satisfied  */
             @Override
             public void afterTextChanged(Editable s) {
-                // every time the text has been changed, the warning text and color changed are changed depending on the statement satisfied
                 if (!isLogicalEmail(email.getText().toString())) {
                     emailWarning.setText("is not looking like a valid e-mail yet");
                 } else {
@@ -149,14 +163,16 @@ public class Registration extends AppCompatActivity {
 
             }
 
+            /* every time the password typed has been changed, the warning text and
+             * color are changed depending on the statement satisfied  */
             @Override
             public void afterTextChanged(Editable s) {
                 if (!pswChecker(password.getText().toString())) {
-                    passwordWarning.setText("Please correct the password");
+                    passwordWarning.setText("Password is not strong enough!");
                     passwordWarning.setTextColor(getResources().getColor(R.color.red));
                     register.setEnabled(false);
                 } else {
-                    passwordWarning.setText("The password looks correct!");
+                    passwordWarning.setText("The password looks fine!");
                     passwordWarning.setTextColor(getResources().getColor(R.color.teal_700));
                     register.setEnabled(true);
                 }
@@ -175,45 +191,50 @@ public class Registration extends AppCompatActivity {
 
                 /* If email is logical, password meets the requirements and
                  * names are given then try to submit into Firebase Authentication */
-                if (isLogicalEmail(givenEmail) == true && givenFN.length() > 0 &&
-                        givenLN.length() > 0 && pswChecker(givenPSW) == true) {
+                if (isLogicalEmail(givenEmail) && givenFN.length() > 0 && givenLN.length() > 0 && pswChecker(givenPSW)) {
                     // adding new user to Firebase Authentication
                     auth.createUserWithEmailAndPassword(givenEmail, givenPSW)
                             // adding a listener to check if the addition process was successful or not
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
-                                    /* if addition completed successfully then
-                                     * - inform user with a small message about success
-                                     * - get the unique user ID generated by the database
-                                     * - add the unique user ID, email, first and last names with the default
-                                     *   "user" user type to a User type object
-                                     * - push this User type object with all the details into the Realtime DB
-                                     * - if pushing other data into Realtime DB was successful then
-                                     * - create a SharedPreference
-                                     * - put the created User object into the intent and start the Dashboard
-                                     *  */
+                                    /* If addition to the Authentication DB is completed successfully then
+                                     * - inform user with a message of success */
                                     if (task.isSuccessful()) {
-                                        Toast.makeText(Registration.this, "Registration is successful!", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(Registration.this,
+                                                "Registration is successful!\nWelcome to the For Foodies by Foodies App", Toast.LENGTH_LONG).show();
+                                        /* Adding the email, first and last names with a default "user" user type to a User object
+                                         * pushing this User type object with all the details into the Realtime DB */
                                         user = new User(givenEmail, givenFN, givenLN, "user");
-                                        dbRef.child(dbRef.push().getKey()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Void> task) {
-                                                SharedPreferences sharedPreferences = getSharedPreferences("logged", MODE_PRIVATE);
-                                                sharedPreferences.edit().putBoolean("logged", true).apply();
-                                                sharedPreferences.edit().putString("user",givenEmail).apply();
-                                                Intent i = new Intent(Registration.this, Dashboard.class);
-                                                i.putExtra("user", user);
-                                                startActivity(i);
-                                            }
-                                        });
+                                        dbRef.child(dbRef.push().getKey()).setValue(user)
+                                                /* If pushing data into Realtime DB completed successfully then
+                                                 * - create a SharedPreference that provides local file-based data storage/database technique
+                                                 * - put the created User object into the intent and start the Dashboard */
+                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                        sharedPreferences.edit().putBoolean("logged", true).apply();
+                                                        sharedPreferences.edit().putString("username", givenEmail).apply();
+                                                        Intent i = new Intent(Registration.this, Dashboard.class);
+                                                        i.putExtra("user", user);
+                                                        startActivity(i);
+                                                    }
+                                                })
+                                                /* If pushing data in Realtime DB failed because of network issue then warn the user */
+                                                .addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        Toast.makeText(Registration.this, "Network issues, please try again later", Toast.LENGTH_LONG).show();
+                                                    }
+                                                });
                                     } else {
+                                        // If username (email) is already registered then warn the user
                                         Toast.makeText(Registration.this, "This email is already registered!", Toast.LENGTH_LONG).show();
                                     }
                                 }
-
                             });
                 } else {
+                    // If either email or password is wrong then warning the user
                     Toast.makeText(Registration.this, "Check your details and try again please!", Toast.LENGTH_LONG).show();
                 }
             }
@@ -221,24 +242,22 @@ public class Registration extends AppCompatActivity {
 
     }
 
-    // this method evaluates if the given email fits to the logic implemented in the Patterns library
+    // This method evaluates if the given email fits to the logic implemented in the Patterns library
     private boolean isLogicalEmail(CharSequence emailToCheck) {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(emailToCheck).matches();
     }
 
-    // this method is called to check if the password given by the user is OK or not
+    // This method is called to check if the password given by the user meets or does not the requirements
     public boolean pswChecker(final String psw) {
         Pattern pattern;
         Matcher matcher;
 
-        /*
-         * ^ means start of string
+        /* ^ means start of string
          * (?=.*[0-9]) means 1 numeric at least
          * (?=.*[a-z]) means 1 lowercase at least
          * (?=.*[A-Z]) means 1 uppercase at least
          * (?=\S+$) means no spaces/whitespace allowed
-         * .{6,} means 6 characters at least
-         */
+         * .{6,} means 6 characters at least */
         final String PSW_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{6,}$";
 
         // Chaining remaining non-satisfied requirements.

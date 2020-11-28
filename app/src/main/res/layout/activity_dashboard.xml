@@ -61,15 +61,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_dashboard_restaurant"
+        app:layout_constraintTop_toBottomOf="@+id/btn_dashboard_restaurants"
         tools:srcCompat="@tools:sample/avatars" />
 
     <Button
-        android:id="@+id/btn_dashboard_restaurant"
+        android:id="@+id/btn_dashboard_restaurants"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Restaurant"
+        android:text="Restaurants"
         app:backgroundTint="#009688"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -81,7 +81,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Street Food"
+        android:text="Street Food Places"
         app:backgroundTint="#009688"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"

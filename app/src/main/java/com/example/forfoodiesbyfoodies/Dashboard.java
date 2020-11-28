@@ -1,9 +1,5 @@
 package com.example.forfoodiesbyfoodies;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,13 +9,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Dashboard extends AppCompatActivity {
 
     // Defining the view elements
-    Button logout, viewMyProfile, restaurant, streetFood, searchBtn;
+    Button logout, viewMyProfile, restaurants, streetFoodPlaces, searchBtn;
     TextView welcomeFullName;
     ImageView restaurantPic, streetFoodPic;
     EditText search;
@@ -27,7 +22,6 @@ public class Dashboard extends AppCompatActivity {
     // A User type object to store the User object got from the previous (Login and Registration) activities
     User user;
 
-    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,9 +32,9 @@ public class Dashboard extends AppCompatActivity {
         welcomeFullName = findViewById(R.id.tv_dashboard_welcome);
         viewMyProfile = findViewById(R.id.btn_dashboard_viewprofile);
         restaurantPic = findViewById(R.id.iv_dashboard_restaurant);
-        restaurant = findViewById(R.id.btn_dashboard_restaurant);
+        restaurants = findViewById(R.id.btn_dashboard_restaurants);
         streetFoodPic = findViewById(R.id.iv_dashboard_sf);
-        streetFood = findViewById(R.id.btn_dashboard_sf);
+        streetFoodPlaces = findViewById(R.id.btn_dashboard_sf);
         search = findViewById(R.id.et_dashboard_search);
         searchBtn = findViewById(R.id.btn_dashboard_search);
 
@@ -49,7 +43,7 @@ public class Dashboard extends AppCompatActivity {
         user = i.getParcelableExtra("user");
 
         // Setting up the welcome message
-        welcomeFullName.setText("Welcome " + user.getUsername());
+        welcomeFullName.setText("Welcome " + user.getFirstName() + " " + user.getLastName());
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,5 +54,31 @@ public class Dashboard extends AppCompatActivity {
             }
         });
 
+        viewMyProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Dashboard.this, Profile.class);
+                i.putExtra("user", user);
+                startActivity(i);
+            }
+        });
+
+        restaurants.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Dashboard.this, RestaurantListOfRestaurants.class);
+                i.putExtra("user", user);
+                startActivity(i);
+            }
+        });
+
+        streetFoodPlaces.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Dashboard.this, SfListOfStreetFoods.class);
+                i.putExtra("user", user);
+                startActivity(i);
+            }
+        });
     }
 }
