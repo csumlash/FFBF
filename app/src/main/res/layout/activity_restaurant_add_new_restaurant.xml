@@ -23,28 +23,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/iv_rest_anr_image"
-            android:layout_width="300dp"
-            android:layout_height="160dp"
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_rest_title"
-            tools:srcCompat="@tools:sample/avatars" />
-
-        <Button
-            android:id="@+id/btn_rest_anr_upload"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="Upload Image"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_rest_anr_image" />
-
         <EditText
             android:id="@+id/et_rest_anr_nameofrestaurant"
             android:layout_width="wrap_content"
@@ -57,7 +35,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_rest_anr_upload" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_rest_anr_image" />
 
         <EditText
             android:id="@+id/et_rest_anr_addressline"
@@ -126,26 +104,26 @@
             android:id="@+id/btn_rest_anr_send"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:text="Send"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_rest_anr_desciption" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_rest_anr_warning" />
 
         <TextView
             android:id="@+id/tv_rest_anr_warning"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:text="This restaurant is already existing on the site"
             android:textColor="#CCF44336"
             android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_rest_anr_send" />
+            app:layout_constraintTop_toBottomOf="@+id/et_rest_anr_desciption" />
 
         <EditText
             android:id="@+id/et_rest_anr_typeofrest"
@@ -176,6 +154,17 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_rest_anr_typeofrest" />
+
+        <ImageView
+            android:id="@+id/iv_rest_anr_image"
+            android:layout_width="300dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_rest_title"
+            android:src="@drawable/ic_baseline_add_photo_image" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
