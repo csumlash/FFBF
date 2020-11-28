@@ -17,7 +17,6 @@ public class SfAddNewPlace extends AppCompatActivity {
     TextView warning;
     EditText sfname, addressline, postcode, area, city, about;
     Switch vegie;
-    RadioGroup pricerate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +34,6 @@ public class SfAddNewPlace extends AppCompatActivity {
         city = findViewById(R.id.et_sf_anp_city);
         about = findViewById(R.id.et_sf_anp_about);
         vegie = findViewById(R.id.switch_sf_anp_vegie);
-        pricerate = findViewById(R.id.rg_sf_anp_prices);
         
     }
 }
