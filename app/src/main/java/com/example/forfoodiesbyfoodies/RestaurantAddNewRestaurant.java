@@ -31,7 +31,7 @@ public class RestaurantAddNewRestaurant extends AppCompatActivity {
 
     
     ImageView image;
-    Button upload, send;
+    Button send;
     EditText name, address, postcode, area, city, type, about;
     TextView warning;
     DatabaseReference dbref;
@@ -56,60 +56,71 @@ public class RestaurantAddNewRestaurant extends AppCompatActivity {
         sref = FirebaseStorage.getInstance().getReference("images");
         dbref = FirebaseDatabase.getInstance().getReference("restaurants");
 
-
-
-
-
-
         send.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v) {
-                //Images will get id after uploaded to images cloud storage and database will use this id to save to restaurants.
-                String id = dbref.push().getKey();
-                final StorageReference reference = sref.child(id + "." +getExtension(image_path)); //This method will return the extension of the image to name it.
-
-                //The next part is the uploadd the image and check that was successfully upload or failed.
-                reference.putFile(image_path).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    //This record is not going to go to the next activity without the URL of the image, only if the method is successful.
-                        reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                        String url = uri.toString();
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                            reference.delete();
-                            }
-                        });
-                        //If fail to get the URL of the image, it necessary to delete that kind of orphan image from the database, because no one can access to it and just it takes place.
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-
-                    }
-                });
-
-
-                String enteredName =  name.getText().toString();
+                String enteredName = name.getText().toString();
                 String enteredAddress = address.getText().toString();
                 String enteredArea = area.getText().toString();
                 String enteredCity = city.getText().toString();
                 String enteredPostcode = postcode.getText().toString();
                 String enteredAbout = about.getText().toString();
                 String enteredType = type.getText().toString();
+                String id = dbref.push().getKey();
 
-                if (enteredName.length() > 0 && enteredAddress.length() > 0){
+                if (enteredName.length() > 0 && enteredAddress.length() > 0 && id.length() > 0) {
                     Restaurant rest = new Restaurant("", enteredName, enteredAddress, enteredArea, enteredCity, enteredPostcode, enteredAbout, enteredType);
-                    dbref.child(dbref.push().getKey()).setValue(rest);
-                }
+                    dbref.child(dbref.push().getKey()).setValue(rest)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Intent i = new Intent(RestaurantAddNewRestaurant.this, Dashboard.class);
+                                    startActivity(i);
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(RestaurantAddNewRestaurant.this, "Please provide name of restaurant and address.", Toast.LENGTH_LONG).show();
+                        }
+                    });
 
+
+                    //Images will get id after uploaded to images cloud storage and database will use this id to save to restaurants.
+                    final StorageReference reference = sref.child(id + "." + getExtension(image_path)); //This method will return the extension of the image to name it.
+
+                    //The next part is the uploadd the image and check that was successfully upload or failed.
+                    reference.putFile(image_path).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            //This record is not going to go to the next activity without the URL of the image, only if the method is successful.
+                            reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    String url = uri.toString();
+                                    Intent i = new Intent(RestaurantAddNewRestaurant.this, Dashboard.class);
+                                    startActivity(i);
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    reference.delete();
+                                    Toast.makeText(RestaurantAddNewRestaurant.this, "Internet disruption", Toast.LENGTH_LONG).show();
+                                }
+                            });
+                            //If fail to get the URL of the image, it necessary to delete that kind of orphan image from the database, because no one can access to it and just it takes place.
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                        }
+                    });
+
+                }
             }
         });
+
 
         //Image View will respond to click to choose the picture.
         //Intent used like default constructor to enter the phone directory and choose a picture.

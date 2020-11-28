@@ -73,7 +73,7 @@
         android:id="@+id/et_sf_anp_nameofsf"
         android:layout_width="181dp"
         android:layout_height="40dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:ems="10"
         android:hint="Name of Street Food Place"
         android:inputType="textPersonName"
@@ -81,7 +81,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_sf_anp_upload" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_sf_anp_image" />
 
     <ImageView
         android:id="@+id/iv_sf_anp_image"
@@ -92,7 +92,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_sf_anp_title"
-        app:srcCompat="@android:drawable/ic_menu_gallery" />
+        app:srcCompat="@drawable/ic_baseline_add_photo_image" />
 
     <TextView
         android:id="@+id/tv_sf_anp_title"
@@ -116,27 +116,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="160dp"
         android:layout_marginLeft="160dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="160dp"
         android:layout_marginRight="160dp"
         android:text="Send"
         app:backgroundTint="#009688"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_sf_anp_about" />
-
-    <Button
-        android:id="@+id/btn_sf_anp_upload"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="Upload Image"
-        app:backgroundTint="#009688"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_sf_anp_image" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_sf_anp_warning" />
 
     <Switch
         android:id="@+id/switch_sf_anp_vegie"
@@ -157,16 +145,14 @@
         android:id="@+id/tv_sf_anp_warning"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginTop="10dp"
         android:text="This place is already exist on the site"
         android:textColor="#CBF44336"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_sf_anp_send" />
+        app:layout_constraintTop_toBottomOf="@+id/et_sf_anp_about" />
 
     <EditText
         android:id="@+id/et_sf_anp_about"

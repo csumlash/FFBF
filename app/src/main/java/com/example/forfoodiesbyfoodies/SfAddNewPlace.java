@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class SfAddNewPlace extends AppCompatActivity {
 
-    Button uploadpic, send;
+    Button send;
     ImageView sfpic;
     TextView warning;
     EditText sfname, addressline, postcode, area, city, about;
@@ -23,7 +23,6 @@ public class SfAddNewPlace extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sf_add_new_place);
 
-        uploadpic = findViewById(R.id.btn_sf_anp_upload);
         send = findViewById(R.id.btn_sf_anp_send);
         sfpic = findViewById(R.id.iv_sf_anp_image);
         warning = findViewById(R.id.tv_sf_anp_warning);
