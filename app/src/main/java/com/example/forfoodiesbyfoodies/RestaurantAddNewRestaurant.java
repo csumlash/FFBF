@@ -19,7 +19,6 @@ public class RestaurantAddNewRestaurant extends AppCompatActivity {
 
     
     ImageView image;
-    RadioGroup price;
     Button upload, send;
     EditText name, address, postcode, area, city, type, about;
     TextView warning;
@@ -32,7 +31,6 @@ public class RestaurantAddNewRestaurant extends AppCompatActivity {
         setContentView(R.layout.activity_restaurant_add_new_restaurant);
 
         image = findViewById(R.id.iv_rest_anr_image);
-        price = findViewById(R.id.rg_rest_anr_prices);
         upload = findViewById(R.id.btn_rest_anr_upload);
         name = findViewById(R.id.et_rest_anr_nameofrestaurant);
         address = findViewById(R.id.et_rest_anr_addressline);

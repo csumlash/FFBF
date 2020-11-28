@@ -11,7 +11,7 @@ import android.widget.TextView;
 public class RestaurantAbout extends AppCompatActivity {
 
     ImageView image;
-    TextView name, numbers, price, type, address,about;
+    TextView name, numbers, type, address,about;
     RatingBar stars;
     Button book, view;
 
@@ -25,7 +25,6 @@ public class RestaurantAbout extends AppCompatActivity {
         name = findViewById(R.id.tv_rest_ar_restaurantname);
         stars = findViewById(R.id.rb_rest_ar_stars);
         numbers = findViewById(R.id.tv_rest_ar_reviewnumbers);
-        price = findViewById(R.id.tv_rest_ar_price);
         type = findViewById(R.id.tv_rest_ar_type);
         book = findViewById(R.id.btn_rest_ar_book);
         view = findViewById(R.id.btn_rest_ar_viewreviews);

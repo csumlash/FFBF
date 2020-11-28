@@ -127,20 +127,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rb_sf_about_stars" />
 
-    <TextView
-        android:id="@+id/tv_sf_about_price"
-        android:layout_width="94dp"
-        android:layout_height="23dp"
-        android:layout_marginStart="109dp"
-        android:layout_marginLeft="109dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:fontFamily="sans-serif"
-        android:text="Price:"
-        android:textColor="#B2100F0F"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv_sf_about_reviewnumbers"
-        app:layout_constraintTop_toBottomOf="@+id/rb_sf_about_stars" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,72 +3,57 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="200dp">
+    android:layout_height="180dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="180dp">
 
 
         <TextView
             android:id="@+id/tv_rest_lor_card_areaname"
-            android:layout_width="163dp"
-            android:layout_height="23dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="48dp"
-            android:layout_marginRight="48dp"
-            android:layout_marginBottom="36dp"
-            android:text="Area Name"
-            android:textColor="#B30B0A0A"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/iv_rest_lor_card_image"
-            app:layout_constraintTop_toBottomOf="@+id/tv_rest_lor_card_price" />
-
-        <TextView
-            android:id="@+id/tv_rest_lor_card_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="25dp"
-            android:layout_marginEnd="179dp"
-            android:layout_marginRight="179dp"
-            android:fontFamily="sans-serif-medium"
-            android:text="Price"
-            android:textColor="#020202"
+            android:layout_marginEnd="141dp"
+            android:layout_marginRight="141dp"
+            android:layout_marginBottom="45dp"
+            android:text="Area Name"
+            android:textColor="#B30B0A0A"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/iv_rest_lor_card_image"
             app:layout_constraintTop_toBottomOf="@+id/rb_rest_lor_card_stars" />
 
         <ImageView
             android:id="@+id/iv_rest_lor_card_image"
-            android:layout_width="185dp"
-            android:layout_height="124dp"
+            android:layout_width="170dp"
+            android:layout_height="115dp"
             android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="1dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rb_rest_lor_card_stars"
+            app:layout_constraintTop_toBottomOf="@+id/tv_rest_lor_card_restaurantname"
             tools:srcCompat="@tools:sample/avatars" />
 
         <RatingBar
             android:id="@+id/rb_rest_lor_card_stars"
-            android:layout_width="248dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="2dp"
+            android:layout_width="236dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="15dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_rest_lor_card_image"
             app:layout_constraintTop_toBottomOf="@+id/tv_rest_lor_card_restaurantname" />
 
         <TextView
             android:id="@+id/tv_rest_lor_card_restaurantname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:fontFamily="sans-serif-black"
             android:text="Name of Restaurant"
             android:textColor="#CC070707"

@@ -27,9 +27,9 @@
             android:id="@+id/iv_rest_anr_image"
             android:layout_width="300dp"
             android:layout_height="160dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_rest_title"
             tools:srcCompat="@tools:sample/avatars" />
@@ -38,13 +38,10 @@
             android:id="@+id/btn_rest_anr_upload"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="87dp"
-            android:layout_marginLeft="87dp"
             android:layout_marginTop="4dp"
-            android:layout_marginEnd="83dp"
-            android:layout_marginRight="83dp"
             android:text="Upload Image"
-            app:layout_constraintEnd_toStartOf="@+id/rg_sf_anp_prices"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_rest_anr_image" />
 
@@ -140,8 +137,7 @@
             android:id="@+id/tv_rest_anr_warning"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:layout_marginBottom="35dp"
+            android:layout_marginTop="15dp"
             android:text="This restaurant is already existing on the site"
             android:textColor="#CCF44336"
             android:textSize="12sp"
@@ -180,50 +176,6 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_rest_anr_typeofrest" />
-
-        <RadioGroup
-            android:id="@+id/rg_rest_anr_prices"
-            android:layout_width="85dp"
-            android:layout_height="160dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/iv_rest_anr_image"
-            app:layout_constraintTop_toBottomOf="@+id/tv_rest_title">
-
-            <RadioButton
-                android:id="@+id/rb_rest_anr_4"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:text="££££"
-                android:textSize="12sp" />
-
-            <RadioButton
-                android:id="@+id/rb_rest_anr_3"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:text="£££"
-                android:textSize="12sp" />
-
-            <RadioButton
-                android:id="@+id/rb_rest_anr_2"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:text="££"
-                android:textSize="12sp" />
-
-            <RadioButton
-                android:id="@+id/rb_rest_anr_1"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:text="£"
-                android:textSize="12sp" />
-
-        </RadioGroup>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
