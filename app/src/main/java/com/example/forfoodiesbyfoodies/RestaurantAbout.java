@@ -2,11 +2,16 @@ package com.example.forfoodiesbyfoodies;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
+import com.google.firebase.database.DatabaseReference;
+import com.squareup.picasso.Picasso;
 
 public class RestaurantAbout extends AppCompatActivity {
 
@@ -15,6 +20,8 @@ public class RestaurantAbout extends AppCompatActivity {
     RatingBar stars;
     Button book, view;
 
+    // A User type object to store the User object got from the previous activities.
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +38,31 @@ public class RestaurantAbout extends AppCompatActivity {
         address = findViewById(R.id.tv_rest_ar_address);
         about = findViewById(R.id.tv_rest_ar_info);
 
-    Restaurant r = getIntent().getParcelableExtra("RESTAURANT");
+        // Getting the User object from intent passed from previous activities
+        Intent i = getIntent();
+        user = i.getParcelableExtra("user");
 
-    name.setText(r.getName());
+        Restaurant r = getIntent().getParcelableExtra("RESTAURANT");
+        Picasso.get().load(r.getPicURL()).fit().into(image);
+        name.setText(r.getName());
+        type.setText(r.getType());
+        address.setText(r.getAddress() + "," + r.getCity() + "," + r.getPostcode() + "," + r.getArea());
+        about.setText(r.getAbout());
 
+        book.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(RestaurantAbout.this, RestaurantListOfReviews.class);
+                i.putExtra("user", user);
+                startActivity(i);
+            }
+        });
     }
 }
