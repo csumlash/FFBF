@@ -20,6 +20,9 @@ public class Restaurant extends EateryTemplate implements Parcelable {
         this.type = type;
     }
 
+    public Restaurant(){
+        super();
+    }
 
     // Similarly, as explained in the parent (super) class, the following methods are for intent-based object transfer works.
     protected Restaurant(Parcel in) {

@@ -27,6 +27,10 @@ public class Dashboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
+        // Getting the User object from intent passed from previous activities
+        Intent i = getIntent();
+        user = i.getParcelableExtra("user");
+
         // Linking the view elements to the variables in this code
         logout = findViewById(R.id.btn_dashboard_logout);
         welcomeFullName = findViewById(R.id.tv_dashboard_welcome);
@@ -38,9 +42,10 @@ public class Dashboard extends AppCompatActivity {
         search = findViewById(R.id.et_dashboard_search);
         searchBtn = findViewById(R.id.btn_dashboard_search);
 
-        // Getting the User object from intent passed from previous activities
-        Intent i = getIntent();
-        user = i.getParcelableExtra("user");
+        if(user.getUserType().equals("admin")){
+            search.setVisibility(View.VISIBLE);
+            searchBtn.setVisibility(View.VISIBLE);
+        }
 
         // Setting up the welcome message
         welcomeFullName.setText("Welcome " + user.getFirstName() + " " + user.getLastName());

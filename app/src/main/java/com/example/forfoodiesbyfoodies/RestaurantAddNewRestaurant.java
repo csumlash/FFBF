@@ -4,14 +4,11 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,8 +27,6 @@ import com.squareup.picasso.Picasso;
 
 
 public class RestaurantAddNewRestaurant extends AppCompatActivity {
-
-
     ImageView image;
     Button send;
     EditText name, address, postcode, area, city, type, about;
@@ -39,7 +34,7 @@ public class RestaurantAddNewRestaurant extends AppCompatActivity {
     DatabaseReference dbref;
     StorageReference sref;
     Uri image_path;
-    String url;
+
     // A User type object to store the User object got from the previous activities.
     User user;
 
@@ -62,13 +57,9 @@ public class RestaurantAddNewRestaurant extends AppCompatActivity {
         sref = FirebaseStorage.getInstance().getReference("restaurants");
         dbref = FirebaseDatabase.getInstance().getReference("restaurants");
 
-        String id = dbref.push().getKey();
-
         // Getting the User object from intent passed from previous activities
         Intent i = getIntent();
         user = i.getParcelableExtra("user");
-
-
 
         /*Image View will respond to click to choose the picture.
          *Intent used like default constructor to enter the phone directory and choose a picture.
@@ -82,7 +73,6 @@ public class RestaurantAddNewRestaurant extends AppCompatActivity {
                 i.setType("image/*");
                 i.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(i, 105);
-
             }
         });
 
@@ -97,64 +87,66 @@ public class RestaurantAddNewRestaurant extends AppCompatActivity {
                 String enteredAbout = about.getText().toString();
                 String enteredType = type.getText().toString();
 
+                if (image_path != null && enteredName.length() > 0 && enteredAddress.length() > 0) {
+                    // Getting dbref unique ID to name the files
+                    String id = dbref.push().getKey();
 
-                /*Images will get id after images are uploaded to firebase storage and database will use this id to save to restaurants.
-                 * This method will return the extension of the image to name it.*/
-                final StorageReference reference = sref.child(id + "." + getExtension(image_path));
-
-                /*The next part is the upload the image and check that was successfully upload or failed.*/
-                reference.putFile(image_path)
-                        .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                            @Override
-                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                //This record is not going to go to the next activity without the URL of the image, only if the method is successful.
-                                reference.getDownloadUrl()
-                                        .addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                            @Override
-                                            public void onSuccess(Uri uri) {
-                                                url = uri.toString();
-                                            }
-                                        })
-                                        .addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                                reference.delete();
-                                                Toast.makeText(RestaurantAddNewRestaurant.this, "Internet disruption", Toast.LENGTH_LONG).show();
-                                            }
-                                        });
-                                //If fail to get the URL of the image, it necessary to delete that kind of orphan image from the database, because no one can access to it and just it takes place.
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(RestaurantAddNewRestaurant.this, "asdf", Toast.LENGTH_LONG).show();
-                            }
-                        });
-
-                if (enteredName.length() > 0 && enteredAddress.length() > 0) {
-                    warning.setVisibility(View.INVISIBLE);
-                    Restaurant rest = new Restaurant(url, enteredName, enteredAddress, enteredArea, enteredCity, enteredPostcode, enteredAbout, enteredType);
-                    dbref.child(dbref.push().getKey()).setValue(rest)
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    /*Images will get id after images are uploaded to firebase storage and database will use this id to save to restaurants.
+                     * This method will return the extension of the image to name it.*/
+                    final StorageReference reference = sref.child(id + "." + getExtension(image_path));
+                    /*The next part is the upload the image and check that was successfully upload or failed.*/
+                    reference.putFile(image_path)
+                            .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                 @Override
-                                public void onSuccess(Void aVoid) {
-                                    /*Intent will navigate to an other activity.
-                                     * Declared parameter is the content and the java class of the activity where will be navigate.*/
-                                    Intent i = new Intent(RestaurantAddNewRestaurant.this, Dashboard.class);
-                                    i.putExtra("user", user);
-                                    startActivity(i);
+                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                    //This record is not going to go to the next activity without the URL of the image, only if the method is successful.
+                                    reference.getDownloadUrl()
+                                            .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                @Override
+                                                public void onSuccess(Uri uri) {
+                                                    String url = uri.toString();
+                                                    Restaurant restaurant = new Restaurant(url, enteredName, enteredAddress, enteredArea, enteredCity, enteredPostcode, enteredAbout, enteredType);
+                                                    dbref.child(id).setValue(restaurant)
+                                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                @Override
+                                                                public void onSuccess(Void aVoid) {
+                                                                    /*Intent will navigate to an other activity.
+                                                                     * Declared parameter is the content and the java class of the activity where will be navigate.*/
+                                                                    Intent i = new Intent(RestaurantAddNewRestaurant.this, RestaurantListOfRestaurants.class);
+                                                                    i.putExtra("user", user);
+                                                                    startActivity(i);
+                                                                }
+                                                            }).addOnFailureListener(new OnFailureListener() {
+                                                        @Override
+                                                        public void onFailure(@NonNull Exception e) {
+
+                                                        }
+                                                    });
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    //If fail to get the URL of the image, it necessary to delete that kind of orphan image from the database, because no one can access to it and just it takes place.
+                                                    reference.delete();
+                                                    Toast.makeText(RestaurantAddNewRestaurant.this, "Internet disruption", Toast.LENGTH_LONG).show();
+                                                }
+                                            });
                                 }
-                            }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(RestaurantAddNewRestaurant.this, "Internet disruption!", Toast.LENGTH_LONG).show();
+                                }
+                            });
 
-                        }
-                    });
-
+                } else {
+                    warning.setVisibility(View.VISIBLE);
+                    warning.setTextColor(getResources().getColor(R.color.red));
                 }
-
             }
+
         });
 
     }
@@ -177,6 +169,5 @@ public class RestaurantAddNewRestaurant extends AppCompatActivity {
         ContentResolver resolver = getContentResolver();
         MimeTypeMap map = MimeTypeMap.getSingleton();
         return map.getExtensionFromMimeType(resolver.getType(path));
-
     }
 }

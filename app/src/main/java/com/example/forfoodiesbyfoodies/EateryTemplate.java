@@ -25,6 +25,10 @@ public class EateryTemplate implements Parcelable {
 
     }
 
+    public EateryTemplate(){
+
+    }
+
     /*
     * This constructor is responsible to gather the attributes out from the transferred object via
     * intent/putExtra technique and to set up the attributes in the new object by these gathered ones */
