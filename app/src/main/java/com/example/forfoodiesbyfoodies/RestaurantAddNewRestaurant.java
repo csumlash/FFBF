@@ -27,10 +27,13 @@ import com.squareup.picasso.Picasso;
 
 
 public class RestaurantAddNewRestaurant extends AppCompatActivity {
+    // Defining activity view types those will be initialised in the onCreate process
     ImageView image;
     Button send;
     EditText name, address, postcode, area, city, type, about;
     TextView warning;
+
+    // The following object typed variables will be used to handle Firebase database/storage works
     DatabaseReference dbref;
     StorageReference sref;
     Uri image_path;
@@ -43,6 +46,7 @@ public class RestaurantAddNewRestaurant extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_add_new_restaurant);
 
+        // Linking the views of activity to this code (initialisation of variable)
         image = findViewById(R.id.iv_rest_anr_image);
         name = findViewById(R.id.et_rest_anr_nameofrestaurant);
         address = findViewById(R.id.et_rest_anr_addressline);
@@ -54,6 +58,7 @@ public class RestaurantAddNewRestaurant extends AppCompatActivity {
         warning = findViewById(R.id.tv_rest_anr_warning);
         send = findViewById(R.id.btn_rest_anr_send);
 
+        // Getting direct references to restaurants node and directory of Firebase Realtime and Storage databases
         sref = FirebaseStorage.getInstance().getReference("restaurants");
         dbref = FirebaseDatabase.getInstance().getReference("restaurants");
 
@@ -63,7 +68,7 @@ public class RestaurantAddNewRestaurant extends AppCompatActivity {
 
         /*Image View will respond to click to choose the picture.
          *Intent used like default constructor to enter the phone directory and choose a picture.
-         *Declare what kind of files laud to use for the picture.
+         *Declare what kind of files are valid to be used as a picture.
          *Bring the selected image to the app.
          *Given an ID for my request code to identify when this task will be finished.*/
         image.setOnClickListener(new View.OnClickListener() {
@@ -76,9 +81,11 @@ public class RestaurantAddNewRestaurant extends AppCompatActivity {
             }
         });
 
+        // The listener of clicking on the SEND button button
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Getting and storing the entered values of EditText fields
                 String enteredName = name.getText().toString();
                 String enteredAddress = address.getText().toString();
                 String enteredArea = area.getText().toString();
@@ -87,6 +94,9 @@ public class RestaurantAddNewRestaurant extends AppCompatActivity {
                 String enteredAbout = about.getText().toString();
                 String enteredType = type.getText().toString();
 
+                /* The MINIMUM requirements of image and data upload processes are declared in this statement
+                 *  - the image_path must be initialised ==> image must be already picked in the ImageView
+                 *  - the entered values must be more characters longer by the listed > requirements */
                 if (image_path != null && enteredName.length() > 0 && enteredAddress.length() > 0 &&
                         enteredArea.length() > 0 && enteredCity.length() > 0 && enteredPostcode.length() > 0 &&
                         enteredAbout.length() > 0 && enteredType.length() > 0) {
@@ -94,16 +104,19 @@ public class RestaurantAddNewRestaurant extends AppCompatActivity {
                     // Initialising and getting dbref unique ID to name the files
                     String id = dbref.push().getKey();
 
-                    /*Images will get id after images are uploaded to firebase storage and database will use this id to save to restaurants.
+                    /* Images will get id after images are uploaded to firebase storage and database will use this id to save to restaurants.
                      * This method will return the extension of the image to name it.*/
                     final StorageReference reference = sref.child(id + "." + getExtension(image_path));
-                    /*The next part is the upload the image and check that was successfully upload or failed.*/
+                    /* The next part is the upload of image and check if that was successfully uploaded or failed.*/
                     reference.putFile(image_path)
+                            // What to do if the upload process was successful
                             .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                 @Override
                                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                    //This record is not going to go to the next activity without the URL of the image, only if the method is successful.
                                     reference.getDownloadUrl()
+                                            /* The process is not going to go to the next activity without the URL of the image, only if the method is successful.
+                                             * - but if successful then storing the database link of image to be able to store it in the Realtime DB
+                                             * - and uploading all the entered data with the direct url link to the Realtime database */
                                             .addOnSuccessListener(new OnSuccessListener<Uri>() {
                                                 @Override
                                                 public void onSuccess(Uri uri) {
@@ -119,14 +132,16 @@ public class RestaurantAddNewRestaurant extends AppCompatActivity {
                                                                     i.putExtra("user", user);
                                                                     startActivity(i);
                                                                 }
-                                                            }).addOnFailureListener(new OnFailureListener() {
-                                                        @Override
-                                                        public void onFailure(@NonNull Exception e) {
+                                                            })
+                                                            .addOnFailureListener(new OnFailureListener() {
+                                                                @Override
+                                                                public void onFailure(@NonNull Exception e) {
 
-                                                        }
-                                                    });
+                                                                }
+                                                            });
                                                 }
                                             })
+                                            // If cannot get the link of the uploaded image to the storage then warning the user
                                             .addOnFailureListener(new OnFailureListener() {
                                                 @Override
                                                 public void onFailure(@NonNull Exception e) {
@@ -137,13 +152,14 @@ public class RestaurantAddNewRestaurant extends AppCompatActivity {
                                             });
                                 }
                             })
+                            // If the whole upload process fails then warning the user of network issues
                             .addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(RestaurantAddNewRestaurant.this, "Internet disruption!", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(RestaurantAddNewRestaurant.this, "Internet disruption, try again please", Toast.LENGTH_LONG).show();
                                 }
                             });
-
+                    // if the minimum requirements of data and image upload is not satisfied then warning the user
                 } else {
                     warning.setVisibility(View.VISIBLE);
                     warning.setTextColor(getResources().getColor(R.color.red));
@@ -154,10 +170,10 @@ public class RestaurantAddNewRestaurant extends AppCompatActivity {
 
     }
 
-    /*Any time a task will finish the onAvtivityResult will execute and the parameters will find the specified request code.
-     *This method will be use if statement to specify if the activity was finish or not.
-     *The result code will tell if the task was run successfully.
-     *The uploaded image will force to fit in the size of the image view.*/
+    /* This method is in relation with the "startActivityForResult() method called in the image
+     *  picker solution and this method is responsible to commit the image open from the device,
+     *  to show it in the ImageView view and to initialise the image_path variable with the
+     *  value of path (location) of the image on the device */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -167,7 +183,7 @@ public class RestaurantAddNewRestaurant extends AppCompatActivity {
         }
     }
 
-    /*This method will get the file extension number and returned to the file type.*/
+    /* Here the code is getting the file extension from the file path used during image upload */
     private String getExtension(Uri path) {
         ContentResolver resolver = getContentResolver();
         MimeTypeMap map = MimeTypeMap.getSingleton();

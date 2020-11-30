@@ -146,14 +146,19 @@ public class Login extends AppCompatActivity {
                     String firstName = ds.child("firstName").getValue().toString();
                     String lastName = ds.child("lastName").getValue().toString();
                     String userType = ds.child("userType").getValue().toString();
+                    String profPicUrl = null;
+                    if (ds.child("url").getValue() != null){
+                        profPicUrl = ds.child("url").getValue().toString();
+                    }
                     // Creating the object with the fetched data
-                    user = new User(username, firstName, lastName, userType);
+                    user = new User(username, firstName, lastName, userType, profPicUrl);
                     // Creating and filling intent with extra data to forward it to the started Dashboard activity
                     Intent i = new Intent(Login.this, Dashboard.class);
                     i.putExtra("user", user);
                     startActivity(i);
                 }
             }
+
             // If Query cannot be executed because of any network issue then warning the user
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

@@ -15,7 +15,7 @@ public class Dashboard extends AppCompatActivity {
 
     // Defining the view elements
     Button logout, viewMyProfile, restaurants, streetFoodPlaces, searchBtn;
-    TextView welcomeFullName;
+    TextView welcomeFullName, searchWarning;
     ImageView restaurantPic, streetFoodPic;
     EditText search;
 
@@ -41,15 +41,20 @@ public class Dashboard extends AppCompatActivity {
         streetFoodPlaces = findViewById(R.id.btn_dashboard_sf);
         search = findViewById(R.id.et_dashboard_search);
         searchBtn = findViewById(R.id.btn_dashboard_search);
+        searchWarning = findViewById(R.id.tv_dashboard_search_warning);
 
+        // If the user logged in is admin then show user search field, button and warning message
         if(user.getUserType().equals("admin")){
             search.setVisibility(View.VISIBLE);
             searchBtn.setVisibility(View.VISIBLE);
+            searchWarning.setVisibility(View.VISIBLE);
         }
 
-        // Setting up the welcome message
+        // Setting up the welcome message with first and last names
         welcomeFullName.setText("Welcome " + user.getFirstName() + " " + user.getLastName());
 
+        /* The logout button setup to destroy all the details stored in the SharedPreferences local
+         * files and force the user to the login page */
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,15 +64,18 @@ public class Dashboard extends AppCompatActivity {
             }
         });
 
+        // Setting up the View my profile button to navigate the user to their own profile
         viewMyProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Dashboard.this, Profile.class);
                 i.putExtra("user", user);
+                //i.putExtra("username", "csumlash@gmail.com");
                 startActivity(i);
             }
         });
 
+        // The Restaurants button to let the user get to the list of restaurants
         restaurants.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,6 +85,7 @@ public class Dashboard extends AppCompatActivity {
             }
         });
 
+        // The Street Food Places button to let the user get to the list of Street Food Places
         streetFoodPlaces.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,5 +94,8 @@ public class Dashboard extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+
+
     }
 }

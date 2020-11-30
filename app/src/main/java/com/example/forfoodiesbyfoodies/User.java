@@ -1,16 +1,32 @@
 package com.example.forfoodiesbyfoodies;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.provider.ContactsContract;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 
 public class User implements Parcelable {
-    public String username, firstName, lastName, userType;
+    public String username, firstName, lastName, userType, picUrl;
 
-    public User(String username, String firstName, String lastName, String userType) {
+    public User(String username, String firstName, String lastName, String userType, String picUrl) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.userType = userType;
+        this.picUrl = picUrl;
     }
 
     public User(Parcel in) {
@@ -18,6 +34,7 @@ public class User implements Parcelable {
         firstName = in.readString();
         lastName = in.readString();
         userType = in.readString();
+        picUrl = in.readString();
     }
 
     public User(){
@@ -67,6 +84,14 @@ public class User implements Parcelable {
         this.userType = userType;
     }
 
+    public String getPicUrl() {
+        return picUrl;
+    }
+
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -78,5 +103,6 @@ public class User implements Parcelable {
         dest.writeString(firstName);
         dest.writeString(lastName);
         dest.writeString(userType);
+        dest.writeString(picUrl);
     }
 }

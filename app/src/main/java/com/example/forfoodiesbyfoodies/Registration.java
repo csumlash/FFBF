@@ -205,7 +205,7 @@ public class Registration extends AppCompatActivity {
                                                 "Registration is successful!\nWelcome to the For Foodies by Foodies App", Toast.LENGTH_LONG).show();
                                         /* Adding the email, first and last names with a default "user" user type to a User object
                                          * pushing this User type object with all the details into the Realtime DB */
-                                        user = new User(givenEmail, givenFN, givenLN, "user");
+                                        user = new User(givenEmail, givenFN, givenLN, "user", null);
                                         dbRef.child(dbRef.push().getKey()).setValue(user)
                                                 /* If pushing data into Realtime DB completed successfully then
                                                  * - create a SharedPreference that provides local file-based data storage/database technique
