@@ -87,8 +87,11 @@ public class RestaurantAddNewRestaurant extends AppCompatActivity {
                 String enteredAbout = about.getText().toString();
                 String enteredType = type.getText().toString();
 
-                if (image_path != null && enteredName.length() > 0 && enteredAddress.length() > 0) {
-                    // Getting dbref unique ID to name the files
+                if (image_path != null && enteredName.length() > 0 && enteredAddress.length() > 0 &&
+                        enteredArea.length() > 0 && enteredCity.length() > 0 && enteredPostcode.length() > 0 &&
+                        enteredAbout.length() > 0 && enteredType.length() > 0) {
+
+                    // Initialising and getting dbref unique ID to name the files
                     String id = dbref.push().getKey();
 
                     /*Images will get id after images are uploaded to firebase storage and database will use this id to save to restaurants.
