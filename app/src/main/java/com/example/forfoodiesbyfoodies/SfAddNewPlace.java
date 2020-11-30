@@ -15,7 +15,7 @@ public class SfAddNewPlace extends AppCompatActivity {
     Button send;
     ImageView sfpic;
     TextView warning;
-    EditText sfname, addressline, postcode, area, city, about;
+    EditText sfname, address, postcode, area, city, about;
     Switch vegie;
 
     @Override
@@ -27,7 +27,7 @@ public class SfAddNewPlace extends AppCompatActivity {
         sfpic = findViewById(R.id.iv_sf_anp_image);
         warning = findViewById(R.id.tv_sf_anp_warning);
         sfname = findViewById(R.id.et_sf_anp_nameofsf);
-        addressline = findViewById(R.id.et_sf_anp_addressline);
+        address = findViewById(R.id.et_sf_anp_addressline);
         postcode = findViewById(R.id.et_sf_anp_postcode);
         area = findViewById(R.id.et_sf_anp_areaname);
         city = findViewById(R.id.et_sf_anp_city);
