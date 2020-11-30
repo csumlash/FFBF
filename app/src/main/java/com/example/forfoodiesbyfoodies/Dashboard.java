@@ -44,10 +44,20 @@ public class Dashboard extends AppCompatActivity {
         searchWarning = findViewById(R.id.tv_dashboard_search_warning);
 
         // If the user logged in is admin then show user search field, button and warning message
-        if(user.getUserType().equals("admin")){
+        if (user.getUserType().equals("admin")) {
             search.setVisibility(View.VISIBLE);
             searchBtn.setVisibility(View.VISIBLE);
             searchWarning.setVisibility(View.VISIBLE);
+            searchBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String userToFind = search.getText().toString();
+                    Intent i = new Intent(Dashboard.this, Profile.class);
+                    i.putExtra("username", userToFind);
+                    i.putExtra("user", user);
+                    startActivity(i);
+                }
+            });
         }
 
         // Setting up the welcome message with first and last names
@@ -70,7 +80,6 @@ public class Dashboard extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(Dashboard.this, Profile.class);
                 i.putExtra("user", user);
-                //i.putExtra("username", "csumlash@gmail.com");
                 startActivity(i);
             }
         });
@@ -94,8 +103,6 @@ public class Dashboard extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
-
 
     }
 }
