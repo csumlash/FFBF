@@ -146,9 +146,11 @@ public class Login extends AppCompatActivity {
                     String firstName = ds.child("firstName").getValue().toString();
                     String lastName = ds.child("lastName").getValue().toString();
                     String userType = ds.child("userType").getValue().toString();
-                    String profPicUrl = null;
-                    if (ds.child("url").getValue() != null){
+                    String profPicUrl;
+                    try {
                         profPicUrl = ds.child("url").getValue().toString();
+                    } catch (Exception e) {
+                        profPicUrl = null;
                     }
                     // Creating the object with the fetched data
                     user = new User(username, firstName, lastName, userType, profPicUrl);

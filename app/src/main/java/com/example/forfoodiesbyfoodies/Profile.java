@@ -4,7 +4,6 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -44,7 +43,7 @@ import com.squareup.picasso.Picasso;
 public class Profile extends AppCompatActivity {
 
     // Defining activity views
-    Button editProfile, promoteToCritic, pswButton;
+    Button promoteToCritic, pswButton;
     ImageView profPic;
     TextView fullName, email, foodCritText, reviewsTitle, activityTitle;
     EditText pswOld, pswNew;
@@ -52,7 +51,6 @@ public class Profile extends AppCompatActivity {
     RecyclerView reviewsOfFC;
     // Support User object typed variables to handle own or another users data
     User user;
-    String userID;
     User anotherUser;
     Uri image_path;
     // Support variable to handle other user profile views and queries
@@ -79,7 +77,6 @@ public class Profile extends AppCompatActivity {
 
         // Linking views to this code
         activityTitle = findViewById(R.id.tv_profile_title);
-        editProfile = findViewById(R.id.btn_profile_editprofile);
         profPic = findViewById(R.id.iv_profile_paimage);
         fullName = findViewById(R.id.tv_profile_fullName);
         email = findViewById(R.id.tv_profile_email);
@@ -92,47 +89,56 @@ public class Profile extends AppCompatActivity {
         reviewsOfFC = findViewById(R.id.rv_profile_reviews);
         reviewsTitle = findViewById(R.id.tv_profile_reviews);
 
+        // Loading profile picture if available
+
+
         // Show the logged in user profile IF there isn't any other username request AND any another user details given as object.
         if (username == null && anotherUser == null) {
+            if (user.getPicUrl() != null) {
+                Picasso.get().load(user.getPicUrl()).into(profPic);
+            }
             // Setting up the texts in the views from the logged in user object data
             fullName.setText(user.getFirstName() + " " + user.getLastName());
             email.setText(user.getUsername());
 
-            // Loading profile picture if available
-            if (user.getPicUrl() != null) {
-                Picasso.get().load(user.getPicUrl()).into(profPic);
-            }
-
+            // Updating user password
             pswButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    // Creating connection to the Authentication database
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    AuthCredential credential = EmailAuthProvider
+                    // Reauthorise the user by the saved username and typed old password
+                    AuthCredential credentials = EmailAuthProvider
                             .getCredential(user.getEmail(), pswOld.getText().toString());
-
-                    user.reauthenticate(credential)
+                    // Launching the reauthorisation process with the username and password
+                    user.reauthenticate(credentials)
+                            // If reauthorisation ended successfully
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
+                                    // If the authorisation ended successfully
                                     if (task.isSuccessful()) {
+                                        // then trying to update the password
                                         user.updatePassword(pswNew.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
+                                                // if the update process was successful then inform the user
                                                 if (task.isSuccessful()) {
                                                     Toast.makeText(Profile.this, "Password is updated", Toast.LENGTH_LONG).show();
                                                 } else {
+                                                    // if process failed then inform the user of network issue
                                                     Toast.makeText(Profile.this, "Check your network", Toast.LENGTH_LONG).show();
                                                 }
                                             }
                                         });
                                     } else {
+                                        // If the authorisation failed then asking to check the old/previous password
                                         Toast.makeText(Profile.this, "Your old password is incorrect", Toast.LENGTH_LONG).show();
                                     }
                                 }
                             });
                 }
             });
-
 
             // Profile picture upload button
             profPic.setOnClickListener(new View.OnClickListener() {
@@ -144,23 +150,29 @@ public class Profile extends AppCompatActivity {
                     k.setType("image/*");
                     // Setting up what Android System built-in file navigator is needed
                     k.setAction(Intent.ACTION_GET_CONTENT);
-                    // Starting the system file navigator with the given images only requirements
+                    // Starting the system file navigator with the given image requirements
                     startActivityForResult(k, 111);
                 }
             });
-
 
         } else if (username != null && anotherUser == null) {
             /* Calling the method that queries the user details from database
              * This method creates anotherUser object that will be used at the "else" case */
             queryUser(username);
         } else {
+            profPic.setImageResource(R.drawable.ic_baseline_add_photo_image);
             /* Any other cases when there is no username requests but there is other user details provided in object
              * - change activity title from My Profile to View user's profile
              * - hide edit profile button & password field */
             activityTitle.setText("View user's profile");
-            editProfile.setVisibility(View.INVISIBLE);
             pswOld.setVisibility(View.INVISIBLE);
+            pswNew.setVisibility(View.INVISIBLE);
+            pswButton.setVisibility(View.INVISIBLE);
+
+            if (anotherUser.getPicUrl() != null) {
+                Picasso.get().load(anotherUser.getPicUrl()).into(profPic);
+            }
+
             // Show user's full name (build from first and last names) and email
             fullName.setText(anotherUser.getFirstName() + " " + anotherUser.getLastName());
             email.setText(anotherUser.getUsername());
@@ -178,7 +190,6 @@ public class Profile extends AppCompatActivity {
                 ratingBar.setVisibility(View.VISIBLE);
                 reviewsOfFC.setVisibility(View.VISIBLE);
             }
-
         }
 
     }
@@ -203,10 +214,15 @@ public class Profile extends AppCompatActivity {
                     String firstName = ds.child("firstName").getValue().toString();
                     String lastName = ds.child("lastName").getValue().toString();
                     String userType = ds.child("userType").getValue().toString();
-                    String profPicUrl = ds.child("url").getValue().toString();
+                    String profPicUrl;
+                    try {
+                        profPicUrl = ds.child("url").getValue().toString();
+                    } catch (Exception e) {
+                        profPicUrl = null;
+                    }
                     // Creating the object with the fetched data
                     User anotherUser = new User(username, firstName, lastName, userType, profPicUrl);
-                    // Creating and filling intent with extra data to forward it to the started Dashboard activity
+                    // Creating and filling intent with extra data to recall the Profile itself by itself
                     Intent k = new Intent(Profile.this, Profile.class);
                     k.putExtra("user", user);
                     k.putExtra("anotherUser", anotherUser);
@@ -218,7 +234,7 @@ public class Profile extends AppCompatActivity {
             // If a query cannot be executed because of any network issue then warning the user
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(Profile.this, "Invalid username or banned user!", Toast.LENGTH_LONG).show();
+                Toast.makeText(Profile.this, "Network issue, try again later", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -231,7 +247,7 @@ public class Profile extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 111 && resultCode == RESULT_OK && data.getData() != null) {
-            Picasso.get().load(data.getData()).fit().into(profPic);
+            Picasso.get().load(data.getData()).into(profPic);
             image_path = data.getData();
             picUploader();
         }
@@ -241,7 +257,7 @@ public class Profile extends AppCompatActivity {
     private void picUploader() {
         // Requesting a random unique ID from the Realtime Database key generator
         String id = dbRef.push().getKey();
-        // Setting up the file name with the unique ide then a dot as name and file extension separator then applying the file type/extension
+// Setting up the file name with the unique ide then a dot as name and file extension separator then applying the file type/extension
         final StorageReference reference = sRef.child(id + "." + getExtension(image_path));
         /* The next part is the upload of image and check if that was successfully uploaded or failed.*/
         reference.putFile(image_path)
@@ -256,6 +272,12 @@ public class Profile extends AppCompatActivity {
                                 .addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
                                     public void onSuccess(Uri uri) {
+                                        // If the user had a previous profile picture then deleting it to avoid orphan pictures in storage
+                                        if (user.getPicUrl() != null) {
+                                            StorageReference previousPicture = FirebaseStorage.getInstance().getReferenceFromUrl(user.getPicUrl());
+                                            previousPicture.delete();
+                                        }
+                                        // Getting the URL
                                         String url = uri.toString();
                                         // Calling the method with url parameter to update the user's details in the Realtime Database
                                         pushProfPicLink(url);
@@ -284,13 +306,13 @@ public class Profile extends AppCompatActivity {
 
     // This method is called by the picUploader() method always to update the user's current profile picture data
     public void pushProfPicLink(String url) {
-        final String[] userID = new String[1];
         Query usersQuery = dbRef.orderByChild("username").equalTo(user.getUsername()).limitToFirst(1);
         usersQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot theUser : snapshot.getChildren()) {
                     dbRef.child(theUser.getKey()).child("url").setValue(url);
+                    Toast.makeText(Profile.this, "Profile picture is updated successfully", Toast.LENGTH_SHORT).show();
                 }
             }
 
