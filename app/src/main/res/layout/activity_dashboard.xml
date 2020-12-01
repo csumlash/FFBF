@@ -2,13 +2,14 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     tools:context=".Dashboard">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        tools:context=".Dashboard">
 
         <TextView
             android:id="@+id/tv_dashboard_title"
@@ -48,24 +49,31 @@
 
         <ImageView
             android:id="@+id/iv_dashboard_restaurant"
-            android:layout_width="300dp"
-            android:layout_height="160dp"
-            android:layout_marginTop="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:maxWidth="200dp"
+            android:maxHeight="150dp"
+            android:minWidth="100dp"
+            android:minHeight="75dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_dashboard_viewprofile" />
 
         <ImageView
             android:id="@+id/iv_dashboard_sf"
-            android:layout_width="300dp"
-            android:layout_height="160dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
+            android:maxWidth="200dp"
+            android:maxHeight="150dp"
+            android:minWidth="100dp"
+            android:minHeight="75dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_dashboard_restaurants"
-            tools:srcCompat="@tools:sample/avatars" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_dashboard_restaurants" />
 
         <Button
             android:id="@+id/btn_dashboard_restaurants"
@@ -114,7 +122,7 @@
             android:layout_marginTop="28dp"
             android:ems="10"
             android:hint="Type username (email)"
-            android:inputType="textPersonName"
+            android:inputType="textWebEmailAddress"
             android:textSize="14sp"
             android:visibility="invisible"
             app:layout_constraintEnd_toStartOf="@+id/btn_dashboard_search"

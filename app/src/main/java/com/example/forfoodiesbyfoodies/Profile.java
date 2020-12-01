@@ -65,7 +65,7 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        // Getting User typed object from intent
+        // Getting data from intent
         i = getIntent();
         user = i.getParcelableExtra("user");
         anotherUser = i.getParcelableExtra("anotherUser");
@@ -89,58 +89,23 @@ public class Profile extends AppCompatActivity {
         reviewsOfFC = findViewById(R.id.rv_profile_reviews);
         reviewsTitle = findViewById(R.id.tv_profile_reviews);
 
-        // Loading profile picture if available
-
-
-        // Show the logged in user profile IF there isn't any other username request AND any another user details given as object.
-        if (username == null && anotherUser == null) {
+        /* If there is a username request (that is different from the logged in user) and
+         * there is no loaded another user details in object
+         * then launch query and reload activity with given "anotherUser" object details */
+        if (username != null && anotherUser == null && !username.equals(user.getUsername())) {
+            /* Calling the method that queries the user details from database
+             * This method creates anotherUser object that will be used at the "else" case */
+            queryUser(username);
+        } else if (anotherUser == null || anotherUser.getUsername().equals(user.getUsername())) {
             if (user.getPicUrl() != null) {
                 Picasso.get().load(user.getPicUrl()).into(profPic);
+            } else {
+                profPic.setImageResource(R.drawable.ic_baseline_add_photo_image);
             }
             // Setting up the texts in the views from the logged in user object data
             fullName.setText(user.getFirstName() + " " + user.getLastName());
             email.setText(user.getUsername());
-
-            // Updating user password
-            pswButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // Creating connection to the Authentication database
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    // Reauthorise the user by the saved username and typed old password
-                    AuthCredential credentials = EmailAuthProvider
-                            .getCredential(user.getEmail(), pswOld.getText().toString());
-                    // Launching the reauthorisation process with the username and password
-                    user.reauthenticate(credentials)
-                            // If reauthorisation ended successfully
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    // If the authorisation ended successfully
-                                    if (task.isSuccessful()) {
-                                        // then trying to update the password
-                                        user.updatePassword(pswNew.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Void> task) {
-                                                // if the update process was successful then inform the user
-                                                if (task.isSuccessful()) {
-                                                    Toast.makeText(Profile.this, "Password is updated", Toast.LENGTH_LONG).show();
-                                                } else {
-                                                    // if process failed then inform the user of network issue
-                                                    Toast.makeText(Profile.this, "Check your network", Toast.LENGTH_LONG).show();
-                                                }
-                                            }
-                                        });
-                                    } else {
-                                        // If the authorisation failed then asking to check the old/previous password
-                                        Toast.makeText(Profile.this, "Your old password is incorrect", Toast.LENGTH_LONG).show();
-                                    }
-                                }
-                            });
-                }
-            });
-
-            // Profile picture upload button
+            // The following methods and listeners are called and set when the user is visiting their own profile
             profPic.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -152,47 +117,81 @@ public class Profile extends AppCompatActivity {
                     k.setAction(Intent.ACTION_GET_CONTENT);
                     // Starting the system file navigator with the given image requirements
                     startActivityForResult(k, 111);
+
                 }
             });
 
-        } else if (username != null && anotherUser == null) {
-            /* Calling the method that queries the user details from database
-             * This method creates anotherUser object that will be used at the "else" case */
-            queryUser(username);
+            // Updating user password
+            pswButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    updatePassword();
+                }
+            });
         } else {
-            profPic.setImageResource(R.drawable.ic_baseline_add_photo_image);
-            /* Any other cases when there is no username requests but there is other user details provided in object
-             * - change activity title from My Profile to View user's profile
-             * - hide edit profile button & password field */
-            activityTitle.setText("View user's profile");
-            pswOld.setVisibility(View.INVISIBLE);
-            pswNew.setVisibility(View.INVISIBLE);
-            pswButton.setVisibility(View.INVISIBLE);
-
             if (anotherUser.getPicUrl() != null) {
                 Picasso.get().load(anotherUser.getPicUrl()).into(profPic);
+            } else {
+                profPic.setImageResource(R.drawable.ic_baseline_add_photo_image);
             }
 
             // Show user's full name (build from first and last names) and email
             fullName.setText(anotherUser.getFirstName() + " " + anotherUser.getLastName());
             email.setText(anotherUser.getUsername());
-            // If the user viewed is "user" but the viewer is an "admin" then let him promote the user to food critic
+
+            // If the visited profile is a User by an admin then show Promotion to Food Critic option
             if (anotherUser.getUserType().equals("user") && user.getUserType().equals("admin")) {
                 promoteToCritic.setVisibility(View.VISIBLE);
-            } else {
-                promoteToCritic.setVisibility(View.INVISIBLE);
+                promoteToCritic.setText("Promote to Food Critic");
+                promoteToCritic.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        promoteOrDemoteFoodCritic(true);
+                        Intent changedUser = new Intent(Profile.this, Dashboard.class);
+                        changedUser.putExtra("user", user);
+                        changedUser.putExtra("anotherUser", anotherUser);
+                        startActivity(changedUser);
+                        finish();
+                    }
+
+                });
             }
 
-            // If the inspected user is a food critic then show the related fields, views
+            // If the visited profile is a Food Ciritc by an admin then show Demotion to User option
+            if (anotherUser.getUserType().equals("foodcritic") && user.getUserType().equals("admin")) {
+                promoteToCritic.setText("Demote to user");
+                promoteToCritic.setVisibility(View.VISIBLE);
+                promoteToCritic.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        promoteOrDemoteFoodCritic(false);
+                        Intent changedUser = new Intent(Profile.this, Dashboard.class);
+                        changedUser.putExtra("user", user);
+                        changedUser.putExtra("anotherUser", anotherUser);
+                        startActivity(changedUser);
+                        finish();
+                    }
+                });
+            }
+
+            // If anybody is visiting a Food Critic's profile then show rating of their critics, list of critics, etc
             if (anotherUser.getUserType() == "foodcritic") {
                 foodCritText.setVisibility(View.VISIBLE);
                 reviewsTitle.setVisibility(View.VISIBLE);
                 ratingBar.setVisibility(View.VISIBLE);
                 reviewsOfFC.setVisibility(View.VISIBLE);
             }
-        }
 
+            /* Every other cases when someone visits others' profile
+             * - change activity title from My Profile to View user's profile
+             * - hide edit profile button & password field except if the user is viewing himself*/
+            activityTitle.setText("View user's profile");
+            pswOld.setVisibility(View.INVISIBLE);
+            pswNew.setVisibility(View.INVISIBLE);
+            pswButton.setVisibility(View.INVISIBLE);
+        }
     }
+
 
     /* This method is responsible to:
      *  - Query the user's firstName, lastName and userType (user, foodcrit, admin) of requested user profile
@@ -257,7 +256,7 @@ public class Profile extends AppCompatActivity {
     private void picUploader() {
         // Requesting a random unique ID from the Realtime Database key generator
         String id = dbRef.push().getKey();
-// Setting up the file name with the unique ide then a dot as name and file extension separator then applying the file type/extension
+        // Setting up the file name with the unique ide then a dot as name and file extension separator then applying the file type/extension
         final StorageReference reference = sRef.child(id + "." + getExtension(image_path));
         /* The next part is the upload of image and check if that was successfully uploaded or failed.*/
         reference.putFile(image_path)
@@ -328,6 +327,72 @@ public class Profile extends AppCompatActivity {
         ContentResolver resolver = getContentResolver();
         MimeTypeMap map = MimeTypeMap.getSingleton();
         return map.getExtensionFromMimeType(resolver.getType(path));
+    }
+
+    public void updatePassword() {
+        // Creating connection to the Authentication database
+        FirebaseUser userToUpdate = FirebaseAuth.getInstance().getCurrentUser();
+        if (pswOld.getText() != null && pswOld.getText().toString().length() > 0 &&
+                pswNew.getText() != null && pswNew.getText().toString().length() > 0) {
+            // Reauthorise the user by the saved username and typed old password if old and new psw are provided
+            AuthCredential credentials = EmailAuthProvider
+                    .getCredential(user.getUsername(), pswOld.getText().toString());
+            // Launching the reauthorisation process with the username and password
+            userToUpdate.reauthenticate(credentials)
+                    // If reauthorisation ended successfully
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            // If the authorisation ended successfully
+                            if (task.isSuccessful()) {
+                                // then trying to update the password
+                                userToUpdate.updatePassword(pswNew.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        // if the update process was successful then inform the user
+                                        if (task.isSuccessful()) {
+                                            Toast.makeText(Profile.this, "Password is updated", Toast.LENGTH_LONG).show();
+                                        } else {
+                                            // if process failed then inform the user of network issue
+                                            Toast.makeText(Profile.this, "Check your network", Toast.LENGTH_LONG).show();
+                                        }
+                                    }
+                                });
+                            } else {
+                                // If the authorisation failed then asking to check the old/previous password
+                                Toast.makeText(Profile.this, "Your old password is incorrect", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+        } else {
+            Toast.makeText(Profile.this, "Need both old and new passwords", Toast.LENGTH_LONG).show();
+        }
+
+    }
+
+    private void promoteOrDemoteFoodCritic(boolean promote) {
+        Query usersQuery = dbRef.orderByChild("username").equalTo(anotherUser.getUsername()).limitToFirst(1);
+        usersQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot theUser : snapshot.getChildren()) {
+                    if (promote) {
+                        dbRef.child(theUser.getKey()).child("userType").setValue("foodcritic");
+                        anotherUser.setUserType("foodcritic");
+                    } else {
+                        dbRef.child(theUser.getKey()).child("userType").setValue("user");
+                        anotherUser.setUserType("user");
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+        });
+        finish();
     }
 
 

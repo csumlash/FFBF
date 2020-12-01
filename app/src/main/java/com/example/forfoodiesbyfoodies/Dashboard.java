@@ -43,6 +43,10 @@ public class Dashboard extends AppCompatActivity {
         searchBtn = findViewById(R.id.btn_dashboard_search);
         searchWarning = findViewById(R.id.tv_dashboard_search_warning);
 
+        // MUST BE CHANGED TO PROPER PICTURES!
+        restaurantPic.setImageResource(R.drawable.ic_baseline_add_photo_image);
+        streetFoodPic.setImageResource(R.drawable.ic_baseline_add_photo_image);
+
         // If the user logged in is admin then show user search field, button and warning message
         if (user.getUserType().equals("admin")) {
             search.setVisibility(View.VISIBLE);
@@ -62,6 +66,7 @@ public class Dashboard extends AppCompatActivity {
 
         // Setting up the welcome message with first and last names
         welcomeFullName.setText("Welcome " + user.getFirstName() + " " + user.getLastName());
+
 
         /* The logout button setup to destroy all the details stored in the SharedPreferences local
          * files and force the user to the login page */
