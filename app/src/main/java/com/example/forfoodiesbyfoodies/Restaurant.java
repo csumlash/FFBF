@@ -18,7 +18,7 @@ public class Restaurant extends EateryTemplate implements Parcelable {
     * attributes in this child class too. */
     public Restaurant(String picURL, String name, String address, String area, String city,
                       String postcode, String about, String type, String link) {
-        super(picURL, name, type, address, area, city, postcode, about);
+        super(picURL, name, address, area, city, postcode, about);
         this.type = type;
         this.link = link;
     }

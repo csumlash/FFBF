@@ -14,7 +14,7 @@ public class EateryTemplate implements Parcelable {
     private String picURL, name, address, area, city, postcode, about;
 
     // This constructor sets up all the attributes of the object by got parameters during first initialisation
-    public EateryTemplate(String picURL, String name, String type, String address, String area, String city, String postcode, String about) {
+    public EateryTemplate(String picURL, String name, String address, String area, String city, String postcode, String about) {
         this.picURL = picURL;
         this.name = name;
         this.address = address;
