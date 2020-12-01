@@ -42,7 +42,7 @@ public class RestaurantAbout extends AppCompatActivity {
         about = findViewById(R.id.tv_rest_ar_info);
 
         // Getting the User object from intent passed from previous activities
-        Intent i = getIntent();
+        /*Intent i = getIntent();
         user = i.getParcelableExtra("user");
         r = i.getParcelableExtra("restaurant");
 
@@ -51,7 +51,7 @@ public class RestaurantAbout extends AppCompatActivity {
         //stars.setNumStars();
         type.setText(r.getType());
         address.setText(r.getAddress() + "," + r.getCity() + "," + r.getPostcode() + "," + r.getArea());
-        about.setText(r.getAbout());
+        about.setText(r.getAbout());*/
 
         book.setOnClickListener(new View.OnClickListener() {
             @Override
