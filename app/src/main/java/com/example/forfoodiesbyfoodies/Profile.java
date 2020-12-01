@@ -117,9 +117,11 @@ public class Profile extends AppCompatActivity {
                     k.setAction(Intent.ACTION_GET_CONTENT);
                     // Starting the system file navigator with the given image requirements
                     startActivityForResult(k, 111);
+                    //onPause();
 
                 }
             });
+
 
             // Updating user password
             pswButton.setOnClickListener(new View.OnClickListener() {
@@ -311,7 +313,7 @@ public class Profile extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot theUser : snapshot.getChildren()) {
                     dbRef.child(theUser.getKey()).child("url").setValue(url);
-                    Toast.makeText(Profile.this, "Profile picture is updated successfully", Toast.LENGTH_SHORT).show();
+
                 }
             }
 
@@ -320,6 +322,7 @@ public class Profile extends AppCompatActivity {
 
             }
         });
+        Toast.makeText(Profile.this, "Profile picture is updated successfully", Toast.LENGTH_SHORT).show();
     }
 
     /* Here the code is getting the file extension from the file path used during image upload */
@@ -394,6 +397,4 @@ public class Profile extends AppCompatActivity {
         });
         finish();
     }
-
-
 }
