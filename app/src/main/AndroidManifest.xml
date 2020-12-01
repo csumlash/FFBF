@@ -18,16 +18,16 @@
         <activity android:name=".Dashboard" />
         <activity android:name=".Profile" />
         <activity android:name=".RestaurantWriteReview" />
-        <activity android:name=".RestaurantListOfRestaurants" />
+        <activity android:name=".Login" />
         <activity android:name=".Registration" />
-        <activity android:name=".RestaurantAddNewRestaurant" />
+        <activity android:name=".RestaurantListOfRestaurants" />
         <activity android:name=".RestaurantListOfReviews" />
-        <activity android:name=".RestaurantAbout" />
+        <activity android:name=".RestaurantAddNewRestaurant" />
         <activity android:name=".SfAbout" />
         <activity android:name=".SfAddNewPlace" />
         <activity android:name=".SfListOfStreetFoods" />
         <activity android:name=".SfWriteReview" />
-        <activity android:name=".Login">
+        <activity android:name=".RestaurantAbout">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

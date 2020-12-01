@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,7 +9,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        tools:context=".Profile">
 
         <TextView
             android:id="@+id/tv_profile_title"
@@ -47,7 +47,7 @@
             android:layout_marginEnd="164dp"
             android:layout_marginRight="164dp"
             android:fontFamily="sans-serif-black"
-            android:text="UNKNON USER"
+            android:text="UNKNOWN USER"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"

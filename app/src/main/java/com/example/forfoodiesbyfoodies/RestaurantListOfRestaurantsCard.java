@@ -29,7 +29,7 @@ public class RestaurantListOfRestaurantsCard extends RecyclerView.Adapter<Restau
     @NonNull
     @Override
     public RestaurantHolder onCreateViewHolder(@NonNull ViewGroup view, int viewType) {
-        View content = LayoutInflater.from(view.getContext()).inflate(R.layout.activity_restaurant_list_of_restaurant_card, view , false);
+        View content = LayoutInflater.from(view.getContext()).inflate(R.layout.activity_restaurant_list_of_restaurants_card, view , false);
         RestaurantHolder holder = new RestaurantHolder(content, listener);
         return holder;
     }
