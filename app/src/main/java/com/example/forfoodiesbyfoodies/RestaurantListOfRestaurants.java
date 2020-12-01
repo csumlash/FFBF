@@ -16,15 +16,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class RestaurantListOfRestaurants extends AppCompatActivity implements RestaurantCard.RestaurantHolder.OnCardClickListener {
+public class RestaurantListOfRestaurants extends AppCompatActivity implements RestaurantListOfRestaurantsCard.RestaurantHolder.OnCardClickListener {
 
     Button add;
     RecyclerView restList;
     ArrayList<Restaurant> list = new ArrayList<>();
     DatabaseReference dbref;
-    RestaurantCard adapter;
+    RestaurantListOfRestaurantsCard adapter;
 
     // A User type object to store the User object got from the previous activities.
     User user;
@@ -49,7 +48,7 @@ public class RestaurantListOfRestaurants extends AppCompatActivity implements Re
                 list.add(r);
             }
 
-            adapter = new RestaurantCard(list, RestaurantListOfRestaurants.this);
+            adapter = new RestaurantListOfRestaurantsCard(list, RestaurantListOfRestaurants.this);
             restList.setAdapter(adapter);
         }
 

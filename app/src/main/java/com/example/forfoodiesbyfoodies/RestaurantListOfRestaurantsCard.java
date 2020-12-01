@@ -13,13 +13,17 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class RestaurantCard extends RecyclerView.Adapter<RestaurantCard.RestaurantHolder> {
+public class RestaurantListOfRestaurantsCard extends RecyclerView.Adapter<RestaurantListOfRestaurantsCard.RestaurantHolder> {
     ArrayList<Restaurant> list;
     RestaurantHolder.OnCardClickListener listener;
 
-    public RestaurantCard(ArrayList<Restaurant> list, RestaurantHolder.OnCardClickListener listener) {
+    public RestaurantListOfRestaurantsCard(ArrayList<Restaurant> list, RestaurantHolder.OnCardClickListener listener) {
         this.list = list;
         this.listener = listener;
+    }
+
+    public RestaurantListOfRestaurantsCard(){
+
     }
 
     @NonNull
