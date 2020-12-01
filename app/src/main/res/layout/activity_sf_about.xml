@@ -70,7 +70,7 @@
         android:layout_marginTop="35dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="107dp"
         android:text="Description about the location, the type of foods available, parking, seating and sightseeing opportunities near, etc..."
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -81,14 +81,14 @@
         android:id="@+id/btn_sf_list_viewreviews"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="45dp"
         android:text="View Reviews"
         android:textColor="#FBFDFD"
         app:backgroundTint="#009688"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_sf_about_reviewnumbers" />
+        app:layout_constraintTop_toBottomOf="@+id/rb_sf_about_stars" />
 
     <TextView
         android:id="@+id/tv_sf_list_vegan"
@@ -114,17 +114,5 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_sf_list_name" />
-
-    <TextView
-        android:id="@+id/tv_sf_about_reviewnumbers"
-        android:layout_width="168dp"
-        android:layout_height="23dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="25dp"
-        android:text="Number of Reviews:"
-        android:textColor="#B30E0E0E"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rb_sf_about_stars" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

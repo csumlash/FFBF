@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
         android:layout_marginEnd="175dp"
         android:layout_marginRight="175dp"
         android:text="About the Restaurant"
@@ -57,27 +56,16 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_rest_ar_restaurantname" />
 
     <TextView
-        android:id="@+id/tv_rest_ar_reviewnumbers"
-        android:layout_width="175dp"
-        android:layout_height="23dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="15dp"
-        android:text="Number of Reviews:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rb_rest_ar_stars" />
-
-    <TextView
         android:id="@+id/tv_rest_ar_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="25dp"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="Type of restaurant"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_rest_ar_reviewnumbers" />
+        app:layout_constraintTop_toBottomOf="@+id/rb_rest_ar_stars" />
 
     <TextView
         android:id="@+id/tv_rest_ar_address"
@@ -97,7 +85,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="45dp"
         android:layout_marginLeft="45dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="35dp"
         android:text="Reservation"
         app:backgroundTint="#009688"
         app:layout_constraintStart_toStartOf="parent"
@@ -109,7 +97,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
         android:layout_marginLeft="44dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="35dp"
         android:layout_marginEnd="45dp"
         android:layout_marginRight="45dp"
         android:text="View Reviews"

@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 public class SfAbout extends AppCompatActivity {
 
-    TextView title, vegan, name, reviewNumbers, address, description;
+    TextView title, vegan, name, address, description;
     ImageView image;
     Button viewReview;
 
@@ -26,7 +26,6 @@ public class SfAbout extends AppCompatActivity {
         image       = findViewById(R.id.iv_sf_list_image);
         vegan       = findViewById(R.id.tv_sf_list_vegan);
         name        = findViewById(R.id.tv_sf_list_name);
-        reviewNumbers =findViewById(R.id.tv_sf_about_reviewnumbers);
         address     = findViewById(R.id.tv_sf_about_address);
         description = findViewById(R.id.tv_sf_about_description);
         viewReview  = findViewById(R.id.btn_sf_list_viewreviews);

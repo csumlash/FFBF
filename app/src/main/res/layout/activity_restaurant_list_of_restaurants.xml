@@ -10,8 +10,9 @@
         android:id="@+id/btn_rest_lorest_addrestaurant"
         android:layout_width="184dp"
         android:layout_height="39dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="24dp"
         android:text="Add restaurant"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,12 +36,12 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_rest_lorest_list"
-        android:layout_width="413dp"
-        android:layout_height="598dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_rest_lorest_addrestaurant" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_rest_lorest_addrestaurant"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,15 +17,15 @@
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="25dp"
-            android:layout_marginEnd="141dp"
-            android:layout_marginRight="141dp"
             android:layout_marginBottom="45dp"
             android:text="Area Name"
             android:textColor="#B30B0A0A"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.038"
             app:layout_constraintStart_toEndOf="@+id/iv_rest_lor_card_image"
-            app:layout_constraintTop_toBottomOf="@+id/rb_rest_lor_card_stars" />
+            app:layout_constraintTop_toBottomOf="@+id/rb_rest_lor_card_stars"
+            app:layout_constraintVertical_bias="1.0" />
 
         <ImageView
             android:id="@+id/iv_rest_lor_card_image"

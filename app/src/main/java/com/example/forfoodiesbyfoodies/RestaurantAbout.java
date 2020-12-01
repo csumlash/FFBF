@@ -12,6 +12,9 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 public class RestaurantAbout extends AppCompatActivity {
@@ -20,11 +23,14 @@ public class RestaurantAbout extends AppCompatActivity {
     TextView name, numbers, type, address,about;
     RatingBar stars;
     Button book, view;
+    DatabaseReference dbref;
+    StorageReference sref;
 
     // A User type object to store the User object got from the previous activities.
     User user;
-
     Restaurant r;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +40,16 @@ public class RestaurantAbout extends AppCompatActivity {
         image = findViewById(R.id.iv_rest_ar_image);
         name = findViewById(R.id.tv_rest_ar_restaurantname);
         stars = findViewById(R.id.rb_rest_ar_stars);
-        numbers = findViewById(R.id.tv_rest_ar_reviewnumbers);
         type = findViewById(R.id.tv_rest_ar_type);
         book = findViewById(R.id.btn_rest_ar_book);
         view = findViewById(R.id.btn_rest_ar_viewreviews);
         address = findViewById(R.id.tv_rest_ar_address);
         about = findViewById(R.id.tv_rest_ar_info);
+
+        // Initialisation of Realtime and Storage database references
+        dbref = FirebaseDatabase.getInstance().getReference("restaurant");
+        sref = FirebaseStorage.getInstance().getReference("restaurants");
+
 
         // Getting the User object from intent passed from previous activities
         /*Intent i = getIntent();
