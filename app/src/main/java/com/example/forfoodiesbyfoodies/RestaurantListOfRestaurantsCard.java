@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,14 +23,14 @@ public class RestaurantListOfRestaurantsCard extends RecyclerView.Adapter<Restau
         this.listener = listener;
     }
 
-    public RestaurantListOfRestaurantsCard(){
+    public RestaurantListOfRestaurantsCard() {
 
     }
 
     @NonNull
     @Override
     public RestaurantHolder onCreateViewHolder(@NonNull ViewGroup view, int viewType) {
-        View content = LayoutInflater.from(view.getContext()).inflate(R.layout.activity_restaurant_list_of_restaurants_card, view , false);
+        View content = LayoutInflater.from(view.getContext()).inflate(R.layout.activity_restaurant_list_of_restaurants_card, view, false);
         RestaurantHolder holder = new RestaurantHolder(content, listener);
         return holder;
     }
@@ -38,6 +39,7 @@ public class RestaurantListOfRestaurantsCard extends RecyclerView.Adapter<Restau
     public void onBindViewHolder(@NonNull RestaurantHolder holder, int position) {
         holder.name.setText(list.get(position).getName());
         holder.area.setText(list.get(position).getArea());
+        holder.stars.setRating(3);
         Picasso.get().load(list.get(position).getPicURL()).fit().into(holder.image);
     }
 
@@ -50,6 +52,7 @@ public class RestaurantListOfRestaurantsCard extends RecyclerView.Adapter<Restau
     public static class RestaurantHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView name, area;
         ImageView image;
+        RatingBar stars;
         RestaurantHolder.OnCardClickListener listener;
 
         public RestaurantHolder(@NonNull View itemView, OnCardClickListener listener) {
@@ -57,6 +60,7 @@ public class RestaurantListOfRestaurantsCard extends RecyclerView.Adapter<Restau
             name = itemView.findViewById(R.id.tv_rest_lor_card_restaurantname);
             area = itemView.findViewById(R.id.tv_rest_lor_card_areaname);
             image = itemView.findViewById(R.id.iv_rest_lor_card_image);
+            stars = itemView.findViewById(R.id.rb_rest_lor_card_stars);
             this.listener = listener;
             itemView.setOnClickListener(this);
         }

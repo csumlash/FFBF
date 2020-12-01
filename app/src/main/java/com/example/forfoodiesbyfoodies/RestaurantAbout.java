@@ -1,7 +1,6 @@
 package com.example.forfoodiesbyfoodies;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,26 +10,31 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class RestaurantAbout extends AppCompatActivity {
 
     ImageView image;
-    TextView name, numbers, type, address,about;
+    TextView name, numbers, type, address, about;
     RatingBar stars;
     Button book, view;
     DatabaseReference dbref;
     StorageReference sref;
+    String link;
 
     // A User type object to store the User object got from the previous activities.
     User user;
     Restaurant r;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,25 +54,25 @@ public class RestaurantAbout extends AppCompatActivity {
         dbref = FirebaseDatabase.getInstance().getReference("restaurant");
         sref = FirebaseStorage.getInstance().getReference("restaurants");
 
-
         // Getting the User object from intent passed from previous activities
         Intent i = getIntent();
         user = i.getParcelableExtra("user");
         r = i.getParcelableExtra("restaurant");
 
-        Picasso.get().load(r.getPicURL()).fit().into(image);
+        Picasso.get().load(r.getPicURL()).into(image);
         name.setText(r.getName());
         //stars.setNumStars();
         type.setText(r.getType());
         address.setText(r.getAddress() + ", " + r.getCity() + ", " + r.getPostcode() + ", " + r.getArea());
         about.setText(r.getAbout());
 
+        stars.setRating(getRating());
+
         book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url = "https://www.opentable.com/s/?covers=2&dateTime=2019-02-25%2019%3A00&metroId=72&regionIds=5316&pinnedRids%5B0%5D=87967&enableSimpleCuisines=true&includeTicketedAvailability=true&pageType=0 ";
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW);
-                browserIntent.setData(Uri.parse(url));
+                browserIntent.setData(Uri.parse(r.getLink()));
                 startActivity(browserIntent);
             }
         });
@@ -82,5 +86,9 @@ public class RestaurantAbout extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
+
+    public int getRating(){
+        return 3;
     }
 }
