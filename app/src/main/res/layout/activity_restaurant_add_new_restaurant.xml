@@ -48,6 +48,8 @@
             android:hint="Address Line"
             android:inputType="textPostalAddress"
             android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/et_rest_anr_postcode"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_rest_anr_nameofrestaurant" />
 
@@ -65,6 +67,7 @@
             android:inputType="textPostalAddress"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/et_rest_anr_addressline"
             app:layout_constraintTop_toBottomOf="@+id/et_rest_anr_nameofrestaurant" />
 
@@ -79,6 +82,8 @@
             android:hint="Area Name"
             android:inputType="textPostalAddress"
             android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/et_rest_anr_city"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_rest_anr_addressline" />
 
@@ -97,6 +102,7 @@
             android:inputType="textMultiLine"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/et_rest_anr_areaname"
             app:layout_constraintTop_toBottomOf="@+id/et_rest_anr_postcode" />
 
@@ -108,23 +114,25 @@
             android:text="Send"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_rest_anr_warning" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_rest_anr_warning"
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/tv_rest_anr_warning"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="12dp"
+            android:ems="10"
             android:text="Please complete the form above"
             android:textColor="@color/red"
-            android:textSize="12sp"
+            android:textSize="14sp"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_rest_anr_desciption" />
+            app:layout_constraintTop_toBottomOf="@+id/et_rest_anr_link" />
 
         <EditText
             android:id="@+id/et_rest_anr_typeofrest"
@@ -166,6 +174,18 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_rest_title" />
+
+        <EditText
+            android:id="@+id/et_rest_anr_link"
+            android:layout_width="375dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="12dp"
+            android:ems="10"
+            android:hint="Paste the Reservation link here"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_rest_anr_desciption" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,16 +10,17 @@ public class Restaurant extends EateryTemplate implements Parcelable {
 
     // These attributes are uniquely defined in this child Restaurant class beyond the parent ones
     String type;
-    String pk;
+    String link;
 
     /*
     * This constructor executes upon the initialisation of te object and calls the parent (super)
     * constructor to still let it initialises those attributes too with initialisation of the
     * attributes in this child class too. */
-    public Restaurant(String picURL, String name, String address, String area, String city, String postcode, String about, String type) {
+    public Restaurant(String picURL, String name, String address, String area, String city,
+                      String postcode, String about, String type, String link) {
         super(picURL, name, type, address, area, city, postcode, about);
         this.type = type;
-        this.pk = pk;
+        this.link = link;
     }
 
     public Restaurant(){
@@ -30,12 +31,14 @@ public class Restaurant extends EateryTemplate implements Parcelable {
     protected Restaurant(Parcel in) {
         super(in);
         type = in.readString();
+        link = in.readString();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         super.writeToParcel(dest, flags);
         dest.writeString(type);
+        dest.writeString(link);
     }
 
     @Override
@@ -64,11 +67,11 @@ public class Restaurant extends EateryTemplate implements Parcelable {
         this.type = type;
     }
 
-    public String getPk() {
-        return pk;
+    public String getLink() {
+        return link;
     }
 
-    public void setPk(String type) {
-        this.pk = type;
+    public void setLink(String link) {
+        this.link = link;
     }
 }

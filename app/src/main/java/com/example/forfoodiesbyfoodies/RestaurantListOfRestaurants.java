@@ -83,8 +83,8 @@ public class RestaurantListOfRestaurants extends AppCompatActivity implements Re
     @Override
     public void onCardClick(int i) {
             Intent intent = new Intent(RestaurantListOfRestaurants.this, RestaurantAbout.class);
-            intent.putExtra("User", user);
-            intent.putExtra("Restaurant", list.get(i));
+            intent.putExtra("user", user);
+            intent.putExtra("restaurant", list.get(i));
             startActivity(intent);
     }
 }

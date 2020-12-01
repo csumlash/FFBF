@@ -30,7 +30,7 @@ public class RestaurantAddNewRestaurant extends AppCompatActivity {
     // Defining activity view types those will be initialised in the onCreate process
     ImageView image;
     Button send;
-    EditText name, address, postcode, area, city, type, about;
+    EditText name, address, postcode, area, city, type, about, link;
     TextView warning;
 
     // The following object typed variables will be used to handle Firebase database/storage works
@@ -57,6 +57,7 @@ public class RestaurantAddNewRestaurant extends AppCompatActivity {
         about = findViewById(R.id.et_rest_anr_desciption);
         warning = findViewById(R.id.tv_rest_anr_warning);
         send = findViewById(R.id.btn_rest_anr_send);
+        link = findViewById(R.id.et_rest_anr_link);
 
         // Getting direct references to restaurants node and directory of Firebase Realtime and Storage databases
         sref = FirebaseStorage.getInstance().getReference("restaurants");
@@ -93,6 +94,7 @@ public class RestaurantAddNewRestaurant extends AppCompatActivity {
                 String enteredPostcode = postcode.getText().toString();
                 String enteredAbout = about.getText().toString();
                 String enteredType = type.getText().toString();
+                String enteredLink = link.getText().toString();
 
                 /* The MINIMUM requirements of image and data upload processes are declared in this statement
                  *  - the image_path must be initialised ==> image must be already picked in the ImageView
@@ -121,7 +123,7 @@ public class RestaurantAddNewRestaurant extends AppCompatActivity {
                                                 @Override
                                                 public void onSuccess(Uri uri) {
                                                     String url = uri.toString();
-                                                    Restaurant restaurant = new Restaurant(url, enteredName, enteredAddress, enteredArea, enteredCity, enteredPostcode, enteredAbout, enteredType);
+                                                    Restaurant restaurant = new Restaurant(url, enteredName, enteredAddress, enteredArea, enteredCity, enteredPostcode, enteredAbout, enteredType, enteredLink);
                                                     dbref.child(id).setValue(restaurant)
                                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                                 @Override
