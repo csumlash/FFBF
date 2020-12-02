@@ -22,18 +22,19 @@
 
         <TextView
             android:id="@+id/tv_sf_review_card_experience"
-            android:layout_width="323dp"
-            android:layout_height="65dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginLeft="15dp"
+            android:layout_width="299dp"
+            android:layout_height="62dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
             android:layout_marginTop="5dp"
             android:text="The visitor's brief summary"
             android:textColor="#0E0E0E"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageButton4"
-            app:layout_constraintTop_toBottomOf="@+id/tv_sf_review_card_username" />
+            app:layout_constraintStart_toEndOf="@+id/iv_sf_review_card_image"
+            app:layout_constraintTop_toBottomOf="@+id/tv_sf_review_card_username"
+            app:layout_constraintVertical_bias="0.222" />
 
         <TextView
             android:id="@+id/tv_sf_review_card_date"

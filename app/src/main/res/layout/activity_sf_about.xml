@@ -92,7 +92,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_sf_list_name" />
 
     <Button
-        android:id="@+id/btn_sf_list_viewreviews"
+        android:id="@+id/btn_sf_about_viewreviews"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="View Reviews"

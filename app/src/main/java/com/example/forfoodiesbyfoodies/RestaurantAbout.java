@@ -1,6 +1,5 @@
 package com.example.forfoodiesbyfoodies;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,23 +17,19 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
 public class RestaurantAbout extends AppCompatActivity {
 
     ImageView image;
     TextView name, numbers, type, address, about;
     RatingBar stars;
-    Button book, view;
+    Button book, viewReviews;
     DatabaseReference dbref;
     StorageReference sref;
     String link;
 
     // A User type object to store the User object got from the previous activities.
     User user;
-    Restaurant r;
+    Restaurant restaurant;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,25 +41,25 @@ public class RestaurantAbout extends AppCompatActivity {
         stars = findViewById(R.id.rb_rest_ar_stars);
         type = findViewById(R.id.tv_rest_ar_type);
         book = findViewById(R.id.btn_rest_ar_book);
-        view = findViewById(R.id.btn_rest_ar_viewreviews);
+        viewReviews = findViewById(R.id.btn_rest_ar_viewreviews);
         address = findViewById(R.id.tv_rest_ar_address);
         about = findViewById(R.id.tv_rest_ar_info);
+
+        // Getting the User object from intent passed from previous activities
+        Intent i = getIntent();
+        user = i.getParcelableExtra("user");
+        restaurant = i.getParcelableExtra("restaurant");
 
         // Initialisation of Realtime and Storage database references
         dbref = FirebaseDatabase.getInstance().getReference("restaurant");
         sref = FirebaseStorage.getInstance().getReference("restaurants");
 
-        // Getting the User object from intent passed from previous activities
-        Intent i = getIntent();
-        user = i.getParcelableExtra("user");
-        r = i.getParcelableExtra("restaurant");
-
-        Picasso.get().load(r.getPicURL()).into(image);
-        name.setText(r.getName());
+        Picasso.get().load(restaurant.getPicURL()).into(image);
+        name.setText(restaurant.getName());
         //stars.setNumStars();
-        type.setText(r.getType());
-        address.setText(r.getAddress() + ", " + r.getCity() + ", " + r.getPostcode() + ", " + r.getArea());
-        about.setText(r.getAbout());
+        type.setText(restaurant.getType());
+        address.setText(restaurant.getAddress() + ", " + restaurant.getCity() + ", " + restaurant.getPostcode() + ", " + restaurant.getArea());
+        about.setText(restaurant.getAbout());
 
         stars.setRating(getRating());
 
@@ -72,23 +67,24 @@ public class RestaurantAbout extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW);
-                browserIntent.setData(Uri.parse(r.getLink()));
+                browserIntent.setData(Uri.parse(restaurant.getLink()));
                 startActivity(browserIntent);
             }
         });
 
-        view.setOnClickListener(new View.OnClickListener() {
+
+        viewReviews.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(RestaurantAbout.this, RestaurantListOfReviews.class);
                 i.putExtra("user", user);
-                i.putExtra("restaurant", r);
+                i.putExtra("restaurant", restaurant);
                 startActivity(i);
             }
         });
     }
 
-    public int getRating(){
+    public int getRating() {
         return 3;
     }
 }

@@ -313,7 +313,6 @@ public class Profile extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot theUser : snapshot.getChildren()) {
                     dbRef.child(theUser.getKey()).child("url").setValue(url);
-
                 }
             }
 

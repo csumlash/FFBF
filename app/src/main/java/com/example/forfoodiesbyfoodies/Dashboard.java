@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -103,9 +104,9 @@ public class Dashboard extends AppCompatActivity {
         streetFoodPlaces.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Dashboard.this, SfListOfStreetFoods.class);
-                i.putExtra("user", user);
-                startActivity(i);
+                Intent k = new Intent(Dashboard.this, SfListOfStreetFoods.class);
+                k.putExtra("user", user);
+                startActivity(k);
             }
         });
 

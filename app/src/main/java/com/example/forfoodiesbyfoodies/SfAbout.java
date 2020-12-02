@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,7 +19,7 @@ import com.squareup.picasso.Picasso;
 
 public class SfAbout extends AppCompatActivity {
 
-    TextView title, vegie, name, address, about;
+    TextView title, isVeganFriendly, name, address, about;
     ImageView image;
     Button viewReview;
     RatingBar stars;
@@ -28,24 +29,25 @@ public class SfAbout extends AppCompatActivity {
 
     // A User type object to store the User object got from the previous activities.
     User user;
-    StreetFood sf;
+    StreetFood streetFood;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sf_about);
 
+
         /* first part: type of view (tv, iv, btn)
          * seconds part: asf = abbreviation of class name
          * third part: name of field (title, image, vegan...) */
         title = findViewById(R.id.tv_sf_list_title);
         image = findViewById(R.id.iv_sf_list_image);
-        vegie = findViewById(R.id.tv_sf_list_vegan);
+        isVeganFriendly = findViewById(R.id.tv_sf_list_vegan);
         stars = findViewById(R.id.rb_sf_about_stars);
         name = findViewById(R.id.tv_sf_list_name);
         address = findViewById(R.id.tv_sf_about_address);
         about = findViewById(R.id.tv_sf_about_description);
-        viewReview = findViewById(R.id.btn_sf_list_viewreviews);
+        viewReview = findViewById(R.id.btn_sf_about_viewreviews);
 
         // Initialisation of Realtime and Storage database references
         dbref = FirebaseDatabase.getInstance().getReference("streetfood");
@@ -54,18 +56,19 @@ public class SfAbout extends AppCompatActivity {
         // Getting the User object from intent passed from previous activities
         Intent i = getIntent();
         user = i.getParcelableExtra("user");
-        sf = i.getParcelableExtra("streetfood");
+        streetFood = i.getParcelableExtra("streetfood");
 
-        Picasso.get().load(sf.getPicURL()).into(image);
-        name.setText(sf.getName());
+
+        Picasso.get().load(streetFood.getPicURL()).into(image);
+        name.setText(streetFood.getName());
         stars.setRating(getRating());
-        address.setText(sf.getAddress() + ", " + sf.getCity() + ", " + sf.getPostcode() + ", " + sf.getArea());
-        about.setText(sf.getAbout());
+        address.setText(streetFood.getAddress() + ", " + streetFood.getCity() + ", " + streetFood.getPostcode() + ", " + streetFood.getArea());
+        about.setText(streetFood.getAbout());
 
-        if (sf.getIsVeganFriendly().equals("no")) {
-            vegie.setVisibility(View.INVISIBLE);
+        if (streetFood.getIsVeganFriendly().equals("no")) {
+            isVeganFriendly.setVisibility(View.INVISIBLE);
         } else {
-            vegie.setText("Vegan food available!");
+            isVeganFriendly.setText("Vegan food available!");
         }
 
         //stars.setRating(getRating());
@@ -73,10 +76,10 @@ public class SfAbout extends AppCompatActivity {
         viewReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(SfAbout.this, SfReviewList.class);
-                i.putExtra("user", user);
-                i.putExtra("streetfood", sf);
-                startActivity(i);
+                Intent k = new Intent(SfAbout.this, SfListOfReviews.class);
+                k.putExtra("user", user);
+                k.putExtra("streetfood", streetFood);
+                startActivity(k);
             }
         });
     }

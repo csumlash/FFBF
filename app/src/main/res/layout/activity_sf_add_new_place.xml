@@ -22,6 +22,8 @@
             android:hint="Address Line"
             android:inputType="textPostalAddress"
             android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/et_sf_anp_postcode"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_sf_anp_nameofsf" />
 
@@ -40,6 +42,7 @@
             android:inputType="textMultiLine"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/et_sf_anp_areaname"
             app:layout_constraintTop_toBottomOf="@+id/et_sf_anp_postcode" />
 
@@ -54,6 +57,8 @@
             android:hint="Area Name"
             android:inputType="textPostalAddress"
             android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/et_sf_anp_city"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_sf_anp_addressline" />
 
@@ -71,6 +76,7 @@
             android:inputType="textPostalAddress"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/et_sf_anp_addressline"
             app:layout_constraintTop_toBottomOf="@+id/et_sf_anp_nameofsf" />
 
@@ -127,12 +133,12 @@
             android:text="Send"
             app:backgroundTint="#009688"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_sf_anp_warning" />
 
-        <Switch
-            android:id="@+id/switch_sf_anp_vegie"
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_sf_anp_isVeganFriendly"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="90dp"
@@ -140,14 +146,14 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="90dp"
             android:layout_marginRight="90dp"
-            android:text="Is this place vegetarian friendly?"
+            android:text="Is this place Vegan friendly?"
             android:textColor="#009688"
-            android:textOff="OFF"
-            android:textOn="vegetarian"
+            android:textOff="no"
+            android:textOn="yes"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_sf_anp_city" />/>
+            app:layout_constraintTop_toBottomOf="@+id/et_sf_anp_city" />
 
         <TextView
             android:id="@+id/tv_sf_anp_warning"
@@ -159,7 +165,7 @@
             android:textSize="12sp"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_sf_anp_about" />
 
@@ -176,7 +182,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/switch_sf_anp_vegie" />
+            app:layout_constraintTop_toBottomOf="@+id/switch_sf_anp_isVeganFriendly" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

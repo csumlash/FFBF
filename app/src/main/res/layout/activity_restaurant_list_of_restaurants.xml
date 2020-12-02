@@ -13,8 +13,8 @@
 
         <Button
             android:id="@+id/btn_rest_lorest_addrestaurant"
-            android:layout_width="184dp"
-            android:layout_height="39dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="Add restaurant"
             android:visibility="invisible"

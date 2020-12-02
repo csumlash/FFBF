@@ -40,7 +40,7 @@ public class RestaurantListOfRestaurantsCard extends RecyclerView.Adapter<Restau
         holder.name.setText(list.get(position).getName());
         holder.area.setText(list.get(position).getArea());
         holder.stars.setRating(3);
-        Picasso.get().load(list.get(position).getPicURL()).fit().into(holder.image);
+        Picasso.get().load(list.get(position).getPicURL()).into(holder.image);
     }
 
     @Override

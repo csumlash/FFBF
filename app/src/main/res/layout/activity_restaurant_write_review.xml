@@ -1,132 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RestaurantWriteReview">
 
-    <ImageView
-        android:id="@+id/iv_rest_wr_image"
-        android:layout_width="340dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_rest_wr_title"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <TextView
-        android:id="@+id/tv_rest_wr_title"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="153dp"
-        android:layout_marginRight="153dp"
-        android:text="Share Your Experience"
-        android:textColor="#009688"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:context=".RestaurantWriteReview">
 
-    <EditText
-        android:id="@+id/et_rest_wr_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="222dp"
-        android:layout_marginRight="222dp"
-        android:ems="10"
-        android:hint="DD.MM.YYYY"
-        android:inputType="date"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_rest_wr_date" />
+        <ImageView
+            android:id="@+id/iv_rest_wr_image"
+            android:layout_width="340dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_rest_wr_title"
+            tools:srcCompat="@tools:sample/avatars" />
 
-    <EditText
-        android:id="@+id/et_rest_wr_experience"
-        android:layout_width="380dp"
-        android:layout_height="161dp"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="Please leave your review here"
-        android:inputType="textMultiLine"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_rest_wr_date" />
+        <TextView
+            android:id="@+id/tv_rest_wr_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="153dp"
+            android:layout_marginRight="153dp"
+            android:text="Share Your Experience"
+            android:textColor="#009688"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btn_rest_wr_send"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="49dp"
-        android:text="Send"
-        app:backgroundTint="#009688"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rb_rest_wr_rate" />
+        <EditText
+            android:id="@+id/et_rest_wr_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="24dp"
+            android:hint="DD.MM.YYYY"
+            android:inputType="date"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_rest_wr_date"
+            app:layout_constraintTop_toBottomOf="@+id/tv_rest_wr_restname" />
 
-    <TextView
-        android:id="@+id/tv_rest_wr_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="277dp"
-        android:layout_marginRight="277dp"
-        android:text="Date of your visit:"
-        android:textColor="#101010"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_rest_wr_restname" />
+        <EditText
+            android:id="@+id/et_rest_wr_experience"
+            android:layout_width="380dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="start|top"
+            android:hint="Please leave your review here"
+            android:inputType="textMultiLine"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_rest_wr_date" />
 
-    <RatingBar
-        android:id="@+id/rb_rest_wr_rate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_rest_wr_typeofrate" />
+        <Button
+            android:id="@+id/btn_rest_wr_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="49dp"
+            android:text="Send"
+            app:backgroundTint="#009688"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rb_rest_wr_rate"
+            app:layout_constraintVertical_bias="0.094" />
 
-    <TextView
-        android:id="@+id/tv_rest_wr_typeofrate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="Overall experience (1 - terrible, 5 - excellent)"
-        android:textColor="#009688"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_rest_wr_experience" />
+        <TextView
+            android:id="@+id/tv_rest_wr_date"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:text="Date of your visit:"
+            android:textColor="#101010"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/et_rest_wr_date"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_rest_wr_restname" />
 
-    <TextView
-        android:id="@+id/tv_rest_wr_restname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Name of Restaurant"
-        android:textColor="#101010"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_rest_wr_image" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <RatingBar
+            android:id="@+id/rb_rest_wr_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:isIndicator="false"
+            android:theme="@style/RatingBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_rest_wr_typeofrate" />
+
+        <TextView
+            android:id="@+id/tv_rest_wr_typeofrate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Overall experience (1 - terrible, 5 - excellent)"
+            android:textColor="#009688"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_rest_wr_experience" />
+
+        <TextView
+            android:id="@+id/tv_rest_wr_restname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Name of Restaurant"
+            android:textColor="#101010"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_rest_wr_image" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

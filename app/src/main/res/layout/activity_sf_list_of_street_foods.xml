@@ -11,17 +11,16 @@
         android:layout_height="wrap_content"
         tools:context=".SfListOfStreetFoods">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_sf_lop_sflist"
-            android:layout_width="0dp"
+        <Button
+            android:id="@+id/btn_sf_lop_addplace"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="20dp"
+            android:text="Add New Place"
+            app:backgroundTint="#009688"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_sf_lop_addplace"
-            app:layout_constraintVertical_bias="0.021" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_sf_lop_title" />
 
         <TextView
             android:id="@+id/tv_sf_lop_title"
@@ -36,16 +35,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/btn_sf_lop_addplace"
-            android:layout_width="wrap_content"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_sf_lop_sflist"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Add New Place"
-            app:backgroundTint="#009688"
+            android:layout_marginTop="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_sf_lop_title" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_sf_lop_addplace"
+            app:layout_constraintVertical_bias="0.021" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

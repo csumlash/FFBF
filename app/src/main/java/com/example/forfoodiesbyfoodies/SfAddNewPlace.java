@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -33,9 +34,8 @@ public class SfAddNewPlace extends AppCompatActivity {
     ImageView sfpic;
     TextView warning;
     EditText name, address, postcode, area, city, about;
-    String vegie;
-    Switch veganSwitch;
-    /* vegvanSwitchValue MUST NOT be boolean because getting boolean values from PARCELABLE objects with the
+    SwitchCompat veganSwitch;
+    /* veganSwitchValue MUST NOT be boolean because getting boolean values from PARCELABLE objects with the
      * .readBoolean(variable) requires a minimum of API LEVEL 29 but this app is compatible from API 16 */
     String veganSwitchValue;
 
@@ -61,7 +61,7 @@ public class SfAddNewPlace extends AppCompatActivity {
         area = findViewById(R.id.et_sf_anp_areaname);
         city = findViewById(R.id.et_sf_anp_city);
         about = findViewById(R.id.et_sf_anp_about);
-        veganSwitch = (Switch) findViewById(R.id.switch_sf_anp_vegie);
+        veganSwitch = findViewById(R.id.switch_sf_anp_isVeganFriendly);
 
         // Getting direct references to street food node and directory of Firebase Realtime and Storage databases
         sref = FirebaseStorage.getInstance().getReference("streetfoods");

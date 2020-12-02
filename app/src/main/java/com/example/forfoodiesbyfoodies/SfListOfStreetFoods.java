@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,9 +35,13 @@ public class SfListOfStreetFoods extends AppCompatActivity implements SfListOfSt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sf_list_of_street_foods);
 
+        // Getting the User object from intent passed from previous activities
+        Intent i = getIntent();
+        user = i.getParcelableExtra("user");
 
         add = findViewById(R.id.btn_sf_lop_addplace);
         sflist = findViewById(R.id.rv_sf_lop_sflist);
+
         sflist.setLayoutManager(new LinearLayoutManager(SfListOfStreetFoods.this));
         dbref = FirebaseDatabase.getInstance().getReference("streetfoods");
         dbref.addListenerForSingleValueEvent(listener);

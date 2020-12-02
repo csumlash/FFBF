@@ -7,7 +7,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="130dp">
+        android:layout_height="104dp">
 
         <TextView
             android:id="@+id/tv_rest_loreview_card_experience"
@@ -33,6 +33,7 @@
             android:text="Date:"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.392"
             app:layout_constraintStart_toEndOf="@+id/tv_rest_loreview_card_username"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,9 +41,9 @@
             android:id="@+id/tv_rest_loreview_card_username"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="4dp"
             android:fontFamily="sans-serif-black"
             android:text="Name of User"
             app:layout_constraintStart_toEndOf="@+id/iv_rest_card_loreview_image"
@@ -58,52 +59,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
-
-        <TextView
-            android:id="@+id/tv_rest_loreviews_option"
-            android:layout_width="137dp"
-            android:layout_height="17dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="3dp"
-            android:text="Do you like this review?"
-            android:textColor="#0E0E0E"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/iv_rest_card_loreview_image"
-            app:layout_constraintTop_toBottomOf="@+id/tv_rest_loreview_card_experience" />
-
-        <RadioGroup
-            android:layout_width="164dp"
-            android:layout_height="26dp"
-            android:layout_marginStart="18dp"
-            android:layout_marginLeft="18dp"
-            android:layout_marginTop="3dp"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tv_rest_loreviews_option"
-            app:layout_constraintTop_toBottomOf="@+id/tv_rest_loreview_card_experience">
-
-
-            <RadioButton
-                android:id="@+id/rb_rest_loreviews_option1"
-                android:layout_width="wrap_content"
-                android:layout_height="22dp"
-                android:layout_weight="1"
-                android:text="yes"
-                android:textColor="#009688" />
-
-            <RadioButton
-                android:id="@+id/rb_rest_loreviews_option2"
-                android:layout_width="wrap_content"
-                android:layout_height="22dp"
-                android:layout_weight="1"
-                android:text="no"
-                android:textColor="#009688" />
-
-
-        </RadioGroup>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

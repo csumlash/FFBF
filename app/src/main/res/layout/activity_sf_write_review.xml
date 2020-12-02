@@ -1,129 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SfWriteReview">
 
-    <TextView
-        android:id="@+id/tv_sf_wr_title"
-        android:layout_width="wrap_content"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="157dp"
-        android:layout_marginRight="157dp"
-        android:text="Share your experience"
-        android:textColor="#009688"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:context=".SfWriteReview">
 
-    <ImageView
-        android:id="@+id/iv_sf_wr_image"
-        android:layout_width="340dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_sf_wr_title"
-        tools:srcCompat="@tools:sample/avatars" />
+        <TextView
+            android:id="@+id/tv_sf_wr_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="157dp"
+            android:layout_marginRight="157dp"
+            android:text="Share your experience"
+            android:textColor="#009688"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tv_sf_wr_placename"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Chosen street food place name"
-        android:textColor="#0C0C0C"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_sf_wr_image" />
+        <ImageView
+            android:id="@+id/iv_sf_wr_image"
+            android:layout_width="340dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_sf_wr_title"
+            tools:srcCompat="@tools:sample/avatars" />
 
-    <EditText
-        android:id="@+id/et_sf_wr_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="5dp"
-        android:ems="10"
-        android:hint="DD.MM.YYYY"
-        android:inputType="date"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_sf_wr_date" />
+        <TextView
+            android:id="@+id/tv_sf_wr_placename"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Chosen street food place name"
+            android:textColor="#0C0C0C"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_sf_wr_image" />
 
-    <EditText
-        android:id="@+id/et_sf_wr_experience"
-        android:layout_width="380dp"
-        android:layout_height="180dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="Please give some details about your experiences, impressions..."
-        android:inputType="textMultiLine"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_sf_wr_date" />
+        <EditText
+            android:id="@+id/et_sf_wr_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="24dp"
+            android:hint="DD.MM.YYYY"
+            android:inputType="date"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_sf_wr_date"
+            app:layout_constraintTop_toBottomOf="@+id/tv_sf_wr_placename" />
 
-    <TextView
-        android:id="@+id/tv_sf_wr_typeofrate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Overall experience (1 - terrible, 5 - excellent)"
-        android:textColor="#009688"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_sf_wr_experience" />
+        <EditText
+            android:id="@+id/et_sf_wr_experience"
+            android:layout_width="380dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="start|top"
+            android:hint="Please give some details about your experiences, impressions..."
+            android:inputType="textMultiLine"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_sf_wr_date" />
 
-    <Button
-        android:id="@+id/btn_sf_wr_send"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="56dp"
-        android:text="Send"
-        app:backgroundTint="#009688"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rb_sf_wr_stars" />
+        <TextView
+            android:id="@+id/tv_sf_wr_typeofrate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Overall experience (1 - terrible, 5 - excellent)"
+            android:textColor="#009688"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_sf_wr_experience" />
 
-    <RatingBar
-        android:id="@+id/rb_sf_wr_stars"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_sf_wr_typeofrate" />
+        <Button
+            android:id="@+id/btn_sf_wr_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="56dp"
+            android:text="Send"
+            app:backgroundTint="#009688"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rb_sf_wr_stars"
+            app:layout_constraintVertical_bias="0.139" />
 
-    <TextView
-        android:id="@+id/tv_sf_wr_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="25dp"
-        android:text="Date of visit:"
-        android:textColor="#0E0E0E"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_sf_wr_placename" />
+        <RatingBar
+            android:id="@+id/rb_sf_wr_stars"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:isIndicator="false"
+            android:theme="@style/RatingBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_sf_wr_typeofrate" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_sf_wr_date"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:text="Date of visit:"
+            android:textColor="#0E0E0E"
+            app:layout_constraintEnd_toStartOf="@+id/et_sf_wr_date"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_sf_wr_placename" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
