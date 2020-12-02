@@ -30,7 +30,7 @@ public class RestaurantListOfReviews extends AppCompatActivity implements Restau
     User user;
     ArrayList<ReviewTemplate> list = new ArrayList<ReviewTemplate>();
     DatabaseReference dbref;
-    SfListOfStreetFoodsCard adapter;
+    RestaurantListOfReviewsCard adapter;
 
 
     @Override
@@ -81,7 +81,7 @@ public class RestaurantListOfReviews extends AppCompatActivity implements Restau
                 list.add(rt);
             }
 
-            adapter = new RestaurantListOfReviews(list, RestaurantListOfReviews.this);
+            adapter = new RestaurantListOfReviewsCard(list, RestaurantListOfReviews.this);
             listOfReviews.setAdapter(adapter);
         }
 
