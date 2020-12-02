@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,13 +30,20 @@ import com.squareup.picasso.Picasso;
 public class SfAddNewPlace extends AppCompatActivity {
 
     Button send;
-    ImageView sfpic;
+    ImageView sfPic;
     TextView warning;
     EditText name, address, postcode, area, city, about;
     SwitchCompat veganSwitch;
     /* veganSwitchValue MUST NOT be boolean because getting boolean values from PARCELABLE objects with the
      * .readBoolean(variable) requires a minimum of API LEVEL 29 but this app is compatible from API 16 */
     String veganSwitchValue;
+
+    String enteredName;
+    String enteredAddress;
+    String enteredArea;
+    String enteredCity;
+    String enteredPostcode;
+    String enteredAbout;
 
     // The following object typed variables will be used to handle Firebase database/storage works
     DatabaseReference dbref;
@@ -53,7 +59,7 @@ public class SfAddNewPlace extends AppCompatActivity {
         setContentView(R.layout.activity_sf_add_new_place);
 
         send = findViewById(R.id.btn_sf_anp_send);
-        sfpic = findViewById(R.id.iv_sf_anp_image);
+        sfPic = findViewById(R.id.iv_sf_anp_image);
         warning = findViewById(R.id.tv_sf_anp_warning);
         name = findViewById(R.id.et_sf_anp_nameofsf);
         address = findViewById(R.id.et_sf_anp_addressline);
@@ -77,7 +83,7 @@ public class SfAddNewPlace extends AppCompatActivity {
          *Declare what kind of files are valid to be used as a picture.
          *Bring the selected image to the app.
          *Given an ID for my request code to identify when this task will be finished.*/
-        sfpic.setOnClickListener(new View.OnClickListener() {
+        sfPic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent();
@@ -93,12 +99,12 @@ public class SfAddNewPlace extends AppCompatActivity {
             public void onClick(View v) {
 
                 // Getting and storing the entered values of EditText fields
-                String enteredName = name.getText().toString();
-                String enteredAddress = address.getText().toString();
-                String enteredArea = area.getText().toString();
-                String enteredCity = city.getText().toString();
-                String enteredPostcode = postcode.getText().toString();
-                String enteredAbout = about.getText().toString();
+                enteredName = name.getText().toString();
+                enteredAddress = address.getText().toString();
+                enteredArea = area.getText().toString();
+                enteredCity = city.getText().toString();
+                enteredPostcode = postcode.getText().toString();
+                enteredAbout = about.getText().toString();
 
                 /* The MINIMUM requirements of image and data upload processes are declared in this statement
                  *  - the image_path must be initialised ==> image must be already picked in the ImageView
@@ -107,64 +113,8 @@ public class SfAddNewPlace extends AppCompatActivity {
                         enteredArea.length() > 0 && enteredCity.length() > 0 && enteredPostcode.length() > 0 &&
                         enteredAbout.length() > 0) {
 
-                    // Initialising and getting dbref unique ID to name the files
-                    String id = dbref.push().getKey();
+                    uploadPicAndDetails();
 
-                    /* Images will get id after images are uploaded to firebase storage and database will use this id to save to street food.
-                     * This method will return the extension of the image to name it.*/
-                    final StorageReference reference = sref.child(id + "." + getExtension(image_path));
-                    /* The next part is the upload of image and check if that was successfully uploaded or failed.*/
-                    reference.putFile(image_path)
-                            // What to do if the upload process was successful
-                            .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                @Override
-                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                    reference.getDownloadUrl()
-                                            /* The process is not going to go to the next activity without the URL of the image, only if the method is successful.
-                                             * - but if successful then storing the database link of image to be able to store it in the Realtime DB
-                                             * - and uploading all the entered data with the direct url link to the Realtime database */
-                                            .addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                @Override
-                                                public void onSuccess(Uri uri) {
-                                                    String url = uri.toString();
-                                                    StreetFood streetFood = new StreetFood(url, enteredName, enteredAddress, enteredArea, enteredCity, enteredPostcode, enteredAbout, veganSwitchValue);
-                                                    dbref.child(id).setValue(streetFood)
-                                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                                @Override
-                                                                public void onSuccess(Void aVoid) {
-                                                                    /*Intent will navigate to an other activity.
-                                                                     * Declared parameter is the content and the java class of the activity where will be navigate.*/
-                                                                    Intent i = new Intent(SfAddNewPlace.this, SfListOfStreetFoods.class);
-                                                                    i.putExtra("user", user);
-                                                                    startActivity(i);
-                                                                }
-                                                            })
-                                                            .addOnFailureListener(new OnFailureListener() {
-                                                                @Override
-                                                                public void onFailure(@NonNull Exception e) {
-
-                                                                }
-                                                            });
-                                                }
-                                            })
-                                            // If cannot get the link of the uploaded image to the storage then warning the user
-                                            .addOnFailureListener(new OnFailureListener() {
-                                                @Override
-                                                public void onFailure(@NonNull Exception e) {
-                                                    //If fail to get the URL of the image, it necessary to delete that kind of orphan image from the database, because no one can access to it and just it takes place.
-                                                    reference.delete();
-                                                    Toast.makeText(SfAddNewPlace.this, "Internet disruption", Toast.LENGTH_LONG).show();
-                                                }
-                                            });
-                                }
-                            })
-                            // If the whole upload process fails then warning the user of network issues
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(SfAddNewPlace.this, "Internet disruption, try again please", Toast.LENGTH_LONG).show();
-                                }
-                            });
                     // if the minimum requirements of data and image upload is not satisfied then warning the user
                 } else {
                     warning.setVisibility(View.VISIBLE);
@@ -194,7 +144,7 @@ public class SfAddNewPlace extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 104 && resultCode == RESULT_OK && data.getData() != null) {
-            Picasso.get().load(data.getData()).into(sfpic);
+            Picasso.get().load(data.getData()).into(sfPic);
             image_path = data.getData();
         }
     }
@@ -204,5 +154,66 @@ public class SfAddNewPlace extends AppCompatActivity {
         ContentResolver resolver = getContentResolver();
         MimeTypeMap map = MimeTypeMap.getSingleton();
         return map.getExtensionFromMimeType(resolver.getType(path));
+    }
+
+    private void uploadPicAndDetails() {
+        // Initialising and getting dbref unique ID to name the files
+        String id = dbref.push().getKey();
+
+        /* Images will get id after images are uploaded to firebase storage and database will use this id to save to street food.
+         * This method will return the extension of the image to name it.*/
+        final StorageReference reference = sref.child(id + "." + getExtension(image_path));
+        /* The next part is the upload of image and check if that was successfully uploaded or failed.*/
+        reference.putFile(image_path)
+                // What to do if the upload process was successful
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        reference.getDownloadUrl()
+                                /* The process is not going to go to the next activity without the URL of the image, only if the method is successful.
+                                 * - but if successful then storing the database link of image to be able to store it in the Realtime DB
+                                 * - and uploading all the entered data with the direct url link to the Realtime database */
+                                .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        String url = uri.toString();
+                                        StreetFood streetFood = new StreetFood(url, enteredName, enteredAddress, enteredArea, enteredCity, enteredPostcode, enteredAbout, veganSwitchValue);
+                                        dbref.child(id).setValue(streetFood)
+                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void aVoid) {
+                                                        /*Intent will navigate to an other activity.
+                                                         * Declared parameter is the content and the java class of the activity where will be navigate.*/
+                                                        Intent i = new Intent(SfAddNewPlace.this, SfListOfStreetFoods.class);
+                                                        i.putExtra("user", user);
+                                                        startActivity(i);
+                                                    }
+                                                })
+                                                .addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+
+                                                    }
+                                                });
+                                    }
+                                })
+                                // If cannot get the link of the uploaded image to the storage then warning the user
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        //If fail to get the URL of the image, it necessary to delete that kind of orphan image from the database, because no one can access to it and just it takes place.
+                                        reference.delete();
+                                        Toast.makeText(SfAddNewPlace.this, "Internet disruption", Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                    }
+                })
+                // If the whole upload process fails then warning the user of network issues
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(SfAddNewPlace.this, "Internet disruption, try again please", Toast.LENGTH_LONG).show();
+                    }
+                });
     }
 }

@@ -39,7 +39,7 @@ import com.squareup.picasso.Picasso;
 
 /* This class is handling user profile presentation that can be:
  *  - own profile inspection directly by the VIEW MY PROFILE button on dashboard
- *  - a requested another user profile with putExtra("username","emailaddress"); */
+ *  - a requested another user profile with putExtra("username",[emailaddress]); */
 public class Profile extends AppCompatActivity {
 
     // Defining activity views
@@ -96,13 +96,19 @@ public class Profile extends AppCompatActivity {
             /* Calling the method that queries the user details from database
              * This method creates anotherUser object that will be used at the "else" case */
             queryUser(username);
+
+            /* If the first statement is not satisfied, then another statement that:
+             * is check if there is no another user details are got or
+             * if the another user details contains same username to the logged in user then
+             * execute the explained code (briefly: if the user visits his own profile) */
         } else if (anotherUser == null || anotherUser.getUsername().equals(user.getUsername())) {
+            // This statement is check if the user has or hasn't uploaded picture and if has then show or replace with a default "no image" one
             if (user.getPicUrl() != null) {
                 Picasso.get().load(user.getPicUrl()).into(profPic);
             } else {
                 profPic.setImageResource(R.drawable.ic_baseline_add_photo_image);
             }
-            // Setting up the texts in the views from the logged in user object data
+            // Setting up the texts in the views from the logged in user object data got via Intent
             fullName.setText(user.getFirstName() + " " + user.getLastName());
             email.setText(user.getUsername());
             // The following methods and listeners are called and set when the user is visiting their own profile
@@ -122,15 +128,20 @@ public class Profile extends AppCompatActivity {
                 }
             });
 
-
-            // Updating user password
+            // SET NEW PASSWORD button listener to start the password update process
             pswButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     updatePassword();
                 }
             });
+            /* This else contains any other cases when there is:
+             * - no username request got by the Activity (no need to query any other than
+             *   the logged in user details ready in User object),
+             * - there is a prepared anotherUser object containing someone else's details,
+             * - the anotherUser is not equal to the user (logged in one) */
         } else {
+            // If the another user has uploaded profile picture then show it or replace with default one elsewhere
             if (anotherUser.getPicUrl() != null) {
                 Picasso.get().load(anotherUser.getPicUrl()).into(profPic);
             } else {
@@ -372,6 +383,9 @@ public class Profile extends AppCompatActivity {
 
     }
 
+    /* This method method processes the promotion or demotion tasks depending on the got boolean parameter:
+     * - if the parameter is true, then promote the user to foodcritic in the db and update the currently queried object status as well
+     * - if the parameter is false, then demote the foodciritc in the database to user and update the currently had object userType as well */
     private void promoteOrDemoteFoodCritic(boolean promote) {
         Query usersQuery = dbRef.orderByChild("username").equalTo(anotherUser.getUsername()).limitToFirst(1);
         usersQuery.addListenerForSingleValueEvent(new ValueEventListener() {

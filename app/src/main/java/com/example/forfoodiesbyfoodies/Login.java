@@ -164,8 +164,7 @@ public class Login extends AppCompatActivity {
             // If Query cannot be executed because of any network issue then warning the user
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(Login.this,
-                        "Cannot login due to connection issues, please try again later", Toast.LENGTH_LONG).show();
+                Toast.makeText(Login.this, "Cannot login due to connection issues, please try again later", Toast.LENGTH_LONG).show();
             }
         });
     }

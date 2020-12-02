@@ -260,9 +260,6 @@ public class Registration extends AppCompatActivity {
          * .{6,} means 6 characters at least */
         final String PSW_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{6,}$";
 
-        // Chaining remaining non-satisfied requirements.
-        String requirements = "Please provide a password that contains:\n";
-
         pattern = Pattern.compile(PSW_PATTERN);
         matcher = pattern.matcher(psw);
 

@@ -19,6 +19,7 @@ import com.squareup.picasso.Picasso;
 
 public class RestaurantAbout extends AppCompatActivity {
 
+    // Definition of views
     ImageView image;
     TextView name, numbers, type, address, about;
     RatingBar stars;
@@ -36,6 +37,7 @@ public class RestaurantAbout extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_about);
 
+        // Initialisation of views so linking them to this code to be ready for use
         image = findViewById(R.id.iv_rest_ar_image);
         name = findViewById(R.id.tv_rest_ar_restaurantname);
         stars = findViewById(R.id.rb_rest_ar_stars);
@@ -54,15 +56,15 @@ public class RestaurantAbout extends AppCompatActivity {
         dbref = FirebaseDatabase.getInstance().getReference("restaurant");
         sref = FirebaseStorage.getInstance().getReference("restaurants");
 
+        // Setting up the values in the views Defined in the class then Initialised upon activity onCreate()
         Picasso.get().load(restaurant.getPicURL()).into(image);
         name.setText(restaurant.getName());
-        //stars.setNumStars();
         type.setText(restaurant.getType());
         address.setText(restaurant.getAddress() + ", " + restaurant.getCity() + ", " + restaurant.getPostcode() + ", " + restaurant.getArea());
         about.setText(restaurant.getAbout());
-
         stars.setRating(getRating());
 
+        // Setting up the Make Reservation button to open up the stored web link
         book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,10 +74,11 @@ public class RestaurantAbout extends AppCompatActivity {
             }
         });
 
-
+        // Setting the View Reviews button to start the Activity that lists the the Restaurant got from Food Critics
         viewReviews.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Intent initialisation then putting the logged in user and currently viewed restaurant objects then starting the activity
                 Intent i = new Intent(RestaurantAbout.this, RestaurantListOfReviews.class);
                 i.putExtra("user", user);
                 i.putExtra("restaurant", restaurant);
@@ -84,6 +87,7 @@ public class RestaurantAbout extends AppCompatActivity {
         });
     }
 
+    // This method Queries the ratings of the Restaurant then averaging the values to let the rating bar set to the proper value
     public int getRating() {
         return 3;
     }

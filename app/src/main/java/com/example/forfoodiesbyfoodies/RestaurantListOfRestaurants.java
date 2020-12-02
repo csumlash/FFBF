@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 public class RestaurantListOfRestaurants extends AppCompatActivity implements RestaurantListOfRestaurantsCard.RestaurantHolder.OnCardClickListener {
 
+    // Definition of views to be ready for initialisation
     Button add;
     RecyclerView restList;
     ArrayList<Restaurant> list = new ArrayList<>();
@@ -40,6 +41,7 @@ public class RestaurantListOfRestaurants extends AppCompatActivity implements Re
         Intent i = getIntent();
         user = i.getParcelableExtra("user");
 
+        // Linking and so initialising the views to be usable in this code
         add = findViewById(R.id.btn_rest_lorest_addrestaurant);
         restList = findViewById(R.id.rv_rest_lorest_list);
         restList.setLayoutManager(new LinearLayoutManager(RestaurantListOfRestaurants.this));
@@ -64,6 +66,7 @@ public class RestaurantListOfRestaurants extends AppCompatActivity implements Re
 
     }
 
+    // The following listener is called to request Restaurants from the DB then filling up the Restaurant type list of Restaurants
     ValueEventListener listener = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -72,7 +75,9 @@ public class RestaurantListOfRestaurants extends AppCompatActivity implements Re
                 list.add(r);
             }
 
+            // This adapter will contain the Initialised CardViews (to let the restaurants be handle 1-by-1 by the CardViews)
             adapter = new RestaurantListOfRestaurantsCard(list, RestaurantListOfRestaurants.this);
+            // Setting up the RecyclerVies adapter with the previously defined Card object
             restList.setAdapter(adapter);
         }
 
@@ -82,6 +87,7 @@ public class RestaurantListOfRestaurants extends AppCompatActivity implements Re
         }
     };
 
+    // This method handles the event of clicking on one Card of the RecyclerView
     @Override
     public void onCardClick(int i) {
         Intent intent = new Intent(RestaurantListOfRestaurants.this, RestaurantAbout.class);

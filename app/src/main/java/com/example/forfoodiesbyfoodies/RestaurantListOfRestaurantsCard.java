@@ -14,19 +14,22 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+/* This class is responsible to fill up 1 Card of the RecyclerView by the got list */
 public class RestaurantListOfRestaurantsCard extends RecyclerView.Adapter<RestaurantListOfRestaurantsCard.RestaurantHolder> {
     ArrayList<Restaurant> list;
     RestaurantHolder.OnCardClickListener listener;
 
+    // This Constructor initialise the Card object in the Recycler view and get a list of Restaurant object and where they will be used (adapter)
     public RestaurantListOfRestaurantsCard(ArrayList<Restaurant> list, RestaurantHolder.OnCardClickListener listener) {
         this.list = list;
         this.listener = listener;
     }
 
+    // A default constructor that makes the class initialisable but represents missing details
     public RestaurantListOfRestaurantsCard() {
-
     }
 
+    // This method links the Card template view/activity defined in .xml to this code
     @NonNull
     @Override
     public RestaurantHolder onCreateViewHolder(@NonNull ViewGroup view, int viewType) {
@@ -35,6 +38,7 @@ public class RestaurantListOfRestaurantsCard extends RecyclerView.Adapter<Restau
         return holder;
     }
 
+    // The following method fills up the the card with data from the list by the got position number
     @Override
     public void onBindViewHolder(@NonNull RestaurantHolder holder, int position) {
         holder.name.setText(list.get(position).getName());
@@ -43,12 +47,15 @@ public class RestaurantListOfRestaurantsCard extends RecyclerView.Adapter<Restau
         Picasso.get().load(list.get(position).getPicURL()).into(holder.image);
     }
 
+    // This method provides the amount of list items in the list of Restaurants
     @Override
     public int getItemCount() {
         return list.size();
     }
 
-
+    /* This class:
+     * - provides the ability to fill up 1 card with one restaurant details
+     * - to provide identification/indexing ability for the recycler view to know why card is clicked */
     public static class RestaurantHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView name, area;
         ImageView image;
