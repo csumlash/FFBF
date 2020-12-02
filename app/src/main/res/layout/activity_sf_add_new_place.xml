@@ -154,7 +154,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="This place is already exist on the site"
+            android:text="Provide 1 picture and all other data above"
             android:textColor="#CBF44336"
             android:textSize="12sp"
             android:visibility="invisible"
@@ -166,7 +166,7 @@
         <EditText
             android:id="@+id/et_sf_anp_about"
             android:layout_width="358dp"
-            android:layout_height="109dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:ems="10"
             android:gravity="start|top"
