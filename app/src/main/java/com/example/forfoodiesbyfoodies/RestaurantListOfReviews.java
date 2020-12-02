@@ -45,6 +45,7 @@ public class RestaurantListOfReviews extends AppCompatActivity {
                     Intent k = new Intent(RestaurantListOfReviews.this, RestaurantWriteReview.class);
                     k.putExtra("restaurant", restaurant);
                     k.putExtra("user", user);
+                    startActivity(k);
                 }
             });
         } else {
