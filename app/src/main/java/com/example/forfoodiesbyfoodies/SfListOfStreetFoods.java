@@ -1,14 +1,14 @@
 package com.example.forfoodiesbyfoodies;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -38,22 +38,23 @@ public class SfListOfStreetFoods extends AppCompatActivity implements SfListOfSt
         add = findViewById(R.id.btn_sf_lop_addplace);
         sflist = findViewById(R.id.rv_sf_lop_sflist);
         sflist.setLayoutManager(new LinearLayoutManager(SfListOfStreetFoods.this));
-        dbref = FirebaseDatabase.getInstance().getReference("streetfood");
+        dbref = FirebaseDatabase.getInstance().getReference("streetfoods");
         dbref.addListenerForSingleValueEvent(listener);
 
-            add.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i = new Intent(SfListOfStreetFoods.this, SfAddNewPlace.class);
-                    i.putExtra("user", user);
-                    startActivity(i);
-                }
-            });
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(SfListOfStreetFoods.this, SfAddNewPlace.class);
+                i.putExtra("user", user);
+                startActivity(i);
+            }
+        });
     }
+
     ValueEventListener listener = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
-            for (DataSnapshot dss : snapshot.getChildren()){
+            for (DataSnapshot dss : snapshot.getChildren()) {
                 StreetFood sf = dss.getValue(StreetFood.class);
                 list.add(sf);
             }

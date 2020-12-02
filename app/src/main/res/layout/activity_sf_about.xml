@@ -32,7 +32,7 @@
         android:layout_marginEnd="35dp"
         android:layout_marginRight="35dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_sf_list_title"
         tools:srcCompat="@tools:sample/avatars" />
@@ -41,7 +41,7 @@
         android:id="@+id/tv_sf_list_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="12dp"
         android:text="Name of Street Food Place"
         android:textColor="#040404"
         android:textSize="18sp"
@@ -54,65 +54,66 @@
         android:id="@+id/tv_sf_about_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="28dp"
         android:text="Postcode, Address line"
         android:textColor="#0C0C0C"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_sf_list_viewreviews" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_sf_list_vegan" />
 
     <TextView
         android:id="@+id/tv_sf_about_description"
-        android:layout_width="384dp"
-        android:layout_height="126dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="107dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
         android:text="Description about the location, the type of foods available, parking, seating and sightseeing opportunities near, etc..."
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_sf_about_address" />
+
+    <TextView
+        android:id="@+id/tv_sf_list_vegan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#455BFF5E"
+        android:fontFamily="casual"
+        android:text="Vegan food available"
+        android:textColor="#063900"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_sf_list_name" />
 
     <Button
         android:id="@+id/btn_sf_list_viewreviews"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="45dp"
         android:text="View Reviews"
         android:textColor="#FBFDFD"
         app:backgroundTint="#009688"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rb_sf_about_stars" />
-
-    <TextView
-        android:id="@+id/tv_sf_list_vegan"
-        android:layout_width="143dp"
-        android:layout_height="25dp"
-        android:background="#455BFF5E"
-        android:fontFamily="casual"
-        android:text="Vegan food available"
-        android:textColor="#063900"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_sf_list_image"
-        app:layout_constraintEnd_toEndOf="@+id/iv_sf_list_image"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/iv_sf_list_image"
-        app:layout_constraintTop_toTopOf="@+id/iv_sf_list_image"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/rb_sf_about_stars"
+        app:layout_constraintVertical_bias="0.0" />
 
     <RatingBar
         android:id="@+id/rb_sf_about_stars"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
+        android:theme="@style/RatingBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_sf_list_name" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_sf_about_description" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

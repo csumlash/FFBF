@@ -34,6 +34,10 @@ public class SfAddNewPlace extends AppCompatActivity {
     TextView warning;
     EditText name, address, postcode, area, city, about;
     String vegie;
+    Switch veganSwitch;
+    /* vegvanSwitchValue MUST NOT be boolean because getting boolean values from PARCELABLE objects with the
+     * .readBoolean(variable) requires a minimum of API LEVEL 29 but this app is compatible from API 16 */
+    String veganSwitchValue;
 
     // The following object typed variables will be used to handle Firebase database/storage works
     DatabaseReference dbref;
@@ -57,16 +61,15 @@ public class SfAddNewPlace extends AppCompatActivity {
         area = findViewById(R.id.et_sf_anp_areaname);
         city = findViewById(R.id.et_sf_anp_city);
         about = findViewById(R.id.et_sf_anp_about);
-        Switch sw = (Switch) findViewById(R.id.switch_sf_anp_vegie);
+        veganSwitch = (Switch) findViewById(R.id.switch_sf_anp_vegie);
 
         // Getting direct references to street food node and directory of Firebase Realtime and Storage databases
-        sref = FirebaseStorage.getInstance().getReference("streetfood");
-        dbref = FirebaseDatabase.getInstance().getReference("streetfood");
+        sref = FirebaseStorage.getInstance().getReference("streetfoods");
+        dbref = FirebaseDatabase.getInstance().getReference("streetfoods");
 
         // Getting the User object from intent passed from previous activities
         Intent i = getIntent();
         user = i.getParcelableExtra("user");
-
 
 
         /*Image View will respond to click to choose the picture.
@@ -97,14 +100,6 @@ public class SfAddNewPlace extends AppCompatActivity {
                 String enteredPostcode = postcode.getText().toString();
                 String enteredAbout = about.getText().toString();
 
-                 sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        if (sw.isChecked())
-                            vegie = sw.getTextOn().toString();
-                        }
-                    });
-
-
                 /* The MINIMUM requirements of image and data upload processes are declared in this statement
                  *  - the image_path must be initialised ==> image must be already picked in the ImageView
                  *  - the entered values must be more characters longer by the listed > requirements */
@@ -132,7 +127,7 @@ public class SfAddNewPlace extends AppCompatActivity {
                                                 @Override
                                                 public void onSuccess(Uri uri) {
                                                     String url = uri.toString();
-                                                    StreetFood streetFood= new StreetFood(url, enteredName, enteredAddress, enteredArea, enteredCity, enteredPostcode, enteredAbout, vegie);
+                                                    StreetFood streetFood = new StreetFood(url, enteredName, enteredAddress, enteredArea, enteredCity, enteredPostcode, enteredAbout, veganSwitchValue);
                                                     dbref.child(id).setValue(streetFood)
                                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                                 @Override
@@ -179,25 +174,35 @@ public class SfAddNewPlace extends AppCompatActivity {
 
         });
 
+        veganSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    veganSwitchValue = "yes";
+                } else {
+                    veganSwitchValue = "no";
+                }
+            }
+        });
+
     }
 
-/* This method is in relation with the "startActivityForResult() method called in the image
- *  picker solution and this method is responsible to commit the image open from the device,
- *  to show it in the ImageView view and to initialise the image_path variable with the
- *  value of path (location) of the image on the device */
-@Override
-protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    /* This method is in relation with the "startActivityForResult() method called in the image
+     *  picker solution and this method is responsible to commit the image open from the device,
+     *  to show it in the ImageView view and to initialise the image_path variable with the
+     *  value of path (location) of the image on the device */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 104 && resultCode == RESULT_OK && data.getData() != null) {
-        Picasso.get().load(data.getData()).fit().into(sfpic);
-        image_path = data.getData();
+            Picasso.get().load(data.getData()).into(sfpic);
+            image_path = data.getData();
         }
-        }
+    }
 
-/* Here the code is getting the file extension from the file path used during image upload */
-private String getExtension(Uri path) {
+    /* Here the code is getting the file extension from the file path used during image upload */
+    private String getExtension(Uri path) {
         ContentResolver resolver = getContentResolver();
         MimeTypeMap map = MimeTypeMap.getSingleton();
         return map.getExtensionFromMimeType(resolver.getType(path));
-        }
-                            }
+    }
+}

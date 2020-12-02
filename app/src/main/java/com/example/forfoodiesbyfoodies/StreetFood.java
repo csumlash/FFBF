@@ -8,27 +8,27 @@ import android.os.Parcelable;
  * defines all the other details are its own ones but independent from the parent one. */
 public class StreetFood extends EateryTemplate implements Parcelable {
 
-    String isVegan;
+    String isVeganFriendly;
 
-    public StreetFood(String picURL, String name, String address, String area, String city, String postcode, String about, String isVegan) {
+    public StreetFood(String picURL, String name, String address, String area, String city, String postcode, String about, String isVeganFriendly) {
         super(picURL, name, address, area, city, postcode, about);
-        this.isVegan = isVegan;
+        this.isVeganFriendly = isVeganFriendly;
     }
 
-    public StreetFood (){
+    public StreetFood() {
         super();
     }
 
     protected StreetFood(Parcel in) {
         super(in);
-        isVegan = in.readString();
+        isVeganFriendly = in.readString();
     }
 
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         super.writeToParcel(dest, flags);
-        dest.writeString(isVegan);
+        dest.writeString(isVeganFriendly);
     }
 
     @Override
@@ -49,11 +49,11 @@ public class StreetFood extends EateryTemplate implements Parcelable {
     };
 
 
-    public String isVegan() {
-        return isVegan;
+    public String getIsVeganFriendly() {
+        return isVeganFriendly;
     }
 
-    public void setVegan(boolean isVegan) {
-        isVegan = isVegan;
+    public void setVegan(String isVeganFriendly) {
+        this.isVeganFriendly = isVeganFriendly;
     }
 }
