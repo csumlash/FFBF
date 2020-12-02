@@ -63,6 +63,7 @@ public class RestaurantListOfReviews extends AppCompatActivity implements Restau
                     Intent k = new Intent(RestaurantListOfReviews.this, RestaurantWriteReview.class);
                     k.putExtra("restaurant", restaurant);
                     k.putExtra("user", user);
+                    startActivity(k);
                 }
             });
         } else {
