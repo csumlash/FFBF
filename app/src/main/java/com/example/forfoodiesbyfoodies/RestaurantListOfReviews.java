@@ -46,10 +46,9 @@ public class RestaurantListOfReviews extends AppCompatActivity implements Restau
         // Linking the views to this code to be used later
         listOfReviews = findViewById(R.id.rv_rest_loreviews_list);
         addReview = findViewById(R.id.btn_rest_loreviews_addnewreview);
-        delete = findViewById(R.id.ib_sf_review_card_delete);
 
         listOfReviews.setLayoutManager(new LinearLayoutManager(RestaurantListOfReviews.this));
-        dbref = FirebaseDatabase.getInstance().getReference("restaurantreviews");
+        dbref = FirebaseDatabase.getInstance().getReference("restaurants").child("reviews");
         dbref.addListenerForSingleValueEvent(listener);
 
         /* If the user that opens this activity is a food critic then show the Write Review button
