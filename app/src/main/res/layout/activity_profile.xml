@@ -124,5 +124,26 @@
             app:layout_constraintTop_toBottomOf="@+id/et_profile_new_pass"
             tools:visibility="invisible" />
 
+        <TextView
+            android:id="@+id/tv_profile_rank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="#FFF7AF"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="5dp"
+            android:text="User"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_profile_paimage"
+            app:layout_constraintEnd_toEndOf="@+id/iv_profile_paimage"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/iv_profile_paimage"
+            app:layout_constraintTop_toTopOf="@+id/iv_profile_paimage"
+            app:layout_constraintVertical_bias="1.0" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

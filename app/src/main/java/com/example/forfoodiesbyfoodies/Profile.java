@@ -44,7 +44,7 @@ public class Profile extends AppCompatActivity {
     // Defining activity views
     Button promoteToCritic, pswButton;
     ImageView profPic;
-    TextView fullName, email, activityTitle;
+    TextView fullName, email, activityTitle, ranking;
     EditText pswOld, pswNew;
     RecyclerView reviewsOfFC;
     // Support User object typed variables to handle own or another users data
@@ -82,6 +82,7 @@ public class Profile extends AppCompatActivity {
         pswNew = findViewById(R.id.et_profile_new_pass);
         pswButton = findViewById(R.id.btn_profile_set_new_pass);
         promoteToCritic = findViewById(R.id.btn_profile_promote);
+        ranking = findViewById(R.id.tv_profile_rank);
 
         /* If there is a username request (that is different from the logged in user) and
          * there is no loaded another user details in object
@@ -99,6 +100,9 @@ public class Profile extends AppCompatActivity {
 
             // Setting up the page title
             activityTitle.setText("My Profile");
+
+            // Configuring the User's profile ranking (user, food critic, admin)
+            setRanking(user.getUserType());
 
             // This statement is check if the user has or hasn't uploaded picture and if has then show or replace with a default "no image" one
             if (user.getPicUrl() != null) {
@@ -402,5 +406,25 @@ public class Profile extends AppCompatActivity {
 
         });
         finish();
+    }
+
+    private void setRanking(String userType){
+        switch(userType){
+            case "user":
+                ranking.setText("User");
+                ranking.setVisibility(View.VISIBLE);
+                break;
+            case "foodcritic":
+                ranking.setText("Food Critic");
+                ranking.setVisibility(View.VISIBLE);
+                break;
+            case "admin":
+                ranking.setText("Admin");
+                ranking.setVisibility(View.VISIBLE);
+                break;
+            default:
+                ranking.setVisibility(View.INVISIBLE);
+                break;
+        }
     }
 }
