@@ -78,4 +78,5 @@ public class Restaurant extends EateryTemplate implements Parcelable {
         this.link = link;
     }
 
+
 }

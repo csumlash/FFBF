@@ -106,4 +106,6 @@ public class RestaurantListOfReviewsCard extends RecyclerView.Adapter<Restaurant
         }
     }
 
+
+
 }

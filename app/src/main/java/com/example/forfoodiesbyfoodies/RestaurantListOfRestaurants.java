@@ -1,14 +1,11 @@
 package com.example.forfoodiesbyfoodies;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,7 +14,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -84,9 +80,10 @@ public class RestaurantListOfRestaurants extends AppCompatActivity implements Re
             Collections.sort(list, new Comparator<Restaurant>() {
                 @Override
                 public int compare(Restaurant o1, Restaurant o2) {
-                    return o2.getName().compareTo(o1.getName());
+                    return o1.getName().compareTo(o2.getName());
                 }
             });
+
             // This adapter will contain the Initialised CardViews (to let the restaurants be handle 1-by-1 by the CardViews)
             adapter = new RestaurantListOfRestaurantsCard(list, RestaurantListOfRestaurants.this);
             // Setting up the RecyclerVies adapter with the previously defined Card object

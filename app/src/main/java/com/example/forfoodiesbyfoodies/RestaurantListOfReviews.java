@@ -74,6 +74,17 @@ public class RestaurantListOfReviews extends AppCompatActivity implements Restau
 
     }
 
+    // This method
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(RestaurantListOfReviews.this, RestaurantAbout.class);
+        i.putExtra("user", user);
+        i.putExtra("restaurant", restaurant);
+        startActivity(i);
+        finish();
+    }
+
     ValueEventListener listener = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
