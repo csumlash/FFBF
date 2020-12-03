@@ -106,9 +106,9 @@ public class SfListOfReviews extends AppCompatActivity implements SfListOfReview
 
     @Override
     public void onCardClick(int i) {
-        Intent intent = new Intent(SfListOfReviews.this, SfListOfReviews.class);
+        Intent intent = new Intent(SfListOfReviews.this, Profile.class);
         intent.putExtra("user", user);
+        intent.putExtra("username", list.get(i).getWriter());
         startActivity(intent);
-        finish();
     }
 }

@@ -59,8 +59,9 @@ public class RestaurantListOfReviews extends AppCompatActivity implements Restau
             addReview.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent k = new Intent(RestaurantListOfReviews.this, Profile.class);
+                    Intent k = new Intent(RestaurantListOfReviews.this, RestaurantWriteReview.class);
                     k.putExtra("user", user);
+                    k.putExtra("restaurant", restaurant);
                     startActivity(k);
                 }
             });
@@ -110,9 +111,9 @@ public class RestaurantListOfReviews extends AppCompatActivity implements Restau
 
     @Override
     public void onCardClick(int i) {
-        Intent intent = new Intent(RestaurantListOfReviews.this, RestaurantListOfReviews.class);
+        Intent intent = new Intent(RestaurantListOfReviews.this, Profile.class);
         intent.putExtra("user", user);
+        intent.putExtra("username", list.get(i).getWriter());
         startActivity(intent);
-        finish();
     }
 }

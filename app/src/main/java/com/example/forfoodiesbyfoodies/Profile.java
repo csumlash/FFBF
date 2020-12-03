@@ -9,7 +9,6 @@ import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,9 +44,8 @@ public class Profile extends AppCompatActivity {
     // Defining activity views
     Button promoteToCritic, pswButton;
     ImageView profPic;
-    TextView fullName, email, foodCritText, reviewsTitle, activityTitle;
+    TextView fullName, email, activityTitle;
     EditText pswOld, pswNew;
-    RatingBar ratingBar;
     RecyclerView reviewsOfFC;
     // Support User object typed variables to handle own or another users data
     User user;
@@ -84,10 +82,7 @@ public class Profile extends AppCompatActivity {
         pswNew = findViewById(R.id.et_profile_new_pass);
         pswButton = findViewById(R.id.btn_profile_set_new_pass);
         promoteToCritic = findViewById(R.id.btn_profile_promote);
-        foodCritText = findViewById(R.id.tv_profile_foodcritic);
-        ratingBar = findViewById(R.id.rb_profile_stars);
         reviewsOfFC = findViewById(R.id.rv_profile_reviews);
-        reviewsTitle = findViewById(R.id.tv_profile_reviews);
 
 
 
