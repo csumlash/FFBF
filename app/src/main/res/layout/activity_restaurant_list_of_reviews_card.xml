@@ -8,8 +8,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#FFF5A1"
+        android:layout_height="wrap_content"
+        android:background="#82D674"
         android:padding="10dp">
 
         <TextView
@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
             android:text="The visitor's brief summary"
@@ -31,14 +31,12 @@
 
         <TextView
             android:id="@+id/tv_rest_loreview_card_date"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:text="Date:"
+            android:layout_width="121dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:text="asdfasdf"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.757"
@@ -48,10 +46,10 @@
         <TextView
             android:id="@+id/tv_rest_loreview_card_username"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:fontFamily="sans-serif-black"
             android:text="Name of User"
             app:layout_constraintStart_toEndOf="@+id/iv_rest_loreview_card_image"
@@ -59,8 +57,8 @@
 
         <ImageView
             android:id="@+id/iv_rest_loreview_card_image"
-            android:layout_width="76dp"
-            android:layout_height="68dp"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
             android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
@@ -74,13 +72,12 @@
             android:id="@+id/rb_rest_loreview_card_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:theme="@style/RatingBar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/iv_rest_loreview_card_image"
             app:layout_constraintTop_toBottomOf="@+id/tv_rest_loreview_card_experience"
             app:layout_constraintVertical_bias="0.272" />

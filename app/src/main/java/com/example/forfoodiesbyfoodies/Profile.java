@@ -82,9 +82,6 @@ public class Profile extends AppCompatActivity {
         pswNew = findViewById(R.id.et_profile_new_pass);
         pswButton = findViewById(R.id.btn_profile_set_new_pass);
         promoteToCritic = findViewById(R.id.btn_profile_promote);
-        reviewsOfFC = findViewById(R.id.rv_profile_reviews);
-
-
 
         /* If there is a username request (that is different from the logged in user) and
          * there is no loaded another user details in object
