@@ -21,10 +21,6 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 /* This class handles the writing of reviews for a restaurant and to let it do so, the activity
  * needs to get the user details who writes the reviews and restaurant details that is reviewed */
 public class RestaurantWriteReview extends AppCompatActivity {
@@ -93,15 +89,8 @@ public class RestaurantWriteReview extends AppCompatActivity {
                 } else if (stars.getRating() == 0.0) {
                     Toast.makeText(RestaurantWriteReview.this, "Please set up a rating!", Toast.LENGTH_LONG).show();
                 } else {
-                    SimpleDateFormat currentDate = new SimpleDateFormat("DD.MM.YYYY");
-                    try {
-                        Date stringCurrentDate = currentDate.parse(enteredDate);
-                        Toast.makeText(RestaurantWriteReview.this, "The Date looks valid!", Toast.LENGTH_LONG).show();
-                    } catch (ParseException e) {
-                        Toast.makeText(RestaurantWriteReview.this, "The date of visit is not a valid date", Toast.LENGTH_LONG).show();
-                    }
-
-                    //uploadReview();
+                    uploadReview();
+                    finish();
                 }
             }
         });
@@ -125,6 +114,7 @@ public class RestaurantWriteReview extends AppCompatActivity {
                     i.putExtra("user", user);
                     i.putExtra("restaurant", restaurant);
                     startActivity(i);
+                    finish();
                 }
             }
 
@@ -133,7 +123,5 @@ public class RestaurantWriteReview extends AppCompatActivity {
 
             }
         });
-
-
     }
 }
