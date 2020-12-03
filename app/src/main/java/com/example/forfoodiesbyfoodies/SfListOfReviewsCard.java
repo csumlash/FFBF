@@ -1,12 +1,12 @@
 package com.example.forfoodiesbyfoodies;
 
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,31 +21,29 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-
-public class RestaurantListOfReviewsCard extends RecyclerView.Adapter<RestaurantListOfReviewsCard.RestaurantReviewHolder> {
-
+public class SfListOfReviewsCard extends RecyclerView.Adapter<SfListOfReviewsCard.SfReviewHolder> {
     ArrayList<ReviewTemplate> list;
-    RestaurantListOfReviewsCard.RestaurantReviewHolder.OnCardClickListener listener;
+    SfListOfReviewsCard.SfReviewHolder.OnCardClickListener listener;
 
-    public RestaurantListOfReviewsCard(ArrayList<ReviewTemplate> list, RestaurantListOfReviewsCard.RestaurantReviewHolder.OnCardClickListener listener) {
+    public SfListOfReviewsCard(ArrayList<ReviewTemplate> list, SfListOfReviewsCard.SfReviewHolder.OnCardClickListener listener) {
         this.list = list;
         this.listener = listener;
     }
 
-    public RestaurantListOfReviewsCard() {
+    public SfListOfReviewsCard() {
 
     }
 
     @NonNull
     @Override
-    public RestaurantListOfReviewsCard.RestaurantReviewHolder onCreateViewHolder(@NonNull ViewGroup view, int viewType) {
-        View content = LayoutInflater.from(view.getContext()).inflate(R.layout.activity_restaurant_list_of_reviews_card, view, false);
-        RestaurantListOfReviewsCard.RestaurantReviewHolder holder = new RestaurantListOfReviewsCard.RestaurantReviewHolder(content, listener);
+    public SfListOfReviewsCard.SfReviewHolder onCreateViewHolder(@NonNull ViewGroup view, int viewType) {
+        View content = LayoutInflater.from(view.getContext()).inflate(R.layout.activity_sf_list_of_reviews_card, view, false);
+        SfListOfReviewsCard.SfReviewHolder holder = new SfListOfReviewsCard.SfReviewHolder(content, listener);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RestaurantListOfReviewsCard.RestaurantReviewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull SfListOfReviewsCard.SfReviewHolder holder, int position) {
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("users");
         Query userDetails = dbRef.orderByChild("username").equalTo(list.get(position).getWriter()).limitToFirst(1);
         userDetails.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -78,19 +76,19 @@ public class RestaurantListOfReviewsCard extends RecyclerView.Adapter<Restaurant
         return list.size();
     }
 
-    public static class RestaurantReviewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class SfReviewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView writer, dateOfVisit, review;
         ImageView image;
         RatingBar ratingBar;
-        RestaurantListOfReviewsCard.RestaurantReviewHolder.OnCardClickListener listener;
+        SfListOfReviewsCard.SfReviewHolder.OnCardClickListener listener;
 
-        public RestaurantReviewHolder(@NonNull View itemView, RestaurantListOfReviewsCard.RestaurantReviewHolder.OnCardClickListener listener) {
+        public SfReviewHolder(@NonNull View itemView, SfListOfReviewsCard.SfReviewHolder.OnCardClickListener listener) {
             super(itemView);
-            writer = itemView.findViewById(R.id.tv_rest_loreview_card_username);
-            review = itemView.findViewById(R.id.tv_rest_loreview_card_experience);
-            dateOfVisit = itemView.findViewById(R.id.tv_rest_loreview_card_date);
-            image = itemView.findViewById(R.id.iv_rest_loreview_card_image);
-            ratingBar = itemView.findViewById(R.id.rb_rest_loreview_card_rating);
+            writer = itemView.findViewById(R.id.tv_sf_review_card_username);
+            review = itemView.findViewById(R.id.tv_sf_review_card_experience);
+            dateOfVisit = itemView.findViewById(R.id.tv_sf_review_card_date);
+            image = itemView.findViewById(R.id.iv_sf_review_card_image);
+            ratingBar = itemView.findViewById(R.id.rb_sf_lor_wr_stars);
 
             this.listener = listener;
             itemView.setOnClickListener(this);

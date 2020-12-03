@@ -40,7 +40,6 @@ public class SfListOfStreetFoodsCard extends RecyclerView.Adapter<SfListOfStreet
     public void onBindViewHolder(@NonNull SfListOfStreetFoodsCard.StreetFoodHolder holder, int position) {
         holder.name.setText(list.get(position).getName());
         holder.area.setText(list.get(position).getArea());
-        holder.stars.setRating(3);
         Picasso.get().load(list.get(position).getPicURL()).fit().into(holder.image);
     }
 
@@ -59,7 +58,6 @@ public class SfListOfStreetFoodsCard extends RecyclerView.Adapter<SfListOfStreet
             name = itemView.findViewById(R.id.tv_sf_lop_card_sfpname);
             area = itemView.findViewById(R.id.tv_sf_lop_card_areaname);
             image = itemView.findViewById(R.id.iv_sf_lop_card_image);
-            stars = itemView.findViewById(R.id.rb_sf_lop_card_stars);
             this.listener = listener;
             itemView.setOnClickListener(this);
         }

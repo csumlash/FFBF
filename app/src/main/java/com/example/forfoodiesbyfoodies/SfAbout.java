@@ -7,7 +7,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -43,7 +42,6 @@ public class SfAbout extends AppCompatActivity {
         title = findViewById(R.id.tv_sf_list_title);
         image = findViewById(R.id.iv_sf_list_image);
         isVeganFriendly = findViewById(R.id.tv_sf_list_vegan);
-        stars = findViewById(R.id.rb_sf_about_stars);
         name = findViewById(R.id.tv_sf_list_name);
         address = findViewById(R.id.tv_sf_about_address);
         about = findViewById(R.id.tv_sf_about_description);
@@ -61,7 +59,6 @@ public class SfAbout extends AppCompatActivity {
 
         Picasso.get().load(streetFood.getPicURL()).into(image);
         name.setText(streetFood.getName());
-        stars.setRating(getRating());
         address.setText(streetFood.getAddress() + ", " + streetFood.getCity() + ", " + streetFood.getPostcode() + ", " + streetFood.getArea());
         about.setText(streetFood.getAbout());
 
@@ -82,9 +79,5 @@ public class SfAbout extends AppCompatActivity {
                 startActivity(k);
             }
         });
-    }
-
-    public int getRating() {
-        return 3;
     }
 }

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".RestaurantAbout">
 
     <TextView
@@ -45,29 +45,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_rest_ar_image" />
 
-    <RatingBar
-        android:id="@+id/rb_rest_ar_stars"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:theme="@style/RatingBar"
-        android:isIndicator="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_rest_ar_restaurantname" />
-
     <TextView
         android:id="@+id/tv_rest_ar_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="Type of restaurant"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rb_rest_ar_stars" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_rest_ar_restaurantname" />
 
     <TextView
         android:id="@+id/tv_rest_ar_address"
@@ -90,6 +78,8 @@
         android:layout_marginTop="35dp"
         android:text="Reservation"
         app:backgroundTint="#009688"
+        app:layout_constraintEnd_toStartOf="@+id/btn_rest_ar_viewreviews"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_rest_ar_type" />
 
@@ -105,20 +95,22 @@
         android:text="View Reviews"
         app:backgroundTint="#009688"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btn_rest_ar_book"
         app:layout_constraintTop_toBottomOf="@+id/tv_rest_ar_type" />
 
     <TextView
         android:id="@+id/tv_rest_ar_info"
-        android:layout_width="372dp"
-        android:layout_height="137dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
         android:text="About the restaurant"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_rest_ar_address" />
 </androidx.constraintlayout.widget.ConstraintLayout>

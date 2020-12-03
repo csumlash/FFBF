@@ -3,11 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="180dp">
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="180dp">
+        android:layout_height="wrap_content"
+        android:background="#FFF5A1"
+        android:padding="10dp">
 
 
         <TextView
@@ -16,38 +19,23 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:fontFamily="sans-serif-black"
-            android:text="Name of Street Food Place"
+            android:text="Street Food Place"
             android:textColor="#CC070707"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_sf_lop_card_image"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_sf_lop_card_areaname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="153dp"
-            android:layout_marginRight="153dp"
-            android:layout_marginBottom="43dp"
             android:text="Area Name"
             android:textColor="#B30B0A0A"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/iv_sf_lop_card_image"
-            app:layout_constraintTop_toBottomOf="@+id/rb_sf_lop_card_stars" />
-
-        <RatingBar
-            android:id="@+id/rb_sf_lop_card_stars"
-            android:layout_width="234dp"
-            android:layout_height="44dp"
-            android:layout_marginTop="15dp"
-            android:theme="@style/RatingBar"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/iv_sf_lop_card_image"
             app:layout_constraintTop_toBottomOf="@+id/tv_sf_lop_card_sfpname" />
 
@@ -55,13 +43,14 @@
             android:id="@+id/iv_sf_lop_card_image"
             android:layout_width="170dp"
             android:layout_height="115dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_sf_lop_card_sfpname"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
             tools:srcCompat="@tools:sample/avatars" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

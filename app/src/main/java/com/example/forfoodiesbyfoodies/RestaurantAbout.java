@@ -40,7 +40,6 @@ public class RestaurantAbout extends AppCompatActivity {
         // Initialisation of views so linking them to this code to be ready for use
         image = findViewById(R.id.iv_rest_ar_image);
         name = findViewById(R.id.tv_rest_ar_restaurantname);
-        stars = findViewById(R.id.rb_rest_ar_stars);
         type = findViewById(R.id.tv_rest_ar_type);
         book = findViewById(R.id.btn_rest_ar_book);
         viewReviews = findViewById(R.id.btn_rest_ar_viewreviews);
@@ -62,7 +61,6 @@ public class RestaurantAbout extends AppCompatActivity {
         type.setText(restaurant.getType());
         address.setText(restaurant.getAddress() + ", " + restaurant.getCity() + ", " + restaurant.getPostcode() + ", " + restaurant.getArea());
         about.setText(restaurant.getAbout());
-        stars.setRating(getRating());
 
         // Setting up the Make Reservation button to open up the stored web link
         book.setOnClickListener(new View.OnClickListener() {
@@ -87,8 +85,4 @@ public class RestaurantAbout extends AppCompatActivity {
         });
     }
 
-    // This method Queries the ratings of the Restaurant then averaging the values to let the rating bar set to the proper value
-    public int getRating() {
-        return 3;
-    }
 }

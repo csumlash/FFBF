@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".SfAbout">
 
     <TextView
@@ -84,8 +84,10 @@
         android:layout_marginTop="16dp"
         android:background="#455BFF5E"
         android:fontFamily="casual"
+        android:padding="10dp"
         android:text="Vegan food available"
         android:textColor="#063900"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -95,6 +97,7 @@
         android:id="@+id/btn_sf_about_viewreviews"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="View Reviews"
         android:textColor="#FBFDFD"
         app:backgroundTint="#009688"
@@ -102,18 +105,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rb_sf_about_stars"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <RatingBar
-        android:id="@+id/rb_sf_about_stars"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:theme="@style/RatingBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_sf_about_description" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_sf_about_description"
+        app:layout_constraintVertical_bias="0.088" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

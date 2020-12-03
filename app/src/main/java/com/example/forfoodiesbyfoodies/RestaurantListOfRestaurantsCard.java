@@ -43,7 +43,6 @@ public class RestaurantListOfRestaurantsCard extends RecyclerView.Adapter<Restau
     public void onBindViewHolder(@NonNull RestaurantHolder holder, int position) {
         holder.name.setText(list.get(position).getName());
         holder.area.setText(list.get(position).getArea());
-        holder.stars.setRating(3);
         Picasso.get().load(list.get(position).getPicURL()).into(holder.image);
     }
 
@@ -67,7 +66,6 @@ public class RestaurantListOfRestaurantsCard extends RecyclerView.Adapter<Restau
             name = itemView.findViewById(R.id.tv_rest_lor_card_restaurantname);
             area = itemView.findViewById(R.id.tv_rest_lor_card_areaname);
             image = itemView.findViewById(R.id.iv_rest_lor_card_image);
-            stars = itemView.findViewById(R.id.rb_rest_lor_card_stars);
             this.listener = listener;
             itemView.setOnClickListener(this);
         }

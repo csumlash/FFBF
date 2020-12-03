@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -103,13 +102,6 @@ public class RestaurantListOfReviews extends AppCompatActivity implements Restau
                 }
             });
         }
-                /*ReviewTemplate rt = dss.getValue(ReviewTemplate.class);
-                list.add(rt);
-            }
-
-            adapter = new RestaurantListOfReviewsCard(list, RestaurantListOfReviews.this);
-            listOfReviews.setAdapter(adapter);
-        }*/
 
         @Override
         public void onCancelled(@NonNull DatabaseError error) {
