@@ -58,6 +58,17 @@ public class SfListOfStreetFoods extends AppCompatActivity implements SfListOfSt
         });
     }
 
+    // This method forces the back button to go back to the Dashboard
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(SfListOfStreetFoods.this, Dashboard.class);
+        i.putExtra("user", user);
+        startActivity(i);
+        finish();
+    }
+
+
     ValueEventListener listener = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -90,4 +101,6 @@ public class SfListOfStreetFoods extends AppCompatActivity implements SfListOfSt
         intent.putExtra("streetfood", list.get(i));
         startActivity(intent);
     }
+
+
 }

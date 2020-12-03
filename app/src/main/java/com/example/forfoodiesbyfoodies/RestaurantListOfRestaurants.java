@@ -66,6 +66,16 @@ public class RestaurantListOfRestaurants extends AppCompatActivity implements Re
 
     }
 
+    // This method forces the back button to go back to the Dashboard
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(RestaurantListOfRestaurants.this, Dashboard.class);
+        i.putExtra("user", user);
+        startActivity(i);
+        finish();
+    }
+
     // The following listener is called to request Restaurants from the DB then filling up the Restaurant type list of Restaurants
     ValueEventListener listener = new ValueEventListener() {
 
@@ -95,6 +105,8 @@ public class RestaurantListOfRestaurants extends AppCompatActivity implements Re
 
         }
     };
+
+
 
     // This method handles the event of clicking on one Card of the RecyclerView
     @Override

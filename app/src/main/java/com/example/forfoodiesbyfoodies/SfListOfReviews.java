@@ -68,6 +68,16 @@ public class SfListOfReviews extends AppCompatActivity implements SfListOfReview
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(SfListOfReviews.this, SfAbout.class);
+        i.putExtra("user", user);
+        i.putExtra("streetfood", streetfood);
+        startActivity(i);
+        finish();
+    }
+
     ValueEventListener listener = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {

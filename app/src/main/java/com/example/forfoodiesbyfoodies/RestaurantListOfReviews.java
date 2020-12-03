@@ -74,7 +74,7 @@ public class RestaurantListOfReviews extends AppCompatActivity implements Restau
 
     }
 
-    // This method
+    // This method forces the back button to go back to the About site
     @Override
     public void onBackPressed() {
         super.onBackPressed();
