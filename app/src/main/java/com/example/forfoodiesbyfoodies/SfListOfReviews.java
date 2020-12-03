@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -46,6 +47,7 @@ public class SfListOfReviews extends AppCompatActivity implements SfListOfReview
         addReview = findViewById(R.id.btn_sf_review_addreview);
 
         listOfReviews.setLayoutManager(new LinearLayoutManager(SfListOfReviews.this));
+
         dbref = FirebaseDatabase.getInstance().getReference("streetfoods");
         Query queryReviewsRef = dbref.orderByChild("picURL").equalTo(streetfood.getPicURL()).limitToFirst(1);
         queryReviewsRef.addListenerForSingleValueEvent(listener);

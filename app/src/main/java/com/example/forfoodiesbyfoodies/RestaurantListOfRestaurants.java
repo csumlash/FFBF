@@ -1,12 +1,14 @@
 package com.example.forfoodiesbyfoodies;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +21,8 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class RestaurantListOfRestaurants extends AppCompatActivity implements RestaurantListOfRestaurantsCard.RestaurantHolder.OnCardClickListener {
 
@@ -68,6 +72,7 @@ public class RestaurantListOfRestaurants extends AppCompatActivity implements Re
 
     // The following listener is called to request Restaurants from the DB then filling up the Restaurant type list of Restaurants
     ValueEventListener listener = new ValueEventListener() {
+
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
             for (DataSnapshot dss : snapshot.getChildren()) {
@@ -75,6 +80,13 @@ public class RestaurantListOfRestaurants extends AppCompatActivity implements Re
                 list.add(r);
             }
 
+            //Sorting the list alphabetically by Restaurant name
+            Collections.sort(list, new Comparator<Restaurant>() {
+                @Override
+                public int compare(Restaurant o1, Restaurant o2) {
+                    return o2.getName().compareTo(o1.getName());
+                }
+            });
             // This adapter will contain the Initialised CardViews (to let the restaurants be handle 1-by-1 by the CardViews)
             adapter = new RestaurantListOfRestaurantsCard(list, RestaurantListOfRestaurants.this);
             // Setting up the RecyclerVies adapter with the previously defined Card object

@@ -20,8 +20,12 @@ import androidx.appcompat.widget.SwitchCompat;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -58,6 +62,7 @@ public class SfAddNewPlace extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sf_add_new_place);
 
+        // Linking the Views to this code for further use
         send = findViewById(R.id.btn_sf_anp_send);
         sfPic = findViewById(R.id.iv_sf_anp_image);
         warning = findViewById(R.id.tv_sf_anp_warning);
@@ -113,7 +118,9 @@ public class SfAddNewPlace extends AppCompatActivity {
                         enteredArea.length() > 0 && enteredCity.length() > 0 && enteredPostcode.length() > 0 &&
                         enteredAbout.length() > 0) {
 
-                    uploadPicAndDetails();
+                    /* Checking the Database if the Place is registered or is not at the given
+                     * Postcode. This method calls the upload process */
+                    checkIfAlreadyExists(enteredName, enteredPostcode);
 
                     // if the minimum requirements of data and image upload is not satisfied then warning the user
                 } else {
@@ -156,6 +163,43 @@ public class SfAddNewPlace extends AppCompatActivity {
         return map.getExtensionFromMimeType(resolver.getType(path));
     }
 
+    private void checkIfAlreadyExists(String placeName, String postcode) {
+        Query checkByName = dbref.orderByChild("name").equalTo(placeName).limitToFirst(1);
+        checkByName.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (!snapshot.exists()) {
+                    uploadPicAndDetails();
+                } else {
+                    Query checkByPostCode = dbref.orderByChild("postcode").equalTo(postcode).limitToFirst(1);
+                    checkByPostCode.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if (!snapshot.exists()) {
+                                Toast.makeText(SfAddNewPlace.this, "POSTCODE OK => Upload", Toast.LENGTH_SHORT).show();
+                                uploadPicAndDetails();
+                            } else {
+                                warning.setVisibility(View.VISIBLE);
+                                warning.setText("Already registered Place at this Postcode! Try to register another one!");
+                                Toast.makeText(SfAddNewPlace.this, "Place is already registered at this Postcode! Try to register another place!", Toast.LENGTH_LONG).show();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
     private void uploadPicAndDetails() {
         // Initialising and getting dbref unique ID to name the files
         String id = dbref.push().getKey();
@@ -187,6 +231,7 @@ public class SfAddNewPlace extends AppCompatActivity {
                                                         Intent i = new Intent(SfAddNewPlace.this, SfListOfStreetFoods.class);
                                                         i.putExtra("user", user);
                                                         startActivity(i);
+                                                        finish();
                                                     }
                                                 })
                                                 .addOnFailureListener(new OnFailureListener() {

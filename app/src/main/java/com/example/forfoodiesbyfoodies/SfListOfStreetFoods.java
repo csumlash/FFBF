@@ -18,6 +18,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class SfListOfStreetFoods extends AppCompatActivity implements SfListOfStreetFoodsCard.StreetFoodHolder.OnCardClickListener {
 
@@ -64,6 +66,13 @@ public class SfListOfStreetFoods extends AppCompatActivity implements SfListOfSt
                 list.add(sf);
             }
 
+            //Sorting the list alphabetically by Street Food place name
+            Collections.sort(list, new Comparator<StreetFood>() {
+                @Override
+                public int compare(StreetFood o1, StreetFood o2) {
+                    return o2.getName().compareTo(o1.getName());
+                }
+            });
             adapter = new SfListOfStreetFoodsCard(list, SfListOfStreetFoods.this);
             sflist.setAdapter(adapter);
         }

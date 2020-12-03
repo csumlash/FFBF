@@ -175,6 +175,7 @@ public class RestaurantAddNewRestaurant extends AppCompatActivity {
                                                         Intent i = new Intent(RestaurantAddNewRestaurant.this, RestaurantListOfRestaurants.class);
                                                         i.putExtra("user", user);
                                                         startActivity(i);
+                                                        finish();
                                                     }
                                                 })
                                                 .addOnFailureListener(new OnFailureListener() {

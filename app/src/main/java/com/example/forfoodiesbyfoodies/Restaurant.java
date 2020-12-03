@@ -77,4 +77,5 @@ public class Restaurant extends EateryTemplate implements Parcelable {
     public void setLink(String link) {
         this.link = link;
     }
+
 }
