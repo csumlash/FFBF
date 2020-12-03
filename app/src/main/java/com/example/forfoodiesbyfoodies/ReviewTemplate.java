@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class ReviewTemplate implements Parcelable {
-    String writer, dateOfVisit, review;
+    String writer, dateOfVisit, review, reviewKey;
     float rating;
 
     public ReviewTemplate(String writer, String dateOfVisit, String review, float rating) {
@@ -77,5 +77,13 @@ public class ReviewTemplate implements Parcelable {
 
     public void setRating(float rating) {
         this.rating = rating;
+    }
+
+    public String getReviewKey() {
+        return reviewKey;
+    }
+
+    public void setReviewKey(String reviewKey) {
+        this.reviewKey = reviewKey;
     }
 }

@@ -1,13 +1,14 @@
 package com.example.forfoodiesbyfoodies;
 
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,10 +26,15 @@ import java.util.ArrayList;
 public class SfListOfReviewsCard extends RecyclerView.Adapter<SfListOfReviewsCard.SfReviewHolder> {
     ArrayList<ReviewTemplate> list;
     SfListOfReviewsCard.SfReviewHolder.OnCardClickListener listener;
+    User user;
+    StreetFood streetfood;
 
-    public SfListOfReviewsCard(ArrayList<ReviewTemplate> list, SfListOfReviewsCard.SfReviewHolder.OnCardClickListener listener) {
+    public SfListOfReviewsCard(ArrayList<ReviewTemplate> list, SfListOfReviewsCard.SfReviewHolder.OnCardClickListener listener,
+                               User user, StreetFood streetfood) {
         this.list = list;
         this.listener = listener;
+        this.user = user;
+        this.streetfood = streetfood;
     }
 
     public SfListOfReviewsCard() {
@@ -60,9 +66,6 @@ public class SfListOfReviewsCard extends RecyclerView.Adapter<SfListOfReviewsCar
                         holder.image.setImageResource(R.drawable.ic_baseline_add_photo_image);
                     }
                 }
-                holder.dateOfVisit.setText(list.get(position).getDateOfVisit());
-                holder.review.setText(list.get(position).getReview());
-                holder.ratingBar.setRating(list.get(position).getRating());
             }
 
             @Override
@@ -70,6 +73,41 @@ public class SfListOfReviewsCard extends RecyclerView.Adapter<SfListOfReviewsCar
 
             }
         });
+
+        holder.dateOfVisit.setText(list.get(position).getDateOfVisit());
+        holder.review.setText(list.get(position).getReview());
+        holder.ratingBar.setRating(list.get(position).getRating());
+
+        if (user.getUserType().equals("admin") || list.get(position).getWriter().equals(user.getUsername())) {
+            holder.deleteBtn.setVisibility(View.VISIBLE);
+            holder.deleteBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("streetfoods");
+                    Query keyToSfPlace = dbRef.orderByChild("picURL").equalTo(streetfood.getPicURL()).limitToFirst(1);
+                    keyToSfPlace.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            for (DataSnapshot dss : snapshot.getChildren()) {
+                                DatabaseReference refToDelete = FirebaseDatabase.getInstance().getReference(
+                                        "streetfoods/" + dss.getKey() + "/reviews/" + list.get(position).getReviewKey()
+                                );
+                                refToDelete.removeValue();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                    Intent i = new Intent(v.getContext(), SfListOfReviews.class);
+                    i.putExtra("user", user);
+                    i.putExtra("streetfood", streetfood);
+                    v.getContext().startActivity(i);
+                }
+            });
+        }
     }
 
     @Override
@@ -81,6 +119,7 @@ public class SfListOfReviewsCard extends RecyclerView.Adapter<SfListOfReviewsCar
         TextView writer, dateOfVisit, review;
         ImageView image;
         RatingBar ratingBar;
+        ImageButton deleteBtn;
         SfListOfReviewsCard.SfReviewHolder.OnCardClickListener listener;
 
         public SfReviewHolder(@NonNull View itemView, SfListOfReviewsCard.SfReviewHolder.OnCardClickListener listener) {
@@ -90,6 +129,7 @@ public class SfListOfReviewsCard extends RecyclerView.Adapter<SfListOfReviewsCar
             dateOfVisit = itemView.findViewById(R.id.tv_sf_review_card_date);
             image = itemView.findViewById(R.id.iv_sf_review_card_image);
             ratingBar = itemView.findViewById(R.id.rb_sf_lor_wr_stars);
+            deleteBtn = itemView.findViewById(R.id.ib_sf_review_card_delete);
 
             this.listener = listener;
             itemView.setOnClickListener(this);

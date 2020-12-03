@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -52,21 +51,21 @@ public class SfListOfReviews extends AppCompatActivity implements SfListOfReview
         Query queryReviewsRef = dbref.orderByChild("picURL").equalTo(streetfood.getPicURL()).limitToFirst(1);
         queryReviewsRef.addListenerForSingleValueEvent(listener);
 
-        /* If the user that opens this activity is a food critic then show the Write Review button
-         * and then setting up a listener for the button to open the Review Writing activity
-         * or hid the button elsewhere */
-        addReview.setVisibility(View.VISIBLE);
-        addReview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent k = new Intent(SfListOfReviews.this, SfWriteReview.class);
-                k.putExtra("streetfood", streetfood);
-                k.putExtra("user", user);
-                startActivity(k);
-            }
-        });
-
-
+        /* Only users can write reviews */
+        if (user.getUserType().equals("user")) {
+            addReview.setVisibility(View.VISIBLE);
+            addReview.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent k = new Intent(SfListOfReviews.this, SfWriteReview.class);
+                    k.putExtra("streetfood", streetfood);
+                    k.putExtra("user", user);
+                    startActivity(k);
+                }
+            });
+        } else {
+            addReview.setVisibility(View.INVISIBLE);
+        }
     }
 
     ValueEventListener listener = new ValueEventListener() {
@@ -87,9 +86,10 @@ public class SfListOfReviews extends AppCompatActivity implements SfListOfReview
                                 ds.child("review").getValue().toString(),
                                 Float.parseFloat(ds.child("rating").getValue().toString())
                         );
+                        rt.setReviewKey(ds.getKey());
                         list.add(rt);
                     }
-                    adapter = new SfListOfReviewsCard(list, SfListOfReviews.this);
+                    adapter = new SfListOfReviewsCard(list, SfListOfReviews.this, user, streetfood);
                     listOfReviews.setAdapter(adapter);
                 }
 

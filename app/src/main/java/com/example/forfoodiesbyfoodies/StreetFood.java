@@ -9,8 +9,10 @@ import android.os.Parcelable;
 public class StreetFood extends EateryTemplate implements Parcelable {
 
     String isVeganFriendly;
+    String SfKey;
 
-    public StreetFood(String picURL, String name, String address, String area, String city, String postcode, String about, String isVeganFriendly) {
+    public StreetFood(String picURL, String name, String address, String area, String city,
+                      String postcode, String about, String isVeganFriendly) {
         super(picURL, name, address, area, city, postcode, about);
         this.isVeganFriendly = isVeganFriendly;
     }
@@ -53,7 +55,15 @@ public class StreetFood extends EateryTemplate implements Parcelable {
         return isVeganFriendly;
     }
 
-    public void setVegan(String isVeganFriendly) {
+    public void setIsVeganFriendly(String isVeganFriendly) {
         this.isVeganFriendly = isVeganFriendly;
+    }
+
+    public String getSfKey() {
+        return SfKey;
+    }
+
+    public void setSfKey(String sfKey) {
+        SfKey = sfKey;
     }
 }

@@ -74,6 +74,9 @@ public class SfAddNewPlace extends AppCompatActivity {
         about = findViewById(R.id.et_sf_anp_about);
         veganSwitch = findViewById(R.id.switch_sf_anp_isVeganFriendly);
 
+        // The default value of a Switch is false so must initialise a default value to "no". Later, an IF statment can chnge this to True
+        veganSwitchValue = "no";
+
         // Getting direct references to street food node and directory of Firebase Realtime and Storage databases
         sref = FirebaseStorage.getInstance().getReference("streetfoods");
         dbref = FirebaseDatabase.getInstance().getReference("streetfoods");
@@ -121,7 +124,6 @@ public class SfAddNewPlace extends AppCompatActivity {
                     /* Checking the Database if the Place is registered or is not at the given
                      * Postcode. This method calls the upload process */
                     checkIfAlreadyExists(enteredName, enteredPostcode);
-
                     // if the minimum requirements of data and image upload is not satisfied then warning the user
                 } else {
                     warning.setVisibility(View.VISIBLE);
@@ -135,8 +137,6 @@ public class SfAddNewPlace extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     veganSwitchValue = "yes";
-                } else {
-                    veganSwitchValue = "no";
                 }
             }
         });
@@ -170,6 +170,7 @@ public class SfAddNewPlace extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (!snapshot.exists()) {
                     uploadPicAndDetails();
+                    finish();
                 } else {
                     Query checkByPostCode = dbref.orderByChild("postcode").equalTo(postcode).limitToFirst(1);
                     checkByPostCode.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -178,6 +179,7 @@ public class SfAddNewPlace extends AppCompatActivity {
                             if (!snapshot.exists()) {
                                 Toast.makeText(SfAddNewPlace.this, "POSTCODE OK => Upload", Toast.LENGTH_SHORT).show();
                                 uploadPicAndDetails();
+                                finish();
                             } else {
                                 warning.setVisibility(View.VISIBLE);
                                 warning.setText("Already registered Place at this Postcode! Try to register another one!");

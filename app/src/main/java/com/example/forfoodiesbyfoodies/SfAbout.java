@@ -21,7 +21,6 @@ public class SfAbout extends AppCompatActivity {
     TextView title, isVeganFriendly, name, address, about;
     ImageView image;
     Button viewReview;
-    RatingBar stars;
     DatabaseReference dbref;
     StorageReference sref;
 
@@ -67,8 +66,6 @@ public class SfAbout extends AppCompatActivity {
         } else {
             isVeganFriendly.setText("Vegan food available!");
         }
-
-        //stars.setRating(getRating());
 
         viewReview.setOnClickListener(new View.OnClickListener() {
             @Override

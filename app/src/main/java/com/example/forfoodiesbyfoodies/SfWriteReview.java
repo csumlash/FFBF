@@ -75,6 +75,7 @@ public class SfWriteReview extends AppCompatActivity {
                     Toast.makeText(SfWriteReview.this, "Please set up a rating!", Toast.LENGTH_LONG).show();
                 } else {
                     uploadReview();
+                    finish();
                 }
             }
         });
@@ -97,6 +98,7 @@ public class SfWriteReview extends AppCompatActivity {
                     i.putExtra("user", user);
                     i.putExtra("streetfood", streetFood);
                     startActivity(i);
+                    finish();
                 }
             }
 
