@@ -59,7 +59,7 @@ public class SfAbout extends AppCompatActivity {
 
         Picasso.get().load(streetFood.getPicURL()).into(image);
         name.setText(streetFood.getName());
-        address.setText(streetFood.getAddress() + ", " + streetFood.getCity() + ", " + streetFood.getPostcode() + ", " + streetFood.getArea());
+        address.setText(streetFood.getAddress() + ", " + streetFood.getArea() + ", " + streetFood.getCity() + ", " + streetFood.getPostcode());
         about.setText(streetFood.getAbout());
 
         if (streetFood.getIsVeganFriendly().equals("no")) {

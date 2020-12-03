@@ -53,20 +53,16 @@ public class SfListOfReviews extends AppCompatActivity implements SfListOfReview
         /* If the user that opens this activity is a food critic then show the Write Review button
          * and then setting up a listener for the button to open the Review Writing activity
          * or hid the button elsewhere */
-        if (user.getUserType().equals("foodcritic")) {
-            addReview.setVisibility(View.VISIBLE);
-            addReview.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent k = new Intent(SfListOfReviews.this, SfWriteReview.class);
-                    k.putExtra("streetfood", streetfood);
-                    k.putExtra("user", user);
-                    startActivity(k);
-                }
-            });
-        } else {
-            addReview.setVisibility(View.INVISIBLE);
-        }
+        addReview.setVisibility(View.VISIBLE);
+        addReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent k = new Intent(SfListOfReviews.this, SfWriteReview.class);
+                k.putExtra("streetfood", streetfood);
+                k.putExtra("user", user);
+                startActivity(k);
+            }
+        });
 
 
     }

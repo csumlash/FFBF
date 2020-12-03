@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -43,10 +42,6 @@ public class Dashboard extends AppCompatActivity {
         search = findViewById(R.id.et_dashboard_search);
         searchBtn = findViewById(R.id.btn_dashboard_search);
         searchWarning = findViewById(R.id.tv_dashboard_search_warning);
-
-        // MUST BE CHANGED TO PROPER PICTURES!
-        restaurantPic.setImageResource(R.drawable.ic_baseline_add_photo_image);
-        streetFoodPic.setImageResource(R.drawable.ic_baseline_add_photo_image);
 
         // If the user logged in is admin then show user search field, button and warning message
         if (user.getUserType().equals("admin")) {
@@ -90,25 +85,34 @@ public class Dashboard extends AppCompatActivity {
             }
         });
 
-        // The Restaurants button to let the user get to the list of restaurants
-        restaurants.setOnClickListener(new View.OnClickListener() {
+        // This listener will be added to the Restaurants button and image
+        View.OnClickListener restListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Dashboard.this, RestaurantListOfRestaurants.class);
                 i.putExtra("user", user);
                 startActivity(i);
             }
-        });
+        };
 
-        // The Street Food Places button to let the user get to the list of Street Food Places
-        streetFoodPlaces.setOnClickListener(new View.OnClickListener() {
+        // The Restaurants button and image to let the user get to the list of Street Food Places
+        restaurants.setOnClickListener(restListener);
+        restaurantPic.setOnClickListener(restListener);
+
+        // This listener will be added to the Street Food button and image
+        View.OnClickListener sfListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent k = new Intent(Dashboard.this, SfListOfStreetFoods.class);
                 k.putExtra("user", user);
                 startActivity(k);
             }
-        });
+        };
+
+        // The Street Food Places button and image to let the user get to the list of Street Food Places
+        streetFoodPlaces.setOnClickListener(sfListener);
+        streetFoodPic.setOnClickListener(sfListener);
+
 
     }
 }

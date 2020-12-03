@@ -59,7 +59,7 @@ public class RestaurantAbout extends AppCompatActivity {
         Picasso.get().load(restaurant.getPicURL()).into(image);
         name.setText(restaurant.getName());
         type.setText(restaurant.getType());
-        address.setText(restaurant.getAddress() + ", " + restaurant.getCity() + ", " + restaurant.getPostcode() + ", " + restaurant.getArea());
+        address.setText(restaurant.getAddress() + ", " + restaurant.getArea() + ", " + restaurant.getCity() + ", " + restaurant.getPostcode());
         about.setText(restaurant.getAbout());
 
         // Setting up the Make Reservation button to open up the stored web link

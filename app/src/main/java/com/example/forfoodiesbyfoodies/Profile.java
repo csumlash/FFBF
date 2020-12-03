@@ -89,6 +89,8 @@ public class Profile extends AppCompatActivity {
         reviewsOfFC = findViewById(R.id.rv_profile_reviews);
         reviewsTitle = findViewById(R.id.tv_profile_reviews);
 
+
+
         /* If there is a username request (that is different from the logged in user) and
          * there is no loaded another user details in object
          * then launch query and reload activity with given "anotherUser" object details */
@@ -102,15 +104,21 @@ public class Profile extends AppCompatActivity {
              * if the another user details contains same username to the logged in user then
              * execute the explained code (briefly: if the user visits his own profile) */
         } else if (anotherUser == null || anotherUser.getUsername().equals(user.getUsername())) {
+
+            // Setting up the page title
+            activityTitle.setText("My Profile");
+
             // This statement is check if the user has or hasn't uploaded picture and if has then show or replace with a default "no image" one
             if (user.getPicUrl() != null) {
                 Picasso.get().load(user.getPicUrl()).into(profPic);
             } else {
                 profPic.setImageResource(R.drawable.ic_baseline_add_photo_image);
             }
+
             // Setting up the texts in the views from the logged in user object data got via Intent
             fullName.setText(user.getFirstName() + " " + user.getLastName());
             email.setText(user.getUsername());
+
             // The following methods and listeners are called and set when the user is visiting their own profile
             profPic.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -128,6 +136,11 @@ public class Profile extends AppCompatActivity {
                 }
             });
 
+            // Setting the password change fields to be visible
+            pswOld.setVisibility(View.VISIBLE);
+            pswNew.setVisibility(View.VISIBLE);
+            pswButton.setVisibility(View.VISIBLE);
+
             // SET NEW PASSWORD button listener to start the password update process
             pswButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -135,12 +148,14 @@ public class Profile extends AppCompatActivity {
                     updatePassword();
                 }
             });
+
             /* This else contains any other cases when there is:
              * - no username request got by the Activity (no need to query any other than
              *   the logged in user details ready in User object),
              * - there is a prepared anotherUser object containing someone else's details,
              * - the anotherUser is not equal to the user (logged in one) */
         } else {
+
             // If the another user has uploaded profile picture then show it or replace with default one elsewhere
             if (anotherUser.getPicUrl() != null) {
                 Picasso.get().load(anotherUser.getPicUrl()).into(profPic);
@@ -186,23 +201,9 @@ public class Profile extends AppCompatActivity {
                     }
                 });
             }
-
-            // If anybody is visiting a Food Critic's profile then show rating of their critics, list of critics, etc
-            if (anotherUser.getUserType() == "foodcritic") {
-                foodCritText.setVisibility(View.VISIBLE);
-                reviewsTitle.setVisibility(View.VISIBLE);
-                ratingBar.setVisibility(View.VISIBLE);
-                reviewsOfFC.setVisibility(View.VISIBLE);
-            }
-
-            /* Every other cases when someone visits others' profile
-             * - change activity title from My Profile to View user's profile
-             * - hide edit profile button & password field except if the user is viewing himself*/
-            activityTitle.setText("View user's profile");
-            pswOld.setVisibility(View.INVISIBLE);
-            pswNew.setVisibility(View.INVISIBLE);
-            pswButton.setVisibility(View.INVISIBLE);
         }
+
+
     }
 
 
