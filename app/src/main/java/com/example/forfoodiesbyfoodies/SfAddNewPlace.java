@@ -33,13 +33,14 @@ import com.squareup.picasso.Picasso;
 
 public class SfAddNewPlace extends AppCompatActivity {
 
+    // Defining the variables for the manipulation/access of the view elements
     Button send;
     ImageView sfPic;
     TextView warning;
     EditText name, address, postcode, area, city, about;
     SwitchCompat veganSwitch;
     /* veganSwitchValue MUST NOT be boolean because getting boolean values from PARCELABLE objects with the
-     * .readBoolean(variable) requires a minimum of API LEVEL 29 but this app is compatible from API 16 */
+     * .readBoolean(variable) requires a minimum of API LEVEL 29 but this app is compatible from API 24 */
     String veganSwitchValue;
 
     String enteredName;
@@ -163,6 +164,10 @@ public class SfAddNewPlace extends AppCompatActivity {
         return map.getExtensionFromMimeType(resolver.getType(path));
     }
 
+    /* This method is called and executed to:
+     * - Check if a Street Food place is already in the Database and if it is then,
+     * - Check if the place is at the postcode too because same named places are allowed
+     *   but not at the same place so execution and upload happens if the place isn't the postcode yet */
     private void checkIfAlreadyExists(String placeName, String postcode) {
         Query checkByName = dbref.orderByChild("name").equalTo(placeName).limitToFirst(1);
         checkByName.addListenerForSingleValueEvent(new ValueEventListener() {

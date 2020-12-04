@@ -54,18 +54,18 @@ public class SfAbout extends AppCompatActivity {
         user = i.getParcelableExtra("user");
         streetFood = i.getParcelableExtra("streetfood");
 
-
+        // Setting up the views with proper details
         Picasso.get().load(streetFood.getPicURL()).into(image);
         name.setText(streetFood.getName());
         address.setText(streetFood.getAddress() + ", " + streetFood.getArea() + ", " + streetFood.getCity() + ", " + streetFood.getPostcode());
         about.setText(streetFood.getAbout());
-
         if (streetFood.getIsVeganFriendly().equals("no")) {
             isVeganFriendly.setVisibility(View.INVISIBLE);
         } else {
             isVeganFriendly.setText("Vegan food available!");
         }
 
+        // Button to get to the list of reviews of the viewed place
         viewReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

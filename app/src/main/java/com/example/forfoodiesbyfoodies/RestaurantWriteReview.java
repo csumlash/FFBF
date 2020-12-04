@@ -97,6 +97,7 @@ public class RestaurantWriteReview extends AppCompatActivity {
 
     }
 
+    // This method is executed to upload the details into the database then start the ListOfReviews
     public void uploadReview() {
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("restaurants");
         Query query = dbRef.orderByChild("name").equalTo(restaurant.getName()).limitToFirst(1);

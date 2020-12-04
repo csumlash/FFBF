@@ -22,6 +22,7 @@ public class StreetFood extends EateryTemplate implements Parcelable {
     String isVeganFriendly;
     String SfKey;
 
+    // Constructor to initialised the members of either this or super class
     public StreetFood(String picURL, String name, String address, String area, String city,
                       String postcode, String about, String isVeganFriendly) {
         super(picURL, name, address, area, city, postcode, about);
@@ -33,6 +34,7 @@ public class StreetFood extends EateryTemplate implements Parcelable {
     }
 
 
+    // making the object to be parcelable via intents
     protected StreetFood(Parcel in) {
         super(in);
         isVeganFriendly = in.readString();
@@ -49,6 +51,7 @@ public class StreetFood extends EateryTemplate implements Parcelable {
         return 0;
     }
 
+    // Getters and setters to make the objects ready to be manipulated, red or used during database tasks
     public String getIsVeganFriendly() {
         return isVeganFriendly;
     }

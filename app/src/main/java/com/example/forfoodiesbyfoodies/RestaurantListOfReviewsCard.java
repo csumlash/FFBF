@@ -20,12 +20,14 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-
+/* This class represents the class and so the behaviours of a Card in the Recyclerview*/
 public class RestaurantListOfReviewsCard extends RecyclerView.Adapter<RestaurantListOfReviewsCard.RestaurantReviewHolder> {
 
+    // Preparing the class to be ready to get values upon initialisation
     ArrayList<ReviewTemplate> list;
     RestaurantListOfReviewsCard.RestaurantReviewHolder.OnCardClickListener listener;
 
+    // Constructor that is executed upon instantiation
     public RestaurantListOfReviewsCard(ArrayList<ReviewTemplate> list, RestaurantListOfReviewsCard.RestaurantReviewHolder.OnCardClickListener listener) {
         this.list = list;
         this.listener = listener;
@@ -35,6 +37,7 @@ public class RestaurantListOfReviewsCard extends RecyclerView.Adapter<Restaurant
 
     }
 
+    // Making the class ready to get ready with his card 1-by-1
     @NonNull
     @Override
     public RestaurantListOfReviewsCard.RestaurantReviewHolder onCreateViewHolder(@NonNull ViewGroup view, int viewType) {
@@ -43,8 +46,10 @@ public class RestaurantListOfReviewsCard extends RecyclerView.Adapter<Restaurant
         return holder;
     }
 
+    // Anytime the recyclerview needs new cards this method gets called
     @Override
     public void onBindViewHolder(@NonNull RestaurantListOfReviewsCard.RestaurantReviewHolder holder, int position) {
+        // Setting up the connection with the database then fetching queried data
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("users");
         Query userDetails = dbRef.orderByChild("username").equalTo(list.get(position).getWriter()).limitToFirst(1);
         userDetails.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -72,11 +77,13 @@ public class RestaurantListOfReviewsCard extends RecyclerView.Adapter<Restaurant
         });
     }
 
+    // A supportive method that provides the length value of the list of reviews
     @Override
     public int getItemCount() {
         return list.size();
     }
 
+    // Inner class that represents the link between the Actvitiy view and this code
     public static class RestaurantReviewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView writer, dateOfVisit, review;
         ImageView image;
@@ -95,6 +102,7 @@ public class RestaurantListOfReviewsCard extends RecyclerView.Adapter<Restaurant
             itemView.setOnClickListener(this);
         }
 
+        // Loading the additional, requested card details
         @Override
         public void onClick(View v) {
             this.listener.onCardClick(getAdapterPosition());

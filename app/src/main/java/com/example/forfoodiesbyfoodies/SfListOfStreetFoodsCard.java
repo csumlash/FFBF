@@ -14,11 +14,13 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+// This class represents a card in the Street Food list
 public class SfListOfStreetFoodsCard extends RecyclerView.Adapter<SfListOfStreetFoodsCard.StreetFoodHolder> {
 
     ArrayList<StreetFood> list;
     SfListOfStreetFoodsCard.StreetFoodHolder.OnCardClickListener listener;
 
+    // Setting up the mandatory members of class for further works
     public SfListOfStreetFoodsCard(ArrayList<StreetFood> list, SfListOfStreetFoodsCard.StreetFoodHolder.OnCardClickListener listener) {
         this.list = list;
         this.listener = listener;
@@ -28,6 +30,7 @@ public class SfListOfStreetFoodsCard extends RecyclerView.Adapter<SfListOfStreet
 
     }
 
+    // Setting up the card to be ready for
     @NonNull
     @Override
     public StreetFoodHolder onCreateViewHolder(@NonNull ViewGroup view, int viewType) {
@@ -36,6 +39,7 @@ public class SfListOfStreetFoodsCard extends RecyclerView.Adapter<SfListOfStreet
         return holder;
     }
 
+    // When the card is called then setting up its Views
     @Override
     public void onBindViewHolder(@NonNull SfListOfStreetFoodsCard.StreetFoodHolder holder, int position) {
         holder.name.setText(list.get(position).getName());
@@ -43,11 +47,13 @@ public class SfListOfStreetFoodsCard extends RecyclerView.Adapter<SfListOfStreet
         Picasso.get().load(list.get(position).getPicURL()).fit().into(holder.image);
     }
 
+    // Getting the amount of elements in the list
     @Override
     public int getItemCount() {
         return list.size();
     }
 
+    // This method makes the card views linked to this code
     public static class StreetFoodHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView name, area;
         ImageView image;

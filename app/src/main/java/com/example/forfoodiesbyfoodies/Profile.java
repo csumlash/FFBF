@@ -405,9 +405,11 @@ public class Profile extends AppCompatActivity {
             }
 
         });
+        // destroying the activity to forbid returning and repeat of value update
         finish();
     }
 
+    // This method is responsible to get the rank of the user then select and set the proper usertitle
     private void setRanking(String userType) {
         switch (userType) {
             case "user":

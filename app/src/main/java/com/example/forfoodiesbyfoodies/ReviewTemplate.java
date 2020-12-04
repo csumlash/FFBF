@@ -3,6 +3,7 @@ package com.example.forfoodiesbyfoodies;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+// This class stands to be the template of an either Restaurant or Street F. place review
 public class ReviewTemplate implements Parcelable {
     public static final Creator<ReviewTemplate> CREATOR = new Creator<ReviewTemplate>() {
         @Override
@@ -18,7 +19,7 @@ public class ReviewTemplate implements Parcelable {
     String writer, dateOfVisit, review, reviewKey;
     float rating;
 
-
+    // Contructor to setup object attributes upon initialisation
     public ReviewTemplate(String writer, String dateOfVisit, String review, float rating) {
         this.writer = writer;
         this.dateOfVisit = dateOfVisit;
@@ -26,6 +27,7 @@ public class ReviewTemplate implements Parcelable {
         this.rating = rating;
     }
 
+    // Constructor to let the object delivered via Intents
     protected ReviewTemplate(Parcel in) {
         writer = in.readString();
         dateOfVisit = in.readString();
@@ -33,6 +35,7 @@ public class ReviewTemplate implements Parcelable {
         rating = in.readFloat();
     }
 
+    // The method below also helps the object to be used via Intents
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(writer);
@@ -46,6 +49,7 @@ public class ReviewTemplate implements Parcelable {
         return 0;
     }
 
+    // The following getters and setters provide the opportunity to get or manipulate the data of objects of this class
     public String getWriter() {
         return writer;
     }

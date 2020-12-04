@@ -58,7 +58,6 @@ public class RestaurantListOfRestaurantsCard extends RecyclerView.Adapter<Restau
     public static class RestaurantHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView name, area;
         ImageView image;
-        RatingBar stars;
         RestaurantHolder.OnCardClickListener listener;
 
         public RestaurantHolder(@NonNull View itemView, OnCardClickListener listener) {

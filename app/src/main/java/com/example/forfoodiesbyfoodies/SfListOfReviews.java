@@ -29,6 +29,8 @@ public class SfListOfReviews extends AppCompatActivity implements SfListOfReview
     ArrayList<ReviewTemplate> list = new ArrayList<>();
     DatabaseReference dbref;
     SfListOfReviewsCard adapter;
+
+    // setting up a listener, to get the key of a Street food place of which reviews are requested
     ValueEventListener listener = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -41,6 +43,7 @@ public class SfListOfReviews extends AppCompatActivity implements SfListOfReview
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     for (DataSnapshot ds : snapshot.getChildren()) {
+                        // Because of the float member of Object a manual object initialisation is called
                         ReviewTemplate rt = new ReviewTemplate(
                                 ds.child("writer").getValue().toString(),
                                 ds.child("dateOfVisit").getValue().toString(),
@@ -50,6 +53,7 @@ public class SfListOfReviews extends AppCompatActivity implements SfListOfReview
                         rt.setReviewKey(ds.getKey());
                         list.add(rt);
                     }
+                    // Initialisation of adapter then setting up the list
                     adapter = new SfListOfReviewsCard(list, SfListOfReviews.this, user, streetfood);
                     listOfReviews.setAdapter(adapter);
                 }
@@ -104,6 +108,7 @@ public class SfListOfReviews extends AppCompatActivity implements SfListOfReview
         }
     }
 
+    // Overriding the back button of the phone to destroy all the previous activity to avoid conflicts of uploads/requests
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -114,6 +119,7 @@ public class SfListOfReviews extends AppCompatActivity implements SfListOfReview
         finish();
     }
 
+    // Card element on click action
     @Override
     public void onCardClick(int i) {
         Intent intent = new Intent(SfListOfReviews.this, Profile.class);

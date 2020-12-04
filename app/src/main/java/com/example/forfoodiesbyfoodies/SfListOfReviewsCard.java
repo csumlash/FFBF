@@ -23,12 +23,15 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+// A review card to present reviews 1-by-1 in the recyclerview
 public class SfListOfReviewsCard extends RecyclerView.Adapter<SfListOfReviewsCard.SfReviewHolder> {
     ArrayList<ReviewTemplate> list;
     SfListOfReviewsCard.SfReviewHolder.OnCardClickListener listener;
     User user;
     StreetFood streetfood;
 
+
+    // Constructor to initialise the mandatory elements of proper processing
     public SfListOfReviewsCard(ArrayList<ReviewTemplate> list, SfListOfReviewsCard.SfReviewHolder.OnCardClickListener listener,
                                User user, StreetFood streetfood) {
         this.list = list;
@@ -41,6 +44,7 @@ public class SfListOfReviewsCard extends RecyclerView.Adapter<SfListOfReviewsCar
 
     }
 
+    // setting up the card to be ready for further settings
     @NonNull
     @Override
     public SfListOfReviewsCard.SfReviewHolder onCreateViewHolder(@NonNull ViewGroup view, int viewType) {
@@ -49,6 +53,7 @@ public class SfListOfReviewsCard extends RecyclerView.Adapter<SfListOfReviewsCar
         return holder;
     }
 
+    // setting up the requested card element
     @Override
     public void onBindViewHolder(@NonNull SfListOfReviewsCard.SfReviewHolder holder, int position) {
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("users");
@@ -78,6 +83,8 @@ public class SfListOfReviewsCard extends RecyclerView.Adapter<SfListOfReviewsCar
         holder.review.setText(list.get(position).getReview());
         holder.ratingBar.setRating(list.get(position).getRating());
 
+        /* Setting up the red X image button to be visible for the administrators and the poster
+         * users only. If the proper user or admin is viewing the card then let him delete the review. */
         if (user.getUserType().equals("admin") || list.get(position).getWriter().equals(user.getUsername())) {
             holder.deleteBtn.setVisibility(View.VISIBLE);
             holder.deleteBtn.setOnClickListener(new View.OnClickListener() {
@@ -115,6 +122,7 @@ public class SfListOfReviewsCard extends RecyclerView.Adapter<SfListOfReviewsCar
         return list.size();
     }
 
+    // The class of a card to link its views, elements to the code, to let them be manipulated
     public static class SfReviewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView writer, dateOfVisit, review;
         ImageView image;

@@ -3,6 +3,8 @@ package com.example.forfoodiesbyfoodies;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+/* This class is the most widely used template of User typed objects between all the activites of
+ * the application */
 public class User implements Parcelable {
     public static final Creator<User> CREATOR = new Creator<User>() {
         @Override
@@ -17,6 +19,7 @@ public class User implements Parcelable {
     };
     public String username, firstName, lastName, userType, picUrl;
 
+    // Constructor called upon object initialisation and make the members initialised this way
     public User(String username, String firstName, String lastName, String userType, String picUrl) {
         this.username = username;
         this.firstName = firstName;
@@ -36,6 +39,7 @@ public class User implements Parcelable {
     public User() {
     }
 
+    // Getters and setters to make the Objects ready to be used during database works and accessed for data needs
     public String getUsername() {
         return username;
     }

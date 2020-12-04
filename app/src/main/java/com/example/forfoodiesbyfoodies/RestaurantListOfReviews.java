@@ -83,6 +83,7 @@ public class RestaurantListOfReviews extends AppCompatActivity implements Restau
         listOfReviews = findViewById(R.id.rv_rest_loreviews_list);
         addReview = findViewById(R.id.btn_rest_loreviews_addnewreview);
 
+        //setting up the database connection then setting up the list of restaurants
         listOfReviews.setLayoutManager(new LinearLayoutManager(RestaurantListOfReviews.this));
         dbref = FirebaseDatabase.getInstance().getReference("restaurants");
         Query queryReviewsRef = dbref.orderByChild("picURL").equalTo(restaurant.getPicURL()).limitToFirst(1);
@@ -120,6 +121,7 @@ public class RestaurantListOfReviews extends AppCompatActivity implements Restau
         finish();
     }
 
+    // Calling the proper activity on a card clicking in the list
     @Override
     public void onCardClick(int i) {
         Intent intent = new Intent(RestaurantListOfReviews.this, Profile.class);

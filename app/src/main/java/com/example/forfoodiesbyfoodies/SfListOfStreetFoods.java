@@ -20,8 +20,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+// The list of street foods
 public class SfListOfStreetFoods extends AppCompatActivity implements SfListOfStreetFoodsCard.StreetFoodHolder.OnCardClickListener {
 
+    // Starting definition of needed attributes for further operations
     Button add;
     RecyclerView sflist;
     ArrayList<StreetFood> list = new ArrayList<>();
@@ -30,6 +32,9 @@ public class SfListOfStreetFoods extends AppCompatActivity implements SfListOfSt
 
     // A User type object to store the User object got from the previous activities.
     User user;
+
+    /* Event listener that will be used to query the street food places, insert into a
+     * a list then sort them ALPHABETICALLY */
     ValueEventListener listener = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -64,6 +69,7 @@ public class SfListOfStreetFoods extends AppCompatActivity implements SfListOfSt
         Intent i = getIntent();
         user = i.getParcelableExtra("user");
 
+        // Linking the views to this code
         add = findViewById(R.id.btn_sf_lop_addplace);
         sflist = findViewById(R.id.rv_sf_lop_sflist);
 
@@ -71,6 +77,7 @@ public class SfListOfStreetFoods extends AppCompatActivity implements SfListOfSt
         dbref = FirebaseDatabase.getInstance().getReference("streetfoods");
         dbref.addListenerForSingleValueEvent(listener);
 
+        // Setting up the button to lead the user to the new street food place addition activity
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,7 +88,7 @@ public class SfListOfStreetFoods extends AppCompatActivity implements SfListOfSt
         });
     }
 
-    // This method forces the back button to go back to the Dashboard
+    // This method forces the back button to go back to the Dashboard and avoid any previos activity action be repeated
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -91,6 +98,7 @@ public class SfListOfStreetFoods extends AppCompatActivity implements SfListOfSt
         finish();
     }
 
+    // One street food place card on click action to see more details of it
     @Override
     public void onCardClick(int i) {
         Intent intent = new Intent(SfListOfStreetFoods.this, SfAbout.class);

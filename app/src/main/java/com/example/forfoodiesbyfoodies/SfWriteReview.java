@@ -21,16 +21,20 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+// This class represent a Street Food review writing
 public class SfWriteReview extends AppCompatActivity {
+    // Defining the views
     Button send;
     EditText date, experience;
     RatingBar stars;
     ImageView SfImage;
     TextView name;
 
+    // The needed members to know what streetFood is reviewed and who reviews it.
     StreetFood streetFood;
     User user;
 
+    // Storing the entered data later in these variables
     String enteredDate;
     String enteredExperience;
     float chosenRating;
@@ -41,10 +45,12 @@ public class SfWriteReview extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sf_write_review);
 
+        // Getting the data from intent got from the previous activity
         Intent i = getIntent();
         user = i.getParcelableExtra("user");
         streetFood = i.getParcelableExtra("streetfood");
 
+        // Linking the views to this code
         send = findViewById(R.id.btn_sf_wr_send);
         date = findViewById(R.id.et_sf_wr_date);
         experience = findViewById(R.id.et_sf_wr_experience);
@@ -52,9 +58,11 @@ public class SfWriteReview extends AppCompatActivity {
         SfImage = findViewById(R.id.iv_sf_wr_image);
         name = findViewById(R.id.tv_sf_wr_placename);
 
+        // setting up the views
         Picasso.get().load(streetFood.getPicURL()).into(SfImage);
         name.setText(streetFood.getName());
 
+        // The send button executes by this OnClickListener
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,6 +90,7 @@ public class SfWriteReview extends AppCompatActivity {
 
     }
 
+    // This method is executed to upload the review after the proper statements satisfied above
     public void uploadReview() {
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("streetfoods");
         Query query = dbRef.orderByChild("name").equalTo(streetFood.getName()).limitToFirst(1);
