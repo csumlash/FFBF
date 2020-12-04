@@ -121,7 +121,7 @@ public class SfAddNewPlace extends AppCompatActivity {
                 if (image_path != null && enteredName.length() > 0 && enteredAddress.length() > 0 &&
                         enteredArea.length() > 0 && enteredCity.length() > 0 && enteredPostcode.length() > 0 &&
                         enteredAbout.length() > 0) {
-
+                    enteredName = enteredName.substring(0, 1).toUpperCase() + enteredName.substring(1);
                     /* Checking the Database if the Place is registered or is not at the given
                      * Postcode. This method calls the upload process */
                     checkIfAlreadyExists(enteredName, enteredPostcode);

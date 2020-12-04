@@ -47,7 +47,7 @@ public class SfListOfStreetFoods extends AppCompatActivity implements SfListOfSt
             Collections.sort(list, new Comparator<StreetFood>() {
                 @Override
                 public int compare(StreetFood o1, StreetFood o2) {
-                    return o2.getName().compareTo(o1.getName());
+                    return o1.getName().compareTo(o2.getName());
                 }
             });
             adapter = new SfListOfStreetFoodsCard(list, SfListOfStreetFoods.this);
