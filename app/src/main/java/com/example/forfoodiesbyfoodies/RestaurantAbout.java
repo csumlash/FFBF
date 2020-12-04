@@ -85,4 +85,13 @@ public class RestaurantAbout extends AppCompatActivity {
         });
     }
 
+    // This method forces the back button to go back to the List of eatery
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(RestaurantAbout.this, RestaurantListOfRestaurants.class);
+        i.putExtra("user", user);
+        startActivity(i);
+        finish();
+    }
 }
