@@ -408,8 +408,8 @@ public class Profile extends AppCompatActivity {
         finish();
     }
 
-    private void setRanking(String userType){
-        switch(userType){
+    private void setRanking(String userType) {
+        switch (userType) {
             case "user":
                 ranking.setText("User");
                 ranking.setVisibility(View.VISIBLE);

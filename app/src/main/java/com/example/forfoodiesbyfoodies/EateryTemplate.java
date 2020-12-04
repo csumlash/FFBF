@@ -9,6 +9,19 @@ import android.os.Parcelable;
  * class to be transferred through intents from activity to another activity */
 public class EateryTemplate implements Parcelable {
 
+    /* The methods below provides a solution to make the transferred object details
+     * callable as a regular intent extra data. */
+    public static final Creator<EateryTemplate> CREATOR = new Creator<EateryTemplate>() {
+        @Override
+        public EateryTemplate createFromParcel(Parcel in) {
+            return new EateryTemplate(in);
+        }
+
+        @Override
+        public EateryTemplate[] newArray(int size) {
+            return new EateryTemplate[size];
+        }
+    };
     // The following attributes are the basic details of a Street Food place and Restaurant
     private String picURL, name, address, area, city, postcode, about;
 
@@ -59,20 +72,6 @@ public class EateryTemplate implements Parcelable {
     public int describeContents() {
         return 0;
     }
-
-    /* The methods below provides a solution to make the transferred object details
-     * callable as a regular intent extra data. */
-    public static final Creator<EateryTemplate> CREATOR = new Creator<EateryTemplate>() {
-        @Override
-        public EateryTemplate createFromParcel(Parcel in) {
-            return new EateryTemplate(in);
-        }
-
-        @Override
-        public EateryTemplate[] newArray(int size) {
-            return new EateryTemplate[size];
-        }
-    };
 
     /* The following getters and setters stand for the opportunity to access or manipulate all the
      * attributes are either private or protected inside the object and these methods support

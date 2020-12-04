@@ -6,7 +6,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -96,16 +95,15 @@ public class RestaurantListOfReviewsCard extends RecyclerView.Adapter<Restaurant
             itemView.setOnClickListener(this);
         }
 
-        public interface OnCardClickListener {
-            public void onCardClick(int i);
-        }
-
         @Override
         public void onClick(View v) {
             this.listener.onCardClick(getAdapterPosition());
         }
-    }
 
+        public interface OnCardClickListener {
+            public void onCardClick(int i);
+        }
+    }
 
 
 }

@@ -47,6 +47,7 @@ public class SfListOfStreetFoodsCard extends RecyclerView.Adapter<SfListOfStreet
     public int getItemCount() {
         return list.size();
     }
+
     public static class StreetFoodHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView name, area;
         ImageView image;
@@ -62,13 +63,13 @@ public class SfListOfStreetFoodsCard extends RecyclerView.Adapter<SfListOfStreet
             itemView.setOnClickListener(this);
         }
 
-        public interface OnCardClickListener {
-            public void onCardClick(int i);
-        }
-
         @Override
         public void onClick(View v) {
             this.listener.onCardClick(getAdapterPosition());
+        }
+
+        public interface OnCardClickListener {
+            public void onCardClick(int i);
         }
     }
 }

@@ -70,13 +70,13 @@ public class RestaurantListOfRestaurantsCard extends RecyclerView.Adapter<Restau
             itemView.setOnClickListener(this);
         }
 
-        public interface OnCardClickListener {
-            public void onCardClick(int i);
-        }
-
         @Override
         public void onClick(View v) {
             this.listener.onCardClick(getAdapterPosition());
+        }
+
+        public interface OnCardClickListener {
+            public void onCardClick(int i);
         }
     }
 }

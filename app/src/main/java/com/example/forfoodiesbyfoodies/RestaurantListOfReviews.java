@@ -18,8 +18,6 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 // This class manages the ability of the app to list the reviews that a restaurant got from Food Critics
 public class RestaurantListOfReviews extends AppCompatActivity implements RestaurantListOfReviewsCard.RestaurantReviewHolder.OnCardClickListener {
@@ -32,7 +30,44 @@ public class RestaurantListOfReviews extends AppCompatActivity implements Restau
     ArrayList<ReviewTemplate> list = new ArrayList<>();
     DatabaseReference dbref;
     RestaurantListOfReviewsCard adapter;
+    ValueEventListener listener = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+            String key = "";
+            for (DataSnapshot dss : snapshot.getChildren()) {
+                key = dss.getKey();
+            }
+            DatabaseReference refToReviews = FirebaseDatabase.getInstance().getReference("restaurants/" + key + "/reviews/");
+            refToReviews.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot ds : snapshot.getChildren()) {
+                        ReviewTemplate rt = new ReviewTemplate(
+                                ds.child("writer").getValue().toString(),
+                                ds.child("dateOfVisit").getValue().toString(),
+                                ds.child("review").getValue().toString(),
+                                Float.parseFloat(ds.child("rating").getValue().toString())
+                        );
+                        list.add(rt);
+                    }
 
+                    //Sorting the list alphabetically by restaurant name
+                    adapter = new RestaurantListOfReviewsCard(list, RestaurantListOfReviews.this);
+                    listOfReviews.setAdapter(adapter);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,45 +119,6 @@ public class RestaurantListOfReviews extends AppCompatActivity implements Restau
         startActivity(i);
         finish();
     }
-
-    ValueEventListener listener = new ValueEventListener() {
-        @Override
-        public void onDataChange(@NonNull DataSnapshot snapshot) {
-            String key = "";
-            for (DataSnapshot dss : snapshot.getChildren()) {
-                key = dss.getKey();
-            }
-            DatabaseReference refToReviews = FirebaseDatabase.getInstance().getReference("restaurants/" + key + "/reviews/");
-            refToReviews.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    for (DataSnapshot ds : snapshot.getChildren()) {
-                        ReviewTemplate rt = new ReviewTemplate(
-                                ds.child("writer").getValue().toString(),
-                                ds.child("dateOfVisit").getValue().toString(),
-                                ds.child("review").getValue().toString(),
-                                Float.parseFloat(ds.child("rating").getValue().toString())
-                        );
-                        list.add(rt);
-                    }
-
-                    //Sorting the list alphabetically by restaurant name
-                    adapter = new RestaurantListOfReviewsCard(list, RestaurantListOfReviews.this);
-                    listOfReviews.setAdapter(adapter);
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-        }
-
-        @Override
-        public void onCancelled(@NonNull DatabaseError error) {
-
-        }
-    };
 
     @Override
     public void onCardClick(int i) {

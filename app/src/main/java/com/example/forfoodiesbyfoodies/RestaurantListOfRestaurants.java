@@ -31,6 +31,35 @@ public class RestaurantListOfRestaurants extends AppCompatActivity implements Re
 
     // A User type object to store the User object got from the previous activities.
     User user;
+    // The following listener is called to request Restaurants from the DB then filling up the Restaurant type list of Restaurants
+    ValueEventListener listener = new ValueEventListener() {
+
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+            for (DataSnapshot dss : snapshot.getChildren()) {
+                Restaurant r = dss.getValue(Restaurant.class);
+                list.add(r);
+            }
+
+            //Sorting the list alphabetically by Restaurant name
+            Collections.sort(list, new Comparator<Restaurant>() {
+                @Override
+                public int compare(Restaurant o1, Restaurant o2) {
+                    return o1.getName().compareTo(o2.getName());
+                }
+            });
+
+            // This adapter will contain the Initialised CardViews (to let the restaurants be handle 1-by-1 by the CardViews)
+            adapter = new RestaurantListOfRestaurantsCard(list, RestaurantListOfRestaurants.this);
+            // Setting up the RecyclerVies adapter with the previously defined Card object
+            restList.setAdapter(adapter);
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,38 +104,6 @@ public class RestaurantListOfRestaurants extends AppCompatActivity implements Re
         startActivity(i);
         finish();
     }
-
-    // The following listener is called to request Restaurants from the DB then filling up the Restaurant type list of Restaurants
-    ValueEventListener listener = new ValueEventListener() {
-
-        @Override
-        public void onDataChange(@NonNull DataSnapshot snapshot) {
-            for (DataSnapshot dss : snapshot.getChildren()) {
-                Restaurant r = dss.getValue(Restaurant.class);
-                list.add(r);
-            }
-
-            //Sorting the list alphabetically by Restaurant name
-            Collections.sort(list, new Comparator<Restaurant>() {
-                @Override
-                public int compare(Restaurant o1, Restaurant o2) {
-                    return o1.getName().compareTo(o2.getName());
-                }
-            });
-
-            // This adapter will contain the Initialised CardViews (to let the restaurants be handle 1-by-1 by the CardViews)
-            adapter = new RestaurantListOfRestaurantsCard(list, RestaurantListOfRestaurants.this);
-            // Setting up the RecyclerVies adapter with the previously defined Card object
-            restList.setAdapter(adapter);
-        }
-
-        @Override
-        public void onCancelled(@NonNull DatabaseError error) {
-
-        }
-    };
-
-
 
     // This method handles the event of clicking on one Card of the RecyclerView
     @Override

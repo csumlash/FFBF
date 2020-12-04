@@ -8,6 +8,17 @@ import android.os.Parcelable;
  * defines all the other details are its own ones but independent from the parent one. */
 public class StreetFood extends EateryTemplate implements Parcelable {
 
+    public static final Creator<StreetFood> CREATOR = new Creator<StreetFood>() {
+        @Override
+        public StreetFood createFromParcel(Parcel in) {
+            return new StreetFood(in);
+        }
+
+        @Override
+        public StreetFood[] newArray(int size) {
+            return new StreetFood[size];
+        }
+    };
     String isVeganFriendly;
     String SfKey;
 
@@ -21,11 +32,11 @@ public class StreetFood extends EateryTemplate implements Parcelable {
         super();
     }
 
+
     protected StreetFood(Parcel in) {
         super(in);
         isVeganFriendly = in.readString();
     }
-
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
@@ -37,19 +48,6 @@ public class StreetFood extends EateryTemplate implements Parcelable {
     public int describeContents() {
         return 0;
     }
-
-    public static final Creator<StreetFood> CREATOR = new Creator<StreetFood>() {
-        @Override
-        public StreetFood createFromParcel(Parcel in) {
-            return new StreetFood(in);
-        }
-
-        @Override
-        public StreetFood[] newArray(int size) {
-            return new StreetFood[size];
-        }
-    };
-
 
     public String getIsVeganFriendly() {
         return isVeganFriendly;

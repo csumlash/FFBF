@@ -8,6 +8,18 @@ import android.os.Parcelable;
  * defines all the other details are its own ones but independent from the parent one. */
 public class Restaurant extends EateryTemplate implements Parcelable {
 
+    // The following method is required by the Parcelable implemented class
+    public static final Creator<Restaurant> CREATOR = new Creator<Restaurant>() {
+        @Override
+        public Restaurant createFromParcel(Parcel in) {
+            return new Restaurant(in);
+        }
+
+        @Override
+        public Restaurant[] newArray(int size) {
+            return new Restaurant[size];
+        }
+    };
     // These attributes are uniquely defined in this child Restaurant class beyond the parent ones
     String type;
     String link;
@@ -47,19 +59,6 @@ public class Restaurant extends EateryTemplate implements Parcelable {
     public int describeContents() {
         return 0;
     }
-
-    // The following method is required by the Parcelable implemented class
-    public static final Creator<Restaurant> CREATOR = new Creator<Restaurant>() {
-        @Override
-        public Restaurant createFromParcel(Parcel in) {
-            return new Restaurant(in);
-        }
-
-        @Override
-        public Restaurant[] newArray(int size) {
-            return new Restaurant[size];
-        }
-    };
 
     // The following getters and setters are for manipulation and access to the attributes in this child class
     public String getType() {

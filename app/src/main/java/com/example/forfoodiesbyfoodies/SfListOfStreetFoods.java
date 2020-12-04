@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,6 +30,30 @@ public class SfListOfStreetFoods extends AppCompatActivity implements SfListOfSt
 
     // A User type object to store the User object got from the previous activities.
     User user;
+    ValueEventListener listener = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+            for (DataSnapshot dss : snapshot.getChildren()) {
+                StreetFood sf = dss.getValue(StreetFood.class);
+                list.add(sf);
+            }
+
+            //Sorting the list alphabetically by Street Food place name
+            Collections.sort(list, new Comparator<StreetFood>() {
+                @Override
+                public int compare(StreetFood o1, StreetFood o2) {
+                    return o2.getName().compareTo(o1.getName());
+                }
+            });
+            adapter = new SfListOfStreetFoodsCard(list, SfListOfStreetFoods.this);
+            sflist.setAdapter(adapter);
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,32 +90,6 @@ public class SfListOfStreetFoods extends AppCompatActivity implements SfListOfSt
         startActivity(i);
         finish();
     }
-
-
-    ValueEventListener listener = new ValueEventListener() {
-        @Override
-        public void onDataChange(@NonNull DataSnapshot snapshot) {
-            for (DataSnapshot dss : snapshot.getChildren()) {
-                StreetFood sf = dss.getValue(StreetFood.class);
-                list.add(sf);
-            }
-
-            //Sorting the list alphabetically by Street Food place name
-            Collections.sort(list, new Comparator<StreetFood>() {
-                @Override
-                public int compare(StreetFood o1, StreetFood o2) {
-                    return o2.getName().compareTo(o1.getName());
-                }
-            });
-            adapter = new SfListOfStreetFoodsCard(list, SfListOfStreetFoods.this);
-            sflist.setAdapter(adapter);
-        }
-
-        @Override
-        public void onCancelled(@NonNull DatabaseError error) {
-
-        }
-    };
 
     @Override
     public void onCardClick(int i) {

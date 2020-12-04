@@ -29,7 +29,43 @@ public class SfListOfReviews extends AppCompatActivity implements SfListOfReview
     ArrayList<ReviewTemplate> list = new ArrayList<>();
     DatabaseReference dbref;
     SfListOfReviewsCard adapter;
+    ValueEventListener listener = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+            String key = "";
+            for (DataSnapshot dss : snapshot.getChildren()) {
+                key = dss.getKey();
+            }
+            DatabaseReference refToReviews = FirebaseDatabase.getInstance().getReference("streetfoods/" + key + "/reviews/");
+            refToReviews.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot ds : snapshot.getChildren()) {
+                        ReviewTemplate rt = new ReviewTemplate(
+                                ds.child("writer").getValue().toString(),
+                                ds.child("dateOfVisit").getValue().toString(),
+                                ds.child("review").getValue().toString(),
+                                Float.parseFloat(ds.child("rating").getValue().toString())
+                        );
+                        rt.setReviewKey(ds.getKey());
+                        list.add(rt);
+                    }
+                    adapter = new SfListOfReviewsCard(list, SfListOfReviews.this, user, streetfood);
+                    listOfReviews.setAdapter(adapter);
+                }
 
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,44 +113,6 @@ public class SfListOfReviews extends AppCompatActivity implements SfListOfReview
         startActivity(i);
         finish();
     }
-
-    ValueEventListener listener = new ValueEventListener() {
-        @Override
-        public void onDataChange(@NonNull DataSnapshot snapshot) {
-            String key = "";
-            for (DataSnapshot dss : snapshot.getChildren()) {
-                key = dss.getKey();
-            }
-            DatabaseReference refToReviews = FirebaseDatabase.getInstance().getReference("streetfoods/" + key + "/reviews/");
-            refToReviews.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    for (DataSnapshot ds : snapshot.getChildren()) {
-                        ReviewTemplate rt = new ReviewTemplate(
-                                ds.child("writer").getValue().toString(),
-                                ds.child("dateOfVisit").getValue().toString(),
-                                ds.child("review").getValue().toString(),
-                                Float.parseFloat(ds.child("rating").getValue().toString())
-                        );
-                        rt.setReviewKey(ds.getKey());
-                        list.add(rt);
-                    }
-                    adapter = new SfListOfReviewsCard(list, SfListOfReviews.this, user, streetfood);
-                    listOfReviews.setAdapter(adapter);
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-        }
-
-        @Override
-        public void onCancelled(@NonNull DatabaseError error) {
-
-        }
-    };
 
     @Override
     public void onCardClick(int i) {
