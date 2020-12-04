@@ -15,8 +15,8 @@
     </style>
 
     <style name="RatingBar" parent="Theme.AppCompat">
-        <item name="colorControlNormal">@color/ratingGold</item>
-        <item name="colorControlActivated">@color/ratingRed</item>
+        <item name="colorControlNormal">@color/purple_200</item>
+        <item name="colorControlActivated">@color/purple_500</item>
         <item name="android:stepSize">1</item>
         <item name="android:numStars">5</item>
         <item name="android:isIndicator">true</item>
